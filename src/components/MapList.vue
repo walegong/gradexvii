@@ -16,11 +16,11 @@
     >
       <v-layout row wrap id="user-info" class="pt-4 pb-4">
         <v-flex sm2 offset-sm1 class="mt-auto">
-          <img :src="user_avatar" style="width: 60px; height: 60px; border-radius: 50%;"/>
+          <img :src="user_info.user_avatar" style="width: 60px; height: 60px; border-radius: 50%;"/>
         </v-flex>
         <v-flex sm8 offset-sm1 class="pt-2">
-          <v-list-tile-title style="font-size: 1.5em;">{{ user_name }}</v-list-tile-title>
-          <v-list-tile-sub-title>{{ user_email }}</v-list-tile-sub-title>
+          <v-list-tile-title style="font-size: 1.5em;">{{ user_info.user_name }}</v-list-tile-title>
+          <v-list-tile-sub-title>{{ user_info.user_email }}</v-list-tile-sub-title>
         </v-flex>
       </v-layout>
 
@@ -97,7 +97,7 @@
         <v-flex sm12 xs12>
           <v-btn large color="indigo" class="white--text" id="submit-button">
             <v-badge left color="green">
-              <span slot="badge">{{ cross_list.filter(cross => {return cross.select === true}).length }}</span>
+              <span slot="badge">{{ select_list.length }}</span>
               <v-icon left dark>assignment</v-icon>
             </v-badge>
             Make Inspection List
@@ -107,7 +107,7 @@
         <v-flex id="select-panel">
           <v-container fluid grid-list-sm>
             <v-layout row wrap>
-              <v-flex xs12 sm12 v-for="item in cross_list.filter(cross => {return cross.select === true})" :key="item.id">
+              <v-flex xs12 sm12 v-for="item in select_list" :key="item.id">
                 <!-- <img class="image" v-bind:src="cross_dict[item].image_path" width="90%" height="90%"> -->
                 <cross-card v-bind:cross="item"></cross-card>
               </v-flex>
@@ -154,11 +154,6 @@ export default {
   data () {
     return {
       drawer: null,
-      select_list: [
-        "87612",
-        "02526",
-        "14566",
-      ],
       cross_list: [
         {
           id: "75453",
@@ -209,65 +204,11 @@ export default {
           select: false,
         },
       ],
-      cross_dict: {
-        "75453": {
-          id: "75453",
-          component: "A",
-          length: "56.3",
-          cross_note: "AWS + WIS + WSS",
-          people: "Jay Marsh",
-          telephone: "479-097-3162",
-          address: "8731 Leuschke Roaods",
-          region: "East Audie",
-          image_path: "/static/cross_1.jpg",
-          select: false,
-        },
-        "02526": {
-          id: "02526",
-          component: "A",
-          length: "17.3",
-          cross_note: "PCI",
-          people: "Jayden Collins",
-          telephone: "418-859-2504",
-          address: "940 Johnston Club",
-          region: "North Clearborough",
-          image_path: "/static/cross_2.jpg",
-          select: false,
-        },
-        "87612": {
-          id: "87612",
-          component: "B",
-          length: "247.4",
-          cross_note: "AWS + WSS",
-          people: "Allen Hughes",
-          telephone: "177-485-3053",
-          address: "62 Paucek Mews",
-          region: "Cutkowskichester",
-          image_path: "/static/cross_3.jpg",
-          select: false,
-        },
-        "14566": {
-          id: "14566",
-          component: "C",
-          length: "12.5",
-          cross_note: "AWS",
-          people: "Billy Wikins",
-          telephone: "140-971-1800",
-          address: "069 Brakus Burg",
-          region: "West Jeanie",
-          image_path: "/static/cross_4.jpg",
-          select: false,
-        },
+      user_info: {
+        user_name: "Brian Smith",
+        user_email: "brian.smith@transport.gc.ca",
+        user_avatar: "https://randomuser.me/api/portraits/men/85.jpg",
       },
-      avail_list: [
-        "75453",
-        "02526",
-        "87612",
-        "14566",
-      ],
-      user_name: "Brian Smith",
-      user_email: "brian.smith@transport.gc.ca",
-      user_avatar: "https://randomuser.me/api/portraits/men/85.jpg",
       list_option: "avail",
       nav_items: [
         {
@@ -331,8 +272,10 @@ export default {
     }
   },
   methods: {
-    addToList(cross_id) {
-      this.select_list.push(cross_id);
+  },
+  computed: {
+    select_list: function() {
+      return this.cross_list.filter(cross => {return cross.select === true});
     }
   }
 }
