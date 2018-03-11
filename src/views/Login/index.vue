@@ -129,4 +129,9 @@ export default {
 #login {
   width: 200px;
 }
+
+/* remove the underline in <router-link> */
+li a {
+  text-decoration: none;
+}
 </style>

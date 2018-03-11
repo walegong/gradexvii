@@ -1,9 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Login from '@/components/Login'
-import MapList from '@/components/MapList'
-
-import CrossCard from '@/components/CrossCard'
 
 Vue.use(Router)
 
@@ -12,21 +8,21 @@ export default new Router({
     {
       path: '/login',
       name: 'Login',
-      component: Login
+      component: () => import('@/views/Login/index')
     },
     {
       path: '/maplist',
       name: 'MapList',
-      component: MapList
+      component: () => import('@/views/MapList/index')
+    },
+    {
+      path: '/form',
+      name: 'Form',
+      component: () => import('@/views/Form/index')
     },
     {
       path: '*',
       redirect: '/login',
-    },
-    {
-      path: '/test',
-      name: 'CrossCard',
-      component: CrossCard
     }
   ],
 })

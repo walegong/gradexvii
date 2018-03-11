@@ -20,12 +20,30 @@
       </v-layout>
       <v-divider></v-divider>
       <v-list dense>
-        <v-list-tile>
+        <!-- <v-list-tile>
           <v-list-tile-avatar>
             <v-icon>directions_car</v-icon>
           </v-list-tile-avatar>
           <v-list-tile-content>
             <v-list-tile-title>{{ cross.length + 'km' }}</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile> -->
+
+        <v-list-tile>
+          <v-list-tile-avatar>
+            <v-icon>label</v-icon>
+          </v-list-tile-avatar>
+          <v-list-tile-content>
+            <v-list-tile-title>{{ cross.location_id }}</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+
+        <v-list-tile>
+          <v-list-tile-avatar>
+            <v-icon>map</v-icon>
+          </v-list-tile-avatar>
+          <v-list-tile-content>
+            <v-list-tile-title>{{ cross.region }}</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
 
@@ -38,7 +56,7 @@
           </v-list-tile-content>
         </v-list-tile>
 
-        <v-list-tile>
+        <!-- <v-list-tile>
           <v-list-tile-avatar>
             <v-icon>account_circle</v-icon>
           </v-list-tile-avatar>
@@ -54,7 +72,7 @@
           <v-list-tile-content>
             <v-list-tile-title>{{ cross.telephone }}</v-list-tile-title>
           </v-list-tile-content>
-        </v-list-tile>
+        </v-list-tile> -->
 
         <v-list-tile>
           <v-list-tile-avatar>
@@ -62,7 +80,7 @@
           </v-list-tile-avatar>
           <v-list-tile-content>
             <v-list-tile-title>{{ cross.address }}</v-list-tile-title>
-            <v-list-tile-sub-title>{{ cross.region }}</v-list-tile-sub-title>
+            <!-- <v-list-tile-sub-title>{{ cross.region }}</v-list-tile-sub-title> -->
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
