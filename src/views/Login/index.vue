@@ -16,7 +16,7 @@
         > -->
         <v-card-media
           class="white--text"
-          height="300px"
+          height="200px"
           src="https://github.com/tiddler/gradex/raw/master/static/crossing.jpg"
         >
           <v-container fill-height fluid>
@@ -46,9 +46,7 @@
         </v-card-title>
         <v-layout row wrap>
           <v-flex sm12 xs12 class="text-sm-center text-xs-center">
-            <router-link to="/maplist">
-              <v-btn color="indigo" large id="login" dark >Login</v-btn>
-            </router-link>
+            <v-btn color="indigo" large id="login" dark @click="login()">Login</v-btn>
           </v-flex>
           <v-flex sm12 xs12 class="text-sm-center text-xs-center mb-4 mt-2">
             <a v-on:click="dialog=true;">Forget Password?</a>
@@ -98,13 +96,18 @@ export default {
       valid: false,
       username: '',
       usernameRules: [
-          (v) => !!v || 'Username is required',
+        (v) => !!v || 'Username is required'
       ],
       password: '',
       passwordRules: [
-          (v) => !!v || 'Password is required',
+        (v) => !!v || 'Password is required'
       ],
-      dialog: false,
+      dialog: false
+    }
+  },
+  methods: {
+    login () {
+      this.$router.push({ path: '/maplist' })
     }
   }
 }
@@ -128,10 +131,5 @@ export default {
 
 #login {
   width: 200px;
-}
-
-/* remove the underline in <router-link> */
-li a {
-  text-decoration: none;
 }
 </style>

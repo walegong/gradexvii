@@ -91,7 +91,7 @@
 <script>
 export default {
   name: 'CrossCard',
-  props: ['cross'],
+  props: ['cross']
 }
 </script>
 
