@@ -13,12 +13,14 @@ export default new Router({
     {
       path: '/maplist',
       name: 'MapList',
-      component: () => import('@/views/MapList/index')
+      component: () => import('@/views/MapList/index'),
+      meta: { requiresAuth: true }
     },
     {
       path: '/form',
       name: 'Form',
-      component: () => import('@/views/Form/index')
+      component: () => import('@/views/Form/index'),
+      meta: { requiresAuth: true }
     },
     {
       path: '*',
