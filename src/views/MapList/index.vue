@@ -40,7 +40,7 @@
                     <v-list-tile-title>{{ item.title }}</v-list-tile-title>
                   </v-list-tile-content>
                 </v-list-tile>
-                <v-list-tile v-for="subItem in item.items" :key="subItem.title" @click="">
+                <v-list-tile v-for="subItem in item.items" :key="subItem.title">
                   <v-list-tile-content>
                     <v-list-tile-title>{{ subItem.title }}</v-list-tile-title>
                   </v-list-tile-content>
@@ -57,7 +57,7 @@
 
     <!-- Left Panel -->
     <v-flex xs4 sm4 id="crosslist">
-      <v-btn-toggle v-model="list_option" id="selection-toggle" class="mb-2 mt-2">
+      <v-btn-toggle mandatory v-model="list_option" id="selection-toggle" class="mb-2 mt-2">
         <v-btn value="avail">
           <span>Avail. Crossings</span>
         </v-btn>
@@ -83,10 +83,7 @@
         <v-flex id="avail-panel">
           <v-container fluid grid-list-sm>
             <v-layout row wrap>
-              <v-flex xs12 sm12 v-for="item in cross_list" :key="item.id">
-                <!-- <img class="image" v-bind:src="cross_dict[item].image_path" width="90%" height="90%"> -->
-                <cross-card v-bind:cross="item"></cross-card>
-              </v-flex>
+              <cross-card v-for="item in cross_list" :key="item.id" v-bind:cross="item" @click.native="select_cross(item)"></cross-card>
             </v-layout>
           </v-container>
         </v-flex>
@@ -95,7 +92,7 @@
       <!-- Selected List -->
       <v-layout v-else>
         <v-flex sm12 xs12>
-          <v-btn large color="indigo" class="white--text" id="submit-button" @click="make_inspection()">
+          <v-btn large color="indigo" class="white--text" id="submit-button" @click.stop="make_inspection()">
             <v-badge left color="green">
               <span slot="badge">{{ select_list.length }}</span>
               <v-icon left dark>assignment</v-icon>
@@ -107,10 +104,7 @@
         <v-flex id="select-panel">
           <v-container fluid grid-list-sm>
             <v-layout row wrap>
-              <v-flex xs12 sm12 v-for="item in select_list" :key="item.id">
-                <!-- <img class="image" v-bind:src="cross_dict[item].image_path" width="90%" height="90%"> -->
-                <cross-card v-bind:cross="item"></cross-card>
-              </v-flex>
+                <cross-card v-for="item in select_list" :key="item.id" v-bind:cross="item" @click.native="select_cross(item)"></cross-card>
             </v-layout>
           </v-container>
         </v-flex>
@@ -120,9 +114,11 @@
     <!-- Right Panel -->
     <v-flex xs8 sm8 id="mapview">
       <!-- <iframe width="100%" height="100%" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=Ontario%20Pharma%20Research%20Chemicals&key=AIzaSyDlqAAPoRCfA0Uy9qMsKB0ldlwQC8pdoJ0" allowfullscreen></iframe> -->
-      <google-map :center="center" :zoom="6" style="width: 100%; height: 100%;">
+      <google-map :center="center" :zoom="zoom_level" style="width: 100%; height: 100%;">
         <google-cluster>
-          <google-marker v-for="m in markers" :position="m.position" :clickable="true" :draggable="true" @click="center=m.position" :key="m.id"></google-marker>
+          <google-marker v-for="item in cross_list" :position="item.position" :clickable="true" :draggable="true" @click="center=item.position" :key="item.id">
+            <google-info-window :opened="item.id == current_cross">Navigate to {{ item.id }}</google-info-window>
+          </google-marker>
         </google-cluster>
       </google-map>
     </v-flex>
@@ -146,6 +142,7 @@ Vue.use(VueGoogleMaps, {
 Vue.component('google-map', VueGoogleMaps.Map)
 Vue.component('google-marker', VueGoogleMaps.Marker)
 Vue.component('google-cluster', VueGoogleMaps.Cluster)
+Vue.component('google-info-window', VueGoogleMaps.InfoWindow)
 
 export default {
   name: 'MapList',
@@ -188,265 +185,19 @@ export default {
         lat: 52.368011,
         lng: -109.924447
       },
-      markers: [
-        {
-          id: 0,
-          position: {
-            lat: 51.04472,
-            lng: -114.08874
-          }
-        },
-        {
-          id: 1,
-          position: {
-            lat: 51.00135,
-            lng: -114.065
-          }
-        },
-        {
-          id: 2,
-          position: {
-            lat: 50.99771,
-            lng: -114.06557
-          }
-        },
-        {
-          id: 3,
-          position: {
-            lat: 51.0555,
-            lng: -114.1408
-          }
-        },
-        {
-          id: 4,
-          position: {
-            lat: 51.0815,
-            lng: -114.184
-          }
-        },
-        {
-          id: 5,
-          position: {
-            lat: 50.9515,
-            lng: -114.0736
-          }
-        },
-        {
-          id: 6,
-          position: {
-            lat: 50.9107,
-            lng: -114.0704
-          }
-        },
-        {
-          id: 7,
-          position: {
-            lat: 50.90316,
-            lng: -114.07048
-          }
-        },
-        {
-          id: 8,
-          position: {
-            lat: 50.89982,
-            lng: -114.06924
-          }
-        },
-        {
-          id: 9,
-          position: {
-            lat: 50.8984,
-            lng: -114.06836
-          }
-        },
-        {
-          id: 11,
-          position: {
-            lat: 51.66622,
-            lng: -114.13666
-          }
-        },
-        {
-          id: 12,
-          position: {
-            lat: 51.70764,
-            lng: -114.16327
-          }
-        },
-        {
-          id: 13,
-          position: {
-            lat: 51.73679,
-            lng: -114.14179
-          }
-        },
-        {
-          id: 14,
-          position: {
-            lat: 51.78784,
-            lng: -114.10635
-          }
-        },
-        {
-          id: 15,
-          position: {
-            lat: 51.79189,
-            lng: -114.10445
-          }
-        },
-        {
-          id: 16,
-          position: {
-            lat: 50.5375,
-            lng: -103.885
-          }
-        },
-        {
-          id: 17,
-          position: {
-            lat: 50.5,
-            lng: -104.206
-          }
-        },
-        {
-          id: 18,
-          position: {
-            lat: 53.2797,
-            lng: -113.54457
-          }
-        },
-        {
-          id: 19,
-          position: {
-            lat: 50.4844,
-            lng: -104.343
-          }
-        },
-        {
-          id: 20,
-          position: {
-            lat: 50.4755,
-            lng: -104.458
-          }
-        },
-        {
-          id: 21,
-          position: {
-            lat: 53.4248,
-            lng: -113.4854
-          }
-        },
-        {
-          id: 22,
-          position: {
-            lat: 50.4782,
-            lng: -104.5589
-          }
-        },
-        {
-          id: 23,
-          position: {
-            lat: 50.4597,
-            lng: -104.5723
-          }
-        },
-        {
-          id: 24,
-          position: {
-            lat: 53.4468,
-            lng: -113.4897
-          }
-        },
-        {
-          id: 25,
-          position: {
-            lat: 50.85492,
-            lng: -113.01686
-          }
-        },
-        {
-          id: 26,
-          position: {
-            lat: 50.86321,
-            lng: -113.05165
-          }
-        },
-        {
-          id: 27,
-          position: {
-            lat: 50.8706,
-            lng: -113.0744
-          }
-        },
-        {
-          id: 28,
-          position: {
-            lat: 51.6632,
-            lng: -105.4466
-          }
-        },
-        {
-          id: 29,
-          position: {
-            lat: 51.675,
-            lng: -105.4796
-          }
-        },
-        {
-          id: 30,
-          position: {
-            lat: 50.877,
-            lng: -113.167
-          }
-        },
-        {
-          id: 31,
-          position: {
-            lat: 51.707,
-            lng: -105.584
-          }
-        },
-        {
-          id: 32,
-          position: {
-            lat: 51.76746,
-            lng: -105.74898
-          }
-        },
-        {
-          id: 33,
-          position: {
-            lat: 53.0871,
-            lng: -111.76
-          }
-        },
-        {
-          id: 34,
-          position: {
-            lat: 53.1093,
-            lng: -111.833
-          }
-        },
-        {
-          id: 35,
-          position: {
-            lat: 53.2308,
-            lng: -112.237
-          }
-        },
-        {
-          id: 36,
-          position: {
-            lat: 53.2698,
-            lng: -112.368
-          }
-        }
-      ]
+      zoom_level: 6,
+      current_cross: 0
     }
   },
   methods: {
     make_inspection () {
       this.$router.push({ path: '/form' })
+    },
+    select_cross (cross) {
+      cross.select = !cross.select
+      this.center = cross.position
+      this.zoom_level = 16
+      this.current_cross = cross.id
     }
   },
   computed: {
@@ -500,7 +251,7 @@ export default {
 #avail-panel {
   position: fixed;
   overflow-y: auto;
-  height: 80%;
+  height: 75%;
   width: 34%;
   margin-top: 60px;
 }

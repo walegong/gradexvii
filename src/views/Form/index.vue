@@ -24,14 +24,14 @@
         </v-toolbar>
         <v-list three-line class="pa-0">
           <v-list-tile>
-            <v-list-tile-content>
+            <v-list-tile-content @click.stop="save_form_data()">
               <v-list-tile-title>{{ dialog_items[0].title }}</v-list-tile-title>
               <v-list-tile-sub-title>{{ dialog_items[0].subtitle }}</v-list-tile-sub-title>
             </v-list-tile-content>
           </v-list-tile>
           <v-divider></v-divider>
           <v-list-tile>
-            <v-list-tile-content>
+            <v-list-tile-content @click.stop="save_form_data()">
               <v-list-tile-title>{{ dialog_items[1].title }}</v-list-tile-title>
               <v-list-tile-sub-title>{{ dialog_items[1].subtitle }}</v-list-tile-sub-title>
             </v-list-tile-content>
@@ -65,7 +65,7 @@
         </v-card-title>
         <v-btn color="info">Overview</v-btn>
         <v-btn color="success" @click.native.stop="confirm_dialog = true">Finish Task</v-btn>
-        <v-progress-circular
+        <!-- <v-progress-circular
             :size="70"
             :width="10"
             :rotate="-90"
@@ -73,7 +73,7 @@
             color="teal"
         >
           {{ answer_number +'/' + question_list.length }}
-        </v-progress-circular>
+        </v-progress-circular> -->
         <div>
           <v-progress-linear id="progress-bar" :value="answer_number / question_list.length * 100" height="8" color="teal"></v-progress-linear>
           <div>{{ answer_number +'/' + question_list.length }}</div>
@@ -87,7 +87,7 @@
         :dark="question.answer!=null" 
         v-for="(question, index) in question_list" 
         :key="index" 
-        @click="select_question(index)"
+        @click.stop="select_question(index)"
       >
         {{ question.id }}
       </v-btn>
@@ -193,6 +193,7 @@
 
 <script>
 import QuestionData from './db.json'
+import { sendFormData } from '@/api/form'
 
 export default {
   name: 'Form',
@@ -254,6 +255,11 @@ export default {
     move_next () {
       this.transition = 'slide-right'
       this.current_question += 1
+    },
+
+    save_form_data () {
+      sendFormData(this.question_list)
+      this.confirm_dialog = false
     }
   },
   computed: {
