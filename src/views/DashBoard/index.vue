@@ -17,6 +17,12 @@
               large 
               class="form-btn"
               @click.stop="logOut()">Log Out</v-btn>
+            <v-btn 
+              color="purple"
+              dark
+              large 
+              class="form-btn"
+              @click.stop="jumpMap()">Map List</v-btn>
           </v-flex>
         </v-layout>
       </v-card>
@@ -34,6 +40,9 @@ export default {
   methods: {
     logOut () {
       this.$store.dispatch('userSignOut')
+    },
+    jumpMap () {
+      this.$router.push('/maplist')
     }
   }
 }

@@ -10,8 +10,8 @@
         </v-flex>
       </v-layout>
       <v-divider></v-divider>
-      <v-list dense>
-        <v-list-tile>
+      <v-list>
+        <v-list-tile class="dense-content">
           <v-list-tile-avatar>
             <v-icon>label</v-icon>
           </v-list-tile-avatar>
@@ -20,7 +20,7 @@
           </v-list-tile-content>
         </v-list-tile>
 
-        <v-list-tile>
+        <v-list-tile class="dense-content">
           <v-list-tile-avatar>
             <v-icon>map</v-icon>
           </v-list-tile-avatar>
@@ -29,7 +29,7 @@
           </v-list-tile-content>
         </v-list-tile>
 
-        <v-list-tile>
+        <v-list-tile class="dense-content">
           <v-list-tile-avatar>
             <v-icon>traffic</v-icon>
           </v-list-tile-avatar>
@@ -38,7 +38,7 @@
           </v-list-tile-content>
         </v-list-tile>
 
-        <v-list-tile>
+        <v-list-tile class="dense-content">
           <v-list-tile-avatar>
             <v-icon>place</v-icon>
           </v-list-tile-avatar>
@@ -64,6 +64,7 @@ export default {
   width: 300px;
   margin: auto;
   margin-top: 10px;
+  padding-bottom: 5px;
 }
 
 .active {
@@ -75,5 +76,9 @@ export default {
   font-weight: bold;
   font-size: 1.6em;
   color: rgb(40, 53, 147);
+}
+
+.dense-content {
+  height: 30px;
 }
 </style>
