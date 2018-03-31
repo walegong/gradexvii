@@ -60,7 +60,7 @@
       <v-container fluid fill-height class="pa-0">
         <v-layout row wrap>
           <!-- Left Panel -->
-          <v-flex xs4 sm4 md4 id="crosslist">
+          <v-flex xs4 sm4 md3 id="crosslist">
             <v-btn-toggle mandatory v-model="list_option" id="selection-toggle" class="mb-2 mt-2">
               <v-btn value="avail">
                 <span>Avail. Crossings</span>
@@ -108,21 +108,26 @@
           </v-flex>
 
           <!-- Right Panel -->
-          <v-flex xs8 sm8 md8 id="mapview">
+          <v-flex xs8 sm8 md9 id="mapview">
             <google-map :center="center" :zoom="zoom_level" style="width: 100%; height: 100%;">
               <google-cluster>
+                <google-info-window 
+                  :options="info_options"
+                  :position="current_cross.position"
+                  :opened="info_win_open"
+                  @closeclick="info_win_open=false"
+                >
+                  <v-btn depressed small color="primary" @click.stop="addToList()">Add to List</v-btn>
+                  <div class="info-window-text">ID: {{ current_cross.id }}</div>
+                  <a class="info-window-text" :href="`https://www.google.com/maps/search/?api=1&query=${current_cross.position.lat},${current_cross.position.lng}`">Navigate to this place</a>
+                </google-info-window>
                 <google-marker 
                   v-for="item in cross_list" 
                   :position="item.position" 
                   :clickable="true"
                   :icon="require('@/assets/road.svg')"
-                  @click.stop="center=item.position" 
+                  @click="toggleInfoWindow(item)" 
                   :key="item.id">
-                  <google-info-window :opened="item.id == current_cross">
-                    <div>id: {{ item.id }}</div>
-                    <div>Component: {{ item.cross_note }}</div>
-                    <a :href="`https://www.google.com/maps/search/?api=1&query=${item.position.lat},${item.position.lng}`">Navigate to this place</a>
-                  </google-info-window>
                 </google-marker>
               </google-cluster>
             </google-map>
@@ -194,8 +199,21 @@ export default {
         lat: 52.368011,
         lng: -109.924447
       },
+      info_options: {
+        pixelOffset: {
+          width: 0,
+          height: -35
+        }
+      },
       zoom_level: 6,
-      current_cross: 0
+      current_cross: {
+        id: '',
+        position: {
+          lat: 52.368011,
+          lng: -109.924447
+        }
+      },
+      info_win_open: false
     }
   },
   methods: {
@@ -206,7 +224,20 @@ export default {
       cross.select = !cross.select
       this.center = cross.position
       this.zoom_level = 16
-      this.current_cross = cross.id
+      this.current_cross.id = cross.id
+      this.current_cross.position = cross.position
+    },
+    addToList () {
+      this.cross_list.find(cross => {
+        return cross.id === this.current_cross.id
+      }).select = true
+    },
+    toggleInfoWindow (cross) {
+      this.center = cross.position
+      this.zoom_level = 16
+      this.current_cross.id = cross.id
+      this.current_cross.position = cross.position
+      this.info_win_open = true
     }
   },
   computed: {
@@ -264,5 +295,9 @@ export default {
 #select-panel {
   overflow-y: auto;
   height: 550px;
+}
+
+.info-window-text {
+  font-size: 1.4em;
 }
 </style>
