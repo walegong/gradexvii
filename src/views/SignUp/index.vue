@@ -1,19 +1,14 @@
 <template>
   <v-layout>
-    <v-toolbar color="indigo" dark fixed>
+    <v-toolbar color="blue-grey" dark fixed>
       <v-btn icon>
         <v-icon>account_circle</v-icon>
       </v-btn>
-      <v-toolbar-title>Login</v-toolbar-title>
+      <v-toolbar-title>SignUp</v-toolbar-title>
     </v-toolbar>
 
     <v-flex xs10 sm10 id="panel">
-      <v-card>
-        <!-- <v-card-media
-          class="white--text"
-          height="300px"
-          src="/static/crossing.jpg"
-        > -->
+      <v-card class="pb-3">
         <v-card-media
           class="white--text"
           height="200px"
@@ -47,20 +42,27 @@
               :type="password_visible ? 'text' : 'password'"
               required
             ></v-text-field>
+            <v-text-field
+              label="Confirm Password"
+              hint="enter the same password again"
+              v-model="confirm_password"
+              :rules="confirmPasswordRules"
+              :append-icon="confirm_password_visible ? 'visibility' : 'visibility_off'"
+              :append-icon-cb="() => (confirm_password_visible = !confirm_password_visible)"
+              :type="confirm_password_visible ? 'text' : 'password'"
+              required
+            ></v-text-field>
           </v-form>
         </v-card-title>
         <v-layout row wrap>
           <v-flex sm12 xs12 class="text-sm-center text-xs-center">
-            <v-btn color="indigo" 
+            <v-btn 
+              color="blue-grey" 
               :disabled="!inputValid" 
-              large 
-              class="form-btn" 
               :dark="inputValid"
-              @click.stop="login()">Login</v-btn>
-            <v-btn color="indigo" large class="form-btn" dark @click.stop="signUp()">Sign Up</v-btn>
-          </v-flex>
-          <v-flex sm12 xs12 class="text-sm-center text-xs-center mb-4 mt-2">
-            <a v-on:click="dialog=true;">Forget Password?</a>
+              large 
+              class="form-btn"
+              @click.stop="signUp()">Confirm</v-btn>
           </v-flex>
         </v-layout>
       </v-card>
@@ -68,39 +70,12 @@
         {{ error }}
       </v-alert>
     </v-flex>
-
-    <!-- Modal Dialog -->
-    <v-dialog v-model="dialog" persistent max-width="500px">
-      <v-card>
-        <v-card-title>
-          <span class="headline">Reset Password</span>
-        </v-card-title>
-        <v-card-text>
-          <v-container grid-list-md>
-            <v-layout wrap>
-              <v-flex xs10 sm10 offset-xs1 offset-sm1>
-                <v-text-field label="Email" required></v-text-field>
-              </v-flex>
-              <v-flex xs10 sm10 offset-xs1 offset-sm1>
-                <p>*indicates required field</p>
-                <p>An email with password reset link will be sent to your email address.</p>
-              </v-flex>
-            </v-layout>
-          </v-container>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" flat @click.native="dialog = false">Close</v-btn>
-          <v-btn color="blue darken-1" flat @click.native="dialog = false">Confirm</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
   </v-layout>
 </template>
 
 <script>
 export default {
-  name: 'Login',
+  name: 'SignUp',
   data () {
     return {
       // login part
@@ -114,18 +89,20 @@ export default {
       passwordRules: [
         (v) => this.passwordValid(v) || 'Password should be at least 6 characters'
       ],
+      confirm_password: '',
+      confirm_password_visible: false,
+      confirmPasswordRules: [
+        (v) => this.passwordConfirm() || 'Passwords are not matched'
+      ],
       dialog: false,
       alert: false
     }
   },
   methods: {
-    login () {
-      if (this.inputValid) {
-        this.$store.dispatch('userSignIn', { email: this.email, password: this.password })
-      }
-    },
     signUp () {
-      this.$router.push({ path: '/signup' })
+      if (this.inputValid) {
+        this.$store.dispatch('userSignUp', { email: this.email, password: this.password })
+      }
     },
     emailValid (email) {
       var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -133,11 +110,14 @@ export default {
     },
     passwordValid (password) {
       return password.length >= 6
+    },
+    passwordConfirm () {
+      return this.password === this.confirm_password
     }
   },
   computed: {
     inputValid () {
-      return this.emailValid(this.email) && this.passwordValid(this.password)
+      return this.emailValid(this.email) && this.passwordValid(this.password) && this.passwordConfirm()
     },
     error () {
       return this.$store.state.error

@@ -24,14 +24,14 @@
         </v-toolbar>
         <v-list three-line class="pa-0">
           <v-list-tile>
-            <v-list-tile-content @click.stop="save_form_data()">
+            <v-list-tile-content @click.stop="saveFormData()">
               <v-list-tile-title>{{ dialog_items[0].title }}</v-list-tile-title>
               <v-list-tile-sub-title>{{ dialog_items[0].subtitle }}</v-list-tile-sub-title>
             </v-list-tile-content>
           </v-list-tile>
           <v-divider></v-divider>
           <v-list-tile>
-            <v-list-tile-content @click.stop="save_form_data()">
+            <v-list-tile-content @click.stop="saveFormData()">
               <v-list-tile-title>{{ dialog_items[1].title }}</v-list-tile-title>
               <v-list-tile-sub-title>{{ dialog_items[1].subtitle }}</v-list-tile-sub-title>
             </v-list-tile-content>
@@ -80,14 +80,14 @@
         </div>
       </v-card>
       
-      <v-btn :color="get_color(question, index)" 
+      <v-btn :color="getColor(question, index)" 
         :outline="question.answer==null && current_question != index" 
         fab 
         small 
         :dark="question.answer!=null" 
         v-for="(question, index) in question_list" 
         :key="index" 
-        @click.stop="select_question(index)"
+        @click.stop="selectQuestion(index)"
       >
         {{ question.id }}
       </v-btn>
@@ -113,7 +113,7 @@
                   <v-card>
                     <v-card-title class="headline">Select Question</v-card-title>
                     <v-card-text>Click on the question you want to jump to:</v-card-text>
-                    <v-btn :color="get_color(question, index)" fab small :dark="question.answer!=null" v-for="(question, index) in question_list" :key="index" @click="select_question(index)">
+                    <v-btn :color="getColor(question, index)" fab small :dark="question.answer!=null" v-for="(question, index) in question_list" :key="index" @click="selectQuestion(index)">
                       {{ question.id }}
                     </v-btn>
                     <v-card-actions>
@@ -174,11 +174,11 @@
 
               <!-- question direct -->
               <v-layout row justify-space-between>
-                <v-btn large color="blue-grey" class="white--text" :disabled="current_question == 0" @click="move_pre()">
+                <v-btn large color="blue-grey" class="white--text" :disabled="current_question == 0" @click="movePre()">
                   <v-icon left dark>chevron_left</v-icon>
                   Backward
                 </v-btn>
-                <v-btn large color="blue-grey" class="white--text" :disabled="current_question == question_list.length - 1" @click="move_next()">
+                <v-btn large color="blue-grey" class="white--text" :disabled="current_question == question_list.length - 1" @click="moveNext()">
                   Forward
                   <v-icon right dark>chevron_right</v-icon>
                 </v-btn>
@@ -233,11 +233,11 @@ export default {
     }
   },
   methods: {
-    select_question (n) {
+    selectQuestion (n) {
       this.current_question = n
     },
 
-    get_color (question, index) {
+    getColor (question, index) {
       if (index === this.current_question) {
         return 'primary'
       } else if (question.answer == null) {
@@ -247,17 +247,17 @@ export default {
       }
     },
 
-    move_pre () {
+    movePre () {
       this.transition = 'slide-left'
       this.current_question -= 1
     },
 
-    move_next () {
+    moveNext () {
       this.transition = 'slide-right'
       this.current_question += 1
     },
 
-    save_form_data () {
+    saveFormData () {
       sendFormData(this.question_list)
       this.confirm_dialog = false
     }

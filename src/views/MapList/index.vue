@@ -83,7 +83,7 @@
         <v-flex id="avail-panel">
           <v-container fluid grid-list-sm>
             <v-layout row wrap>
-              <cross-card v-for="item in cross_list" :key="item.id" v-bind:cross="item" @click.native="select_cross(item)"></cross-card>
+              <cross-card v-for="item in cross_list" :key="item.id" v-bind:cross="item" @click.native="selectCross(item)"></cross-card>
             </v-layout>
           </v-container>
         </v-flex>
@@ -92,7 +92,7 @@
       <!-- Selected List -->
       <v-layout v-else>
         <v-flex sm12 xs12>
-          <v-btn large color="indigo" class="white--text" id="submit-button" @click.stop="make_inspection()">
+          <v-btn large color="indigo" class="white--text" id="submit-button" @click.stop="makeInspection()">
             <v-badge left color="green">
               <span slot="badge">{{ select_list.length }}</span>
               <v-icon left dark>assignment</v-icon>
@@ -104,7 +104,7 @@
         <v-flex id="select-panel">
           <v-container fluid grid-list-sm>
             <v-layout row wrap>
-                <cross-card v-for="item in select_list" :key="item.id" v-bind:cross="item" @click.native="select_cross(item)"></cross-card>
+                <cross-card v-for="item in select_list" :key="item.id" v-bind:cross="item" @click.native="selectCross(item)"></cross-card>
             </v-layout>
           </v-container>
         </v-flex>
@@ -190,10 +190,10 @@ export default {
     }
   },
   methods: {
-    make_inspection () {
+    makeInspection () {
       this.$router.push({ path: '/form' })
     },
-    select_cross (cross) {
+    selectCross (cross) {
       cross.select = !cross.select
       this.center = cross.position
       this.zoom_level = 16
