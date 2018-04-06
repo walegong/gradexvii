@@ -16,7 +16,7 @@
     <v-dialog v-model="confirm_dialog" max-width="500px">
       <v-card>
         <v-toolbar color="light-blue" dark>
-          <v-toolbar-title>Finish Inspection Task</v-toolbar-title>
+          <v-toolbar-title>Save and Exit</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-btn icon @click.stop="confirm_dialog = false">
             <v-icon>close</v-icon>
@@ -125,44 +125,53 @@
               </v-layout> -->
 
               <!-- question details -->
-              
-                <div id="question-detail">
-                  <div class="headline">
-                    <strong>Question ID: </strong>
-                    {{ question_list[current_question].id + ' (' + (current_question + 1) +'/' + question_list.length + ')'}}
-                  </div>
-                  <hr>
-                  <div class="question-text mt-3">{{ question_list[current_question].text }}</div>
+              <div id="question-detail">
+                <div class="headline">
+                  <strong>Question ID: </strong>
+                  {{ question_list[current_question].id + ' (' + (current_question + 1) +'/' + question_list.length + ')'}}
                 </div>
-              <v-layout row>
+                <hr>
+                <div class="question-text mt-3">{{ question_list[current_question].text }}</div>
+              </div>
+              <div v-if="question_list[current_question].boolean == null">
+                <v-layout row>
+                  <v-flex xs4 sm4>
+                    <v-checkbox v-model="question_list[current_question].answer" value="ans1" label= "NC CA Required" ></v-checkbox>                              
+                  </v-flex>
+                  <v-flex xs4 sm4>
+                    <v-checkbox v-model="question_list[current_question].answer" value="ans2" label= "NC CA Taken"></v-checkbox>                              
+                  </v-flex>
+                  <v-flex xs4 sm4>
+                    <v-checkbox v-model="question_list[current_question].answer" value="ans3" label= "C CA Required" ></v-checkbox>                              
+                  </v-flex>                       
+                </v-layout>
+                <v-layout row>
+                  <v-flex xs4 sm4>
+                    <v-checkbox v-model="question_list[current_question].answer" value="ans4" label= "C CA Taken"></v-checkbox>                              
+                  </v-flex>
+                  <v-flex xs6 sm6>
+                    <v-checkbox v-model="question_list[current_question].answer" value="ans5" label= "C CA Developing Issue" ></v-checkbox>                              
+                  </v-flex>                                                      
+                </v-layout>  
+                <v-layout row>
+                  <v-flex xs4 sm4>
+                    <v-checkbox v-model="question_list[current_question].answer" value="ans6" label= "No Issues Noted" ></v-checkbox>                              
+                  </v-flex> 
+                  <v-flex xs4 sm4>
+                    <v-checkbox v-model="question_list[current_question].answer" value="ans7" label= "Not Applicable"></v-checkbox>                              
+                  </v-flex>
+                  <v-flex xs4 sm4>
+                    <v-checkbox v-model="question_list[current_question].answer" value="ans8" label= "Not Inspected" ></v-checkbox>                              
+                  </v-flex>                                                        
+                </v-layout>
+              </div>
+              <v-layout row v-else justify-center>
                 <v-flex xs4 sm4>
-                  <v-checkbox v-model="question_list[current_question].answer" value="ans1" label= "NC CA Required" ></v-checkbox>                              
+                  <v-checkbox v-model="question_list[current_question].answer" value="ans1" label= "Yes" ></v-checkbox>                              
                 </v-flex>
                 <v-flex xs4 sm4>
-                  <v-checkbox v-model="question_list[current_question].answer" value="ans2" label= "NC CA Taken"></v-checkbox>                              
+                  <v-checkbox v-model="question_list[current_question].answer" value="ans2" label= "No" ></v-checkbox>                              
                 </v-flex>
-                <v-flex xs4 sm4>
-                  <v-checkbox v-model="question_list[current_question].answer" value="ans3" label= "C CA Required" ></v-checkbox>                              
-                </v-flex>                       
-              </v-layout>
-              <v-layout row>
-                <v-flex xs4 sm4>
-                  <v-checkbox v-model="question_list[current_question].answer" value="ans4" label= "C CA Taken"></v-checkbox>                              
-                </v-flex>
-                <v-flex xs6 sm6>
-                  <v-checkbox v-model="question_list[current_question].answer" value="ans5" label= "C CA Developing Issue" ></v-checkbox>                              
-                </v-flex>                                                      
-              </v-layout>  
-              <v-layout row>
-                <v-flex xs4 sm4>
-                  <v-checkbox v-model="question_list[current_question].answer" value="ans6" label= "No Issues Noted" ></v-checkbox>                              
-                </v-flex> 
-                <v-flex xs4 sm4>
-                  <v-checkbox v-model="question_list[current_question].answer" value="ans7" label= "Not Applicable"></v-checkbox>                              
-                </v-flex>
-                <v-flex xs4 sm4>
-                  <v-checkbox v-model="question_list[current_question].answer" value="ans8" label= "Not Inspected" ></v-checkbox>                              
-                </v-flex>                                                        
               </v-layout>
 
               <v-text-field
@@ -192,7 +201,7 @@
 </template>
 
 <script>
-import QuestionData from './db.json'
+import QuestionData from './wis.json'
 import { sendFormData } from '@/api/form'
 
 export default {
@@ -240,8 +249,8 @@ export default {
     getColor (question, index) {
       if (index === this.current_question) {
         return 'primary'
-      } else if (question.answer == null) {
-        return 'blue-grey'
+      } else if (question.answer === null && question.color !== null) {
+        return question.color
       } else {
         return 'success'
       }

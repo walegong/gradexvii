@@ -60,18 +60,18 @@
       <v-container fluid fill-height class="pa-0">
         <v-layout row wrap>
           <!-- Left Panel -->
-          <v-flex xs4 sm4 md3 id="crosslist">
+          <v-flex xs4 sm4 md4 id="crosslist">
             <v-btn-toggle mandatory v-model="list_option" id="selection-toggle" class="mb-2 mt-2">
               <v-btn value="avail">
                 <span>Avail. Crossings</span>
               </v-btn>
               <v-btn value="select">
-                <span>Selected Crossings</span>
+                <span>Inspections</span>
               </v-btn>
             </v-btn-toggle>
 
             <!-- Available List -->
-            <div v-if="list_option=='avail'">
+            <div v-if="list_option === 'avail'">
               <v-flex xs12 sm12>
                 <v-toolbar
                   color="white"
@@ -108,7 +108,7 @@
           </v-flex>
 
           <!-- Right Panel -->
-          <v-flex xs8 sm8 md9 id="mapview">
+          <v-flex xs8 sm8 md8 id="mapview">
             <google-map :center="center" :zoom="zoom_level" style="width: 100%; height: 100%;">
               <google-cluster>
                 <google-info-window 
@@ -125,7 +125,7 @@
                   v-for="item in cross_list" 
                   :position="item.position" 
                   :clickable="true"
-                  :icon="require('@/assets/road.svg')"
+                  :icon="require('@/assets/marker.png')"
                   @click="toggleInfoWindow(item)" 
                   :key="item.id">
                 </google-marker>
@@ -226,6 +226,7 @@ export default {
       this.zoom_level = 16
       this.current_cross.id = cross.id
       this.current_cross.position = cross.position
+      this.info_win_open = true
     },
     addToList () {
       this.cross_list.find(cross => {

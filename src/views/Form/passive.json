@@ -1,0 +1,175 @@
+[
+  {
+    "id": "1a",
+    "text":
+      "Sightlines from SSD - Railway ROW",
+    "answer": null,
+    "note": ""
+  },
+  {
+    "id": "1b",
+    "text": "Sightlines from SSD - Roadway ROW",
+    "answer": null,
+    "note": ""
+  },
+  {
+    "id": "1c",
+    "text":
+      "Sightlines from SSD - Private Property (railway responsibility)",
+    "answer": null,
+    "note": ""
+  },
+  {
+    "id": "1d",
+    "text":
+      "Sightlines from SSD - Private Property (road authority responsibility)",
+    "answer": null,
+    "note": ""
+  },
+  {
+    "id": "1e",
+    "text":
+      "Sightlines from Dstopped - Railway ROW",
+    "answer": null,
+    "note": ""
+  },
+  {
+    "id": "1f",
+    "text":
+      "Sightlines from Dstopped - Roadway ROW",
+    "answer": null,
+    "note": ""
+  },
+  {
+    "id": "1g",
+    "text": "Sightlines from Dstopped - Private Property (railway responsibility)",
+    "answer": null,
+    "note": ""
+  },
+  {
+    "id": "1h",
+    "text": "Sightlines from Dstopped - Private Property (road authority responsibility)",
+    "answer": null,
+    "note": ""
+  },
+  {
+    "id": "1i",
+    "text":
+      "Sightlines - Other",
+    "answer": null,
+    "note": ""
+  },
+  {
+    "id": "2a",
+    "text":
+      "Surface - Crossing Surface Condition",
+    "answer": null,
+    "note": ""
+  },
+  {
+    "id": "2b",
+    "text":
+      "Surface - Crossing Surface Width",
+    "answer": null,
+    "note": ""
+  },
+  {
+    "id": "2c",
+    "text": "Surface - Crossing Flangeway",
+    "answer": null,
+    "note": ""
+  },
+  {
+    "id": "2d",
+    "text":
+      "Surface - Approach Surface Condition",
+    "answer": null,
+    "note": ""
+  },
+  {
+    "id": "2e",
+    "text":
+      "Surface - Road Surface Geometry",
+    "answer": null,
+    "note": ""
+  },
+  {
+    "id": "2f",
+    "text":
+      "Surface - Other",
+    "answer": null,
+    "note": ""
+  },
+  {
+    "id": "3a",
+    "text":
+      "Signage - Railway Responsibility Signage (SRCS, # tracks, emergency notification, etc.)",
+    "answer": null,
+    "note": ""
+  },
+  {
+    "id": "3b",
+    "text":
+      "Signage - Road Authority Responsibility Signage (railway crossing ahead, advisory speed tab, prepare to stop at railway crossing, etc.)",
+    "answer": null,
+    "note": ""
+  },
+  {
+    "id": "3c",
+    "text":
+      "Signage - Other",
+    "answer": null,
+    "note": ""
+  },
+  {
+    "id": "4a",
+    "text":
+      "Obstruction of Grade Crossing (equipment left standing on a crossing surface or switching operations for more than five minutes in a manner that obstructs a public grade crossing when vehicle or pedestrian traffic waiting to cross)",
+    "answer": null,
+    "note": "",
+    "boolean": true
+  },
+  {
+    "id": "4b",
+    "text": "Evidence of Trespassing (cut fence, worn footpath, witnessed event)",
+    "answer": null,
+    "note": "",
+    "boolean": true
+  },
+  {
+    "id": "4c",
+    "text":
+      "Whistle Cessation Concern (introduced since GCR but does not meet requirements, or pre-GCR but is concern for safety)",
+    "answer": null,
+    "note": "",
+    "boolean": true
+  },
+  {
+    "id": "4d",
+    "text": "Persons performing duties did not appear familiar with equipment/components within their responsibility.",
+    "answer": null,
+    "note": "",
+    "boolean": true
+  },
+  {
+    "id": "4e",
+    "text": "Persons performing duties did not appear familiar with the railways inspection and testing requirements, and other procedures.",
+    "answer": null,
+    "note": "",
+    "boolean": true
+  },
+  {
+    "id": "4f",
+    "text": "Persons performing duties did not appear to have an understanding of safety requirements during testing, and/or how to protect safe railway operations during the undertaking of their duties.",
+    "answer": null,
+    "note": "",
+    "boolean": true
+  },
+  {
+    "id": "4g",
+    "text": "Persons performing duties were not able to correctly answer all questions and perform all tasks requested by the RSI at the time of inspection, and/or did not appear confident and knowledgeable when implementing them.",
+    "answer": null,
+    "note": "",
+    "boolean": true
+  }
+]

@@ -22,7 +22,7 @@
           <v-container fill-height fluid>
             <v-layout fill-height>
               <v-flex xs12 align-end flexbox>
-                <span class="headline">Grade X by ITSS-Lab</span>
+                <span class="headline">GradeX Inspection</span>
                 <div class="mt-2">Transport Canada <img :src="require('@/assets/canadian-flag.svg')" style="width:28px;height:14px;"></div>
               </v-flex>
             </v-layout>
@@ -57,10 +57,12 @@
               class="form-btn" 
               :dark="inputValid"
               @click.stop="login()">Login</v-btn>
-            <v-btn color="indigo" large class="form-btn" dark @click.stop="signUp()">Sign Up</v-btn>
+            <!-- <v-btn color="indigo" large class="form-btn" dark @click.stop="signUp()">Sign Up</v-btn> -->
           </v-flex>
           <v-flex sm12 xs12 class="text-sm-center text-xs-center mb-4 mt-2">
-            <a v-on:click="dialog=true;">Forget Password?</a>
+            <a @click="dialog=true;">Forget Password?</a>
+            <v-spacer/>
+            <a @click="signUp()">Sign Up</a>
           </v-flex>
         </v-layout>
       </v-card>
@@ -178,6 +180,6 @@ export default {
 }
 
 .form-btn {
-  width: 200px;
+  width: 60%;
 }
 </style>
