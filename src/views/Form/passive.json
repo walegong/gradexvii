@@ -4,12 +4,14 @@
     "text":
       "Sightlines from SSD - Railway ROW",
     "answer": null,
+    "color":"cyan lighten-1",
     "note": ""
   },
   {
     "id": "1b",
     "text": "Sightlines from SSD - Roadway ROW",
     "answer": null,
+    "color":"cyan lighten-1",
     "note": ""
   },
   {
@@ -17,6 +19,7 @@
     "text":
       "Sightlines from SSD - Private Property (railway responsibility)",
     "answer": null,
+    "color":"cyan lighten-1",
     "note": ""
   },
   {
@@ -24,6 +27,7 @@
     "text":
       "Sightlines from SSD - Private Property (road authority responsibility)",
     "answer": null,
+    "color":"cyan lighten-1",
     "note": ""
   },
   {
@@ -31,6 +35,7 @@
     "text":
       "Sightlines from Dstopped - Railway ROW",
     "answer": null,
+    "color":"cyan lighten-1",
     "note": ""
   },
   {
@@ -38,18 +43,21 @@
     "text":
       "Sightlines from Dstopped - Roadway ROW",
     "answer": null,
+    "color":"cyan lighten-1",
     "note": ""
   },
   {
     "id": "1g",
     "text": "Sightlines from Dstopped - Private Property (railway responsibility)",
     "answer": null,
+    "color":"cyan lighten-1",
     "note": ""
   },
   {
     "id": "1h",
     "text": "Sightlines from Dstopped - Private Property (road authority responsibility)",
     "answer": null,
+    "color":"cyan lighten-1",
     "note": ""
   },
   {
@@ -57,6 +65,7 @@
     "text":
       "Sightlines - Other",
     "answer": null,
+    "color":"cyan lighten-1",
     "note": ""
   },
   {
@@ -64,6 +73,7 @@
     "text":
       "Surface - Crossing Surface Condition",
     "answer": null,
+    "color":"orange darken-2",
     "note": ""
   },
   {
@@ -71,12 +81,14 @@
     "text":
       "Surface - Crossing Surface Width",
     "answer": null,
+    "color":"orange darken-2",
     "note": ""
   },
   {
     "id": "2c",
     "text": "Surface - Crossing Flangeway",
     "answer": null,
+    "color":"orange darken-2",
     "note": ""
   },
   {
@@ -84,6 +96,7 @@
     "text":
       "Surface - Approach Surface Condition",
     "answer": null,
+    "color":"orange darken-2",
     "note": ""
   },
   {
@@ -91,6 +104,7 @@
     "text":
       "Surface - Road Surface Geometry",
     "answer": null,
+    "color":"orange darken-2",
     "note": ""
   },
   {
@@ -98,6 +112,7 @@
     "text":
       "Surface - Other",
     "answer": null,
+    "color":"orange darken-2",
     "note": ""
   },
   {
@@ -105,6 +120,7 @@
     "text":
       "Signage - Railway Responsibility Signage (SRCS, # tracks, emergency notification, etc.)",
     "answer": null,
+    "color":"teal lighten-3",
     "note": ""
   },
   {
@@ -112,6 +128,7 @@
     "text":
       "Signage - Road Authority Responsibility Signage (railway crossing ahead, advisory speed tab, prepare to stop at railway crossing, etc.)",
     "answer": null,
+    "color":"teal lighten-3",
     "note": ""
   },
   {
@@ -119,6 +136,7 @@
     "text":
       "Signage - Other",
     "answer": null,
+    "color":"teal lighten-3",
     "note": ""
   },
   {
@@ -127,6 +145,7 @@
       "Obstruction of Grade Crossing (equipment left standing on a crossing surface or switching operations for more than five minutes in a manner that obstructs a public grade crossing when vehicle or pedestrian traffic waiting to cross)",
     "answer": null,
     "note": "",
+    "color":"brown lighten-3",
     "boolean": true
   },
   {
@@ -134,6 +153,7 @@
     "text": "Evidence of Trespassing (cut fence, worn footpath, witnessed event)",
     "answer": null,
     "note": "",
+    "color":"brown lighten-3",
     "boolean": true
   },
   {
@@ -142,6 +162,7 @@
       "Whistle Cessation Concern (introduced since GCR but does not meet requirements, or pre-GCR but is concern for safety)",
     "answer": null,
     "note": "",
+    "color":"brown lighten-3",
     "boolean": true
   },
   {
@@ -149,6 +170,7 @@
     "text": "Persons performing duties did not appear familiar with equipment/components within their responsibility.",
     "answer": null,
     "note": "",
+    "color":"brown lighten-3",
     "boolean": true
   },
   {
@@ -156,6 +178,7 @@
     "text": "Persons performing duties did not appear familiar with the railways inspection and testing requirements, and other procedures.",
     "answer": null,
     "note": "",
+    "color":"brown lighten-3",
     "boolean": true
   },
   {
@@ -163,6 +186,7 @@
     "text": "Persons performing duties did not appear to have an understanding of safety requirements during testing, and/or how to protect safe railway operations during the undertaking of their duties.",
     "answer": null,
     "note": "",
+    "color":"brown lighten-3",
     "boolean": true
   },
   {
@@ -170,6 +194,7 @@
     "text": "Persons performing duties were not able to correctly answer all questions and perform all tasks requested by the RSI at the time of inspection, and/or did not appear confident and knowledgeable when implementing them.",
     "answer": null,
     "note": "",
+    "color":"brown lighten-3",
     "boolean": true
   }
 ]

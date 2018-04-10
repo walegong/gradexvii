@@ -7,11 +7,15 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state: {
+    uid: null,
     email: null,
     error: null,
     loading: false
   },
   mutations: {
+    setUid (state, payload) {
+      state.uid = payload
+    },
     setEmail (state, payload) {
       state.email = payload
     },
@@ -38,7 +42,8 @@ export const store = new Vuex.Store({
       commit('setLoading', true)
       firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
         .then(firebaseUser => {
-          commit('setEmail', {email: firebaseUser.email})
+          commit('setUid', firebaseUser.uid)
+          commit('setEmail', firebaseUser.email)
           commit('setLoading', false)
           commit('setError', null)
           router.push('/dashboard')
@@ -49,17 +54,19 @@ export const store = new Vuex.Store({
         })
     },
     autoSignIn ({commit}, payload) {
-      commit('setEmail', { email: payload.email })
+      commit('setUid', payload.uid)
+      commit('setEmail', payload.email)
     },
     userSignOut ({commit}) {
       firebase.auth().signOut()
+      commit('setUid', null)
       commit('setEmail', null)
       router.push('/login')
     }
   },
   getters: {
     isAuthenticated (state) {
-      return state.email !== null && state.email !== undefined
+      return state.uid !== null && state.uid !== undefined
     }
   }
 })

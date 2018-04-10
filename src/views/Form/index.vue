@@ -8,7 +8,10 @@
       clipped-left
       app
     >
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+      <!-- <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon> -->
+      <v-btn icon class="hidden-xs-only" @click.stop="goBack()">
+        <v-icon>arrow_back</v-icon>
+      </v-btn>
       <v-toolbar-title>Grade X Inspection</v-toolbar-title>
     </v-toolbar>
 
@@ -53,27 +56,16 @@
       <v-card color="blue-grey lighten-5" id="crossing-info">
         <v-card-title primary-title>
           <div>
-            <div class="headline"><strong>Crossing ID: </strong>{{ crossing.id }}</div>
-            <div class="headline"><strong>Type: </strong>{{ crossing.component }}</div>
-            <div class="info-text mt-3"><strong>RSI Name: </strong>{{ crossing.RSI_Name }}</div>
-            <div class="info-text"><strong>RSI Region: </strong>{{ crossing.RSI_Region }}</div>
-            <div class="info-text"><strong>Maintainer: </strong>{{ crossing.railway_Maintainer }}</div>
-            <div class="info-text"><strong>Railway Emp: </strong>{{ crossing.attendign_railway_emp }}</div>
-            <div class="info-text"><strong>Address: </strong>{{crossing.address }}</div>
-            <div class="info-text"><strong>Last Inspection: </strong>{{ crossing.last_inspect_date }}</div>  
+            <div class="headline"><strong>Crossing ID: </strong>{{ crossing_info.id }}</div>
+            <div class="info-text"><strong>Type: </strong>{{ crossing_info.type }}</div>
+            <div class="info-text"><strong>Region: </strong>{{ crossing_info.region }}</div>
+            <div class="info-text"><strong>Subdivision: </strong>{{ crossing_info.subdivision }}</div>
+            <div class="info-text"><strong>Railway: </strong>{{ crossing_info.railway }}</div>
+            <div class="info-text"><strong>Address: </strong>{{crossing_info.address }}</div>
           </div>
         </v-card-title>
         <v-btn color="info">Overview</v-btn>
         <v-btn color="success" @click.native.stop="confirm_dialog = true">Finish Task</v-btn>
-        <!-- <v-progress-circular
-            :size="70"
-            :width="10"
-            :rotate="-90"
-            :value="answer_number / question_list.length * 100"
-            color="teal"
-        >
-          {{ answer_number +'/' + question_list.length }}
-        </v-progress-circular> -->
         <div>
           <v-progress-linear id="progress-bar" :value="answer_number / question_list.length * 100" height="8" color="teal"></v-progress-linear>
           <div>{{ answer_number +'/' + question_list.length }}</div>
@@ -201,8 +193,8 @@
 </template>
 
 <script>
-import QuestionData from './wis.json'
 import { sendFormData } from '@/api/form'
+import db from '@/utils/firestore'
 
 export default {
   name: 'Form',
@@ -210,15 +202,13 @@ export default {
     return {
       // left drawer
       drawer: true,
-      crossing: {
-        id: '75453',
-        component: 'AWS',
-        last_inspect_date: '01-20-2017',
-        RSI_Name: 'Jeffrey Young',
-        RSI_Region: 'ONT',
-        railway_Maintainer: 'Richky Klein',
-        attendign_railway_emp: 'Jay Price',
-        address: '8731 Leuschke Roads East Audie'
+      crossing_info: {
+        id: null,
+        type: null,
+        region: null,
+        subdivision: null,
+        railway: null,
+        address: null
       },
       // pop-up dialog
       confirm_dialog: null,
@@ -238,12 +228,16 @@ export default {
       transition: 'slide-right',
       current_question: 0,
       question_dialog: false,
-      question_list: QuestionData
+      question_list: []
     }
   },
   methods: {
     selectQuestion (n) {
       this.current_question = n
+    },
+
+    goBack () {
+      this.$router.go(-1)
     },
 
     getColor (question, index) {
@@ -277,6 +271,38 @@ export default {
         return question.answer != null
       }).length
     }
+  },
+  created: function () {
+    const self = this
+    const crossingId = this.$route.query.id
+    const crossingType = this.$route.query.type
+    if (crossingType === 'AWS') {
+      this.question_list = require('./aws.json')
+    } else if (crossingType === 'WIS') {
+      this.question_list = require('./wis.json')
+    } else if (crossingType === 'WSS') {
+      this.question_list = require('./wss.json')
+    } else {
+      this.question_list = require('./passive.json')
+    }
+    db.collection('crossing').where('crossing_id', '==', crossingId)
+      .get()
+      .then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+          const data = doc.data()
+          self.crossing_info = {
+            id: crossingId,
+            type: crossingType,
+            region: 'ONT',
+            subdivision: 'Waterloo',
+            railway: data.region,
+            address: data.address
+          }
+        })
+      })
+      .catch(function (error) {
+        console.log('Error getting documents: ', error)
+      })
   }
 }
 </script>
@@ -325,7 +351,7 @@ export default {
   opacity: 0;
 }
 .slide-left-leave-to, .slide-right-enter{
-  transform: translateX(30px);
+  /* transform: translateX(30px); */
   opacity: 0;
 }
 </style>

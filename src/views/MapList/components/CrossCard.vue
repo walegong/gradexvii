@@ -3,10 +3,10 @@
     <v-card class="info-card" v-bind:class="{ active: cross.select }">
       <v-layout row wrap>
         <v-flex sm10 xs10>
-          <p class="cross-id">{{ cross.id }}</p>
+          <p class="cross-id">{{ cross.crossing_id }}</p>
         </v-flex>
         <v-flex sm1 xs1>
-          <v-checkbox v-model="cross.select" color="indigo" hide-details></v-checkbox>
+          <v-checkbox v-model="cross.select" color="indigo" hide-details @click.stop="cross.select = !cross.select"></v-checkbox>
         </v-flex>
       </v-layout>
       <v-divider></v-divider>
@@ -34,7 +34,7 @@
             <v-icon>traffic</v-icon>
           </v-list-tile-avatar>
           <v-list-tile-content>
-            <v-list-tile-title>{{ cross.cross_note }}</v-list-tile-title>
+            <v-list-tile-title>{{ cross.crossing_type }}</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
 

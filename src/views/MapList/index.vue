@@ -2,59 +2,11 @@
   <v-app>
     <!-- Toolbar -->
     <v-toolbar color="indigo" dark fixed app>
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+      <v-btn icon class="hidden-xs-only" @click.stop="goBack()">
+        <v-icon>arrow_back</v-icon>
+      </v-btn>
       <v-toolbar-title>Grade X Inspection</v-toolbar-title>
     </v-toolbar>
-
-    <!-- Navigation Drawer -->
-    <v-navigation-drawer
-      temporary
-      v-model="drawer"
-      light
-      fixed
-      width="400"
-      app
-    >
-      <v-layout row wrap id="user-info" class="pt-4 pb-4">
-        <v-flex sm2 offset-sm1 class="mt-auto">
-          <img :src="user_info.user_avatar" style="width: 60px; height: 60px; border-radius: 50%;"/>
-        </v-flex>
-        <v-flex sm8 offset-sm1 class="pt-2">
-          <v-list-tile-title style="font-size: 1.5em;">{{ user_info.user_name }}</v-list-tile-title>
-          <v-list-tile-sub-title>{{ user_info.user_email }}</v-list-tile-sub-title>
-        </v-flex>
-      </v-layout>
-
-      <v-layout row>
-        <v-flex sm12>
-          <v-card>
-            <v-list>
-              <v-list-group
-                v-model="item.active"
-                v-for="item in nav_items"
-                :key="item.title"
-                :prepend-icon="item.action"
-                no-action
-              >
-                <v-list-tile slot="activator">
-                  <v-list-tile-content>
-                    <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-                  </v-list-tile-content>
-                </v-list-tile>
-                <v-list-tile v-for="subItem in item.items" :key="subItem.title">
-                  <v-list-tile-content>
-                    <v-list-tile-title>{{ subItem.title }}</v-list-tile-title>
-                  </v-list-tile-content>
-                  <v-list-tile-action>
-                    <v-icon>{{ subItem.action }}</v-icon>
-                  </v-list-tile-action>
-                </v-list-tile>
-              </v-list-group>
-            </v-list>
-          </v-card>
-        </v-flex>
-      </v-layout>
-    </v-navigation-drawer>
 
     <v-content>
       <v-container fluid fill-height class="pa-0">
@@ -63,10 +15,10 @@
           <v-flex xs4 sm4 md4 id="crosslist">
             <v-btn-toggle mandatory v-model="list_option" id="selection-toggle" class="mb-2 mt-2">
               <v-btn value="avail">
-                <span>Avail. Crossings</span>
+                <span>All Crossings</span>
               </v-btn>
               <v-btn value="select">
-                <span>Inspections</span>
+                <span>Current List</span>
               </v-btn>
             </v-btn-toggle>
 
@@ -85,24 +37,24 @@
                 </v-toolbar>
               </v-flex>
               <v-flex xs12 sm12 id="avail-panel">
-                <cross-card v-for="item in search_list" :key="item.id" v-bind:cross="item" @click.native="selectCross(item)"></cross-card>
+                <cross-card v-for="item in search_list" :key="item.crossing_id" v-bind:cross="item" @click.native="selectCross(item)"></cross-card>
               </v-flex>
             </div>
 
             <!-- Selected List -->
             <div v-else>
               <v-flex sm12 xs12>
-                <v-btn large color="indigo" class="white--text" id="submit-button" @click.stop="makeInspection()">
+                <v-btn large color="indigo" class="white--text" id="submit-button" @click.stop="modifyList()">
                   <v-badge left color="green">
                     <span slot="badge">{{ select_list.length }}</span>
                     <v-icon left dark>assignment</v-icon>
                   </v-badge>
-                  Make Inspection List
+                  Add to Inspection Task
                   <v-icon right dark>keyboard_arrow_right</v-icon>
                 </v-btn>
               </v-flex>
               <v-flex xs12 sm12 id="select-panel">
-                <cross-card v-for="item in select_list" :key="item.id" v-bind:cross="item" @click.native="selectCross(item)"></cross-card>
+                <cross-card v-for="item in select_list" :key="item.crossing_id" v-bind:cross="item" @click.native="selectCross(item)"></cross-card>
               </v-flex>
             </div>
           </v-flex>
@@ -118,16 +70,16 @@
                   @closeclick="info_win_open=false"
                 >
                   <v-btn depressed small color="primary" @click.stop="addToList()">Add to List</v-btn>
-                  <div class="info-window-text">ID: {{ current_cross.id }}</div>
+                  <div class="info-window-text">ID: {{ current_cross.crossing_id }}</div>
                   <a class="info-window-text" :href="`https://www.google.com/maps/search/?api=1&query=${current_cross.position.lat},${current_cross.position.lng}`">Navigate to this place</a>
                 </google-info-window>
                 <google-marker 
-                  v-for="item in cross_list" 
+                  v-for="item in full_list" 
                   :position="item.position" 
                   :clickable="true"
                   :icon="require('@/assets/marker.png')"
                   @click="toggleInfoWindow(item)" 
-                  :key="item.id">
+                  :key="item.crossing_id">
                 </google-marker>
               </google-cluster>
             </google-map>
@@ -142,7 +94,7 @@
 import CrossCard from '@/views/MapList/components/CrossCard'
 import Vue from 'vue'
 import * as VueGoogleMaps from 'vue2-google-maps'
-import CrossData from './db.json'
+import db from '@/utils/firestore'
 
 Vue.use(VueGoogleMaps, {
   load: {
@@ -165,35 +117,10 @@ export default {
   data () {
     return {
       drawer: null,
-      cross_list: CrossData,
-      user_info: {
-        user_name: 'Brian Smith',
-        user_email: 'brian.smith@transport.gc.ca',
-        user_avatar: 'https://randomuser.me/api/portraits/men/85.jpg'
-      },
+      full_list: [],
+      selected: [],
       list_option: 'avail',
       search_condition: '',
-      nav_items: [
-        {
-          action: 'assessment',
-          title: 'Inspection List',
-          active: true,
-          items: [
-            { title: 'Refresh Inspection List' },
-            { title: 'Upload Completed Surveys' }
-          ]
-        },
-        {
-          action: 'settings',
-          title: 'Settings',
-          items: [{ title: 'Foo' }, { title: 'Bar' }]
-        },
-        {
-          action: 'account_circle',
-          title: 'Account',
-          items: [{ title: 'Log Out' }]
-        }
-      ],
       // Map Data
       center: {
         lat: 52.368011,
@@ -207,52 +134,88 @@ export default {
       },
       zoom_level: 6,
       current_cross: {
-        id: '',
+        crossing_id: '',
         position: {
           lat: 52.368011,
           lng: -109.924447
         }
       },
-      info_win_open: false
+      info_win_open: false,
+      crossing_list: {
+        current_list: []
+      }
+    }
+  },
+  firestore () {
+    return {
+      full_list: db.collection('crossing').orderBy('crossing_id'),
+      crossing_list: db.collection('inspection_list').doc(this.$store.state.uid)
     }
   },
   methods: {
-    makeInspection () {
-      this.$router.push({ path: '/form' })
+    modifyList () {
+      var tempList = this.select_list.map(element => ({
+        value: false,
+        crossing_id: element.crossing_id,
+        subdivision: 'Waterloo',
+        date: new Date(),
+        type: element.crossing_type
+      }))
+      db.collection('inspection_list').doc(this.$store.state.uid).set({
+        current_list: tempList
+      })
+    },
+    goBack () {
+      this.$router.go(-1)
     },
     selectCross (cross) {
+      if (cross.select === true) {
+        this.selected.splice(this.selected.indexOf(cross.crossing_id), 1)
+      } else {
+        this.selected.push(cross.crossing_id)
+      }
       cross.select = !cross.select
       this.center = cross.position
       this.zoom_level = 16
-      this.current_cross.id = cross.id
+      this.current_cross.crossing_id = cross.crossing_id
       this.current_cross.position = cross.position
       this.info_win_open = true
+      console.log(this.selected)
     },
     addToList () {
-      this.cross_list.find(cross => {
-        return cross.id === this.current_cross.id
+      this.full_list.find(cross => {
+        return cross.crossing_id === this.current_cross.crossing_id
       }).select = true
     },
     toggleInfoWindow (cross) {
       this.center = cross.position
       this.zoom_level = 16
-      this.current_cross.id = cross.id
+      this.current_cross.crossing_id = cross.crossing_id
       this.current_cross.position = cross.position
       this.info_win_open = true
     }
   },
   computed: {
     select_list: function () {
-      return this.cross_list.filter(cross => {
-        return cross.select === true
+      return this.full_list.filter(cross => {
+        // return cross.select === true
+        return this.selected.indexOf(cross.crossing_id) !== -1
       })
     },
     search_list: function () {
-      return this.cross_list.filter(cross => {
-        return cross.id.startsWith(this.search_condition)
+      return this.full_list.filter(cross => {
+        return cross.crossing_id.startsWith(this.search_condition)
       })
     }
   }
+  // created: function () {
+  //   this.full_list = []
+  //   db.collection('crossing').get().then((querySnapshot) => {
+  //     querySnapshot.forEach((doc) => {
+  //       this.full_list.push(doc.data())
+  //     })
+  //   })
+  // }
 }
 </script>
 

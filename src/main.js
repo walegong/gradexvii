@@ -4,11 +4,13 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import Vuetify from 'vuetify'
+import VueFire from 'vuefire'
 import firebase from 'firebase'
 import { store } from './store'
 import('vuetify/dist/vuetify.min.css')
 
 Vue.use(Vuetify)
+Vue.use(VueFire)
 Vue.config.productionTip = false
 
 firebase.initializeApp({
