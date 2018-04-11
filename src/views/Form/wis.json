@@ -4,14 +4,14 @@
     "text":
       "Standby Power (battery condition, backup time, where applicable)",
     "answer": null,
-    "color":"cyan lighten-1",
+    "color":"deep-purple lighten-1",
     "note": ""
   },
   {
     "id": "2a",
     "text": "Function Simulator Test (confirm reference heat test, heat, alarm levels)",
     "answer": null,
-    "color":"cyan lighten-1",
+    "color":"deep-purple lighten-1",
     "note": ""
   },
   {
@@ -19,7 +19,7 @@
     "text":
       "Talker Radio Confirmation (radio message, talker repeat protocols)",
     "answer": null,
-    "color":"cyan lighten-1",
+    "color":"deep-purple lighten-1",
     "note": ""
   },
   {
@@ -27,7 +27,7 @@
     "text":
       "AC Power and Components (phases consistent and equal under load)",
     "answer": null,
-    "color":"cyan lighten-1",
+    "color":"deep-purple lighten-1",
     "note": ""
   },
   {
@@ -35,7 +35,7 @@
     "text":
       "Transducers (clean, tight, detection starts when transducer is activated)",
     "answer": null,
-    "color":"orange darken-2",
+    "color":"amber darken-2",
     "note": ""
   },
   {
@@ -43,21 +43,21 @@
     "text":
       "Bearing Scanner (clean, tight, mirror, alignment, mounting, lens, filters, shields, heater, target if applicable)",
     "answer": null,
-    "color":"orange darken-2",
+    "color":"amber darken-2",
     "note": ""
   },
   {
     "id": "6b",
     "text": "Hot Wheel Scanner (clean, tight, mirror, alignment, mounting, lens, filters, shields, heater, target if applicable)",
     "answer": null,
-    "color":"orange darken-2",
+    "color":"amber darken-2",
     "note": ""
   },
   {
     "id": "7a",
     "text": "Scanner Interference (spikes, rail clips, etc. clear of scanners, deflection plates tight & not touching scanner)",
     "answer": null,
-    "color":"orange darken-2",
+    "color":"amber darken-2",
     "note": ""
   },
   {
@@ -65,7 +65,7 @@
     "text":
       "DED Condition (panels intact, securely fastened on the ties, returns to a positive upright position when pushed on both sides)",
     "answer": null,
-    "color":"orange darken-2",
+    "color":"amber darken-2",
     "note": ""
   },
   {
@@ -73,14 +73,14 @@
     "text":
       "DED Alarm Detection Test (test during function simulation)",
     "answer": null,
-    "color":"orange darken-2",
+    "color":"amber darken-2",
     "note": ""
   },
   {
     "id": "9a",
     "text": "External Condition of Housing (foundations, door, locks, free of debris)",
     "answer": null,
-    "color":"orange darken-2",
+    "color":"amber darken-2",
     "note": ""
   },
   {
@@ -88,7 +88,7 @@
     "text":
       "Internal Condition of Housing (clean, sealed, ventilation, moisture, no evidence of infestation)",
     "answer": null,
-    "color":"orange darken-2",
+    "color":"amber darken-2",
     "note": ""
   },
   {
@@ -96,7 +96,7 @@
     "text":
       "Track Conditions (gauge, plates, drainage, rail pumping)",
     "answer": null,
-    "color":"orange darken-2",
+    "color":"amber darken-2",
     "note": ""
   },
   {
@@ -104,7 +104,7 @@
     "text":
       "Junction Boxes (condition, no sign of infestation, no frost heave, no moisture, no contamination)",
     "answer": null,
-    "color":"orange darken-2",
+    "color":"amber darken-2",
     "note": ""
   },
   {

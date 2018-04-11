@@ -4,14 +4,14 @@
     "text":
       "Light Unit Condition/Visibility (note type (color/search, incandescent/LED) & spread)",
     "answer": null,
-    "color":"cyan lighten-1",
+    "color":"deep-purple lighten-1",
     "note": ""
   },
   {
     "id": "2a",
     "text": "Timing Devices (include approach stick and/or stick release)",
     "answer": null,
-    "color":"cyan lighten-1",
+    "color":"deep-purple lighten-1",
     "note": ""
   },
   {
@@ -19,7 +19,7 @@
     "text":
       "Insulated Joint Conditions (end post intact, tie plates clear, bolts tight, spikes reversed)",
     "answer": null,
-    "color":"cyan lighten-1",
+    "color":"deep-purple lighten-1",
     "note": ""
   },
   {
@@ -27,7 +27,7 @@
     "text":
       "Track Bond Conditions (complete, undamaged, secure, ensures conductivity)",
     "answer": null,
-    "color":"cyan lighten-1",
+    "color":"deep-purple lighten-1",
     "note": ""
   },
   {
@@ -35,7 +35,7 @@
     "text":
       "Track Lead Conditions (complete, undamaged, secured)",
     "answer": null,
-    "color":"cyan lighten-1",
+    "color":"deep-purple lighten-1",
     "note": ""
   },
   {
@@ -43,21 +43,21 @@
     "text":
       "Track Circuit Polarity (staggered and in conformity to the design plan)",
     "answer": null,
-    "color":"cyan lighten-1",
+    "color":"deep-purple lighten-1",
     "note": ""
   },
   {
     "id": "3e",
     "text": "Track Circuit Detection (detects a 0.06 ohm shunt, adjustment, no contamination of track circuit, signal in vicinity)",
     "answer": null,
-    "color":"cyan lighten-1",
+    "color":"deep-purple lighten-1",
     "note": ""
   },
   {
     "id": "3f",
     "text": "Track Circuit Adjustment",
     "answer": null,
-    "color":"cyan lighten-1",
+    "color":"deep-purple lighten-1",
     "note": ""
   },
   {
@@ -65,7 +65,7 @@
     "text":
       "Track Circuit Contamination",
     "answer": null,
-    "color":"cyan lighten-1",
+    "color":"deep-purple lighten-1",
     "note": ""
   },
   {
@@ -73,14 +73,14 @@
     "text":
       "Fouling circuit (proper bonding and detects train throughout)",
     "answer": null,
-    "color":"cyan lighten-1",
+    "color":"deep-purple lighten-1",
     "note": ""
   },
   {
     "id": "4a",
     "text": "Relay Conditions (securely mounted, contact condition, no rust or debris in housing, properly identified, corresponds to the circuit plan)",
     "answer": null,
-    "color":"cyan lighten-1",
+    "color":"deep-purple lighten-1",
     "note": ""
   },
   {
@@ -88,7 +88,7 @@
     "text":
       "Switch Obstruction Test (machine did not lock, overload/resilient gear functions, indication)",
     "answer": null,
-    "color":"cyan lighten-1",
+    "color":"deep-purple lighten-1",
     "note": ""
   },
   {
@@ -96,7 +96,7 @@
     "text":
       "Operation of Switches & Derails (power switches, self-restoring and power derails, electric lock, spring switch)",
     "answer": null,
-    "color":"cyan lighten-1",
+    "color":"deep-purple lighten-1",
     "note": ""
   },
   {
@@ -104,7 +104,7 @@
     "text":
       "Operation of Switch in Hand Throw Mode (point pressure, mechanical locking, timing)",
     "answer": null,
-    "color":"cyan lighten-1",
+    "color":"deep-purple lighten-1",
     "note": ""
   },
   {
@@ -112,7 +112,7 @@
     "text":
       "Switch Circuit Controller (condition of contacts and wiring, mounting secure, clevis tight)",
     "answer": null,
-    "color":"cyan lighten-1",
+    "color":"deep-purple lighten-1",
     "note": ""
   },
   {
@@ -120,7 +120,7 @@
     "text":
       "Record of Monthly Tests (no missing or overdue tests)",
     "answer": null,
-    "color":"orange darken-2",
+    "color":"amber darken-2",
     "note": ""
   },
   {
@@ -128,7 +128,7 @@
     "text":
       "Record of Quarterly and Semiannual Tests (no missing or overdue tests)",
     "answer": null,
-    "color":"orange darken-2",
+    "color":"amber darken-2",
     "note": ""
   },
   {
@@ -136,7 +136,7 @@
     "text":
       "Record of Annual Tests (no missing or overdue tests)",
     "answer": null,
-    "color":"orange darken-2",
+    "color":"amber darken-2",
     "note": ""
   },
   {
@@ -144,7 +144,7 @@
     "text":
       "Record of Two Year Tests (no missing or overdue tests)",
     "answer": null,
-    "color":"orange darken-2",
+    "color":"amber darken-2",
     "note": ""
   },
   {
@@ -152,7 +152,7 @@
     "text": 
       "Record of Four Year Tests (no missing or overdue tests)",
     "answer": null,
-    "color":"orange darken-2",
+    "color":"amber darken-2",
     "note": ""
   },
   {
@@ -160,7 +160,7 @@
     "text":
       "Record of Ten Year Tests (no missing or overdue tests)",
     "answer": null,
-    "color":"orange darken-2",
+    "color":"amber darken-2",
     "note": ""
   },
   {

@@ -16,7 +16,7 @@
             <v-icon>label</v-icon>
           </v-list-tile-avatar>
           <v-list-tile-content>
-            <v-list-tile-title>{{ cross.location_id }}</v-list-tile-title>
+            <v-list-tile-title>{{ cross.railway }}</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
 
@@ -25,7 +25,7 @@
             <v-icon>map</v-icon>
           </v-list-tile-avatar>
           <v-list-tile-content>
-            <v-list-tile-title>{{ cross.region }}</v-list-tile-title>
+            <v-list-tile-title>{{ cross.region + ' - ' + cross.subdivision }}</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
 
@@ -34,7 +34,7 @@
             <v-icon>traffic</v-icon>
           </v-list-tile-avatar>
           <v-list-tile-content>
-            <v-list-tile-title>{{ cross.crossing_type }}</v-list-tile-title>
+            <v-list-tile-title>{{ cross.type }}</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
 

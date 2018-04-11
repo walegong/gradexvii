@@ -112,16 +112,16 @@
       <v-toolbar-title>DashBoard</v-toolbar-title>
     </v-toolbar>
 
-    <v-content>
+    <v-content id="panel">
       <v-container fluid fill-height>
         <v-layout justify-center align-center>
-          <v-flex xs12 sm12 id="panel">
-            <v-card>
-              <v-card-title primary-title>
+          <v-flex xs12 sm12>
+            <v-card raised>
+              <v-card id="table-title" raised>
                 <div>
-                  <h3 class="headline mb-0">Inspection Task: {{ Date().substring(0, 21) }}</h3>
+                  <h3 class="title-text">Inspection Task: {{ Date().substring(0, 21) }}</h3>
                 </div>
-              </v-card-title>
+              </v-card>
               <v-data-table
                 :headers="headers"
                 :items="crossing_list.current_list"
@@ -141,12 +141,22 @@
                     ></v-checkbox>
                   </td>
                   <td class="text-xs-right">{{ props.item.crossing_id }}</td>
-                   <td class="text-xs-right">{{ props.item.subdivision }}</td>
+                  <!-- <td class="text-xs-right">{{ props.item.region }}</td> -->
+                  <td class="text-xs-right">{{ props.item.subdivision }}</td>
                   <td class="text-xs-right">
-                    <v-chip label :color="getLabelColor(props.item.type)" text-color="white">
+                    <!-- <v-chip label :color="getLabelColor(props.item.type)" text-color="white">
                       <v-icon left>label</v-icon>{{ props.item.type }}
+                    </v-chip> -->
+                    <v-chip :color="getLabelColor(props.item.type)" text-color="white" disabled>
+                      <v-avatar>
+                        <v-icon>label</v-icon>
+                      </v-avatar>
+                      {{ props.item.type }}
                     </v-chip>
-                    </td>
+                  </td>
+                  <td class="text-xs-right">
+                    <v-icon color="amber">info</v-icon>
+                  </td>
                   <td class="justify-center layout px-0">
                     <v-btn 
                       color="primary"
@@ -173,14 +183,14 @@
                   color="primary"
                   dark
                   large 
-                  class="form-btn"
+                  class="form-btn mt-4 mb-4"
                   @click.stop="jumpMap()">
                   <v-icon left dark>place</v-icon>
                   Select From Map</v-btn>
                 </v-flex>
               </v-layout>
             </v-card>
-            <v-card class="mt-4">
+            <!-- <v-card class="mt-4">
               <v-layout row wrap>
                 <v-flex sm12 xs12 class="text-sm-center text-xs-center">
                   <v-btn 
@@ -197,7 +207,7 @@
                   @click.stop="myAction()">My Action</v-btn>
                 </v-flex>
               </v-layout>
-            </v-card>
+            </v-card> -->
           </v-flex>
         </v-layout>
       </v-container>
@@ -206,7 +216,7 @@
 </template>
 
 <script>
-// import crossingData from '@/views/MapList/db.json'
+import crossingData from '@/views/MapList/annual.json'
 import db from '@/utils/firestore'
 
 export default {
@@ -229,8 +239,10 @@ export default {
       selected: [],
       headers: [
         { text: 'Crossing ID', align: 'right', value: 'crossing_id' },
+        // { text: 'Region', align: 'right', value: 'region' },
         { text: 'Subdivision', align: 'right', value: 'subdivision' },
         { text: 'Crossing Type', align: 'right', value: 'type' },
+        { text: 'Status', align: 'right', value: 'status' },
         { text: 'Actions', value: 'action', align: 'center', sortable: false }
       ],
       crossing_list: {
@@ -274,18 +286,17 @@ export default {
       this.$router.push(`/form?id=${id}&type=${type}`)
     },
     getLabelColor (type) {
-      if (type === 'AWS') {
+      if (type.includes('AWS')) {
         return 'green darken-1'
       } else {
-        return 'amber darken-1'
+        return 'purple darken-1'
       }
     },
     myAction () {
-      console.log(this.$firestoreRefs.crossing_list)
       // console.log(this.$store.state.uid)
-      // crossingData.forEach(element => {
-      //   db.collection('crossing').add(element)
-      // })
+      crossingData.forEach(element => {
+        db.collection('crossing').add(element)
+      })
     }
   },
   mounted () {
@@ -304,7 +315,13 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #panel {
-  margin: auto;
+  background-color: #f6f7fd;
+}
+
+.title-text {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 60px;
+  font-size: 24px;
 }
 
 .form-btn {
@@ -314,5 +331,15 @@ export default {
 .crossing-title {
   height: 40px;
   line-height: 40px;
+}
+
+#table-title {
+  width: 90%;
+  margin: auto;
+  text-align: center;
+  border-radius: 10px;
+  height: 60px !important;
+  top: -30px;
+  background-color: #03A9F4;
 }
 </style>

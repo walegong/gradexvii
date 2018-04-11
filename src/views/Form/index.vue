@@ -46,8 +46,8 @@
     <!-- Left Panel: navigation drawer -->
     <v-navigation-drawer 
       id="crosslist"
+      fixed
       clipped
-      floating
       app
       v-model="drawer"
       mobile-break-point=800
@@ -58,10 +58,12 @@
           <div>
             <div class="headline"><strong>Crossing ID: </strong>{{ crossing_info.id }}</div>
             <div class="info-text"><strong>Type: </strong>{{ crossing_info.type }}</div>
-            <div class="info-text"><strong>Region: </strong>{{ crossing_info.region }}</div>
-            <div class="info-text"><strong>Subdivision: </strong>{{ crossing_info.subdivision }}</div>
+            <div class="info-text"><strong>Region: </strong>{{ crossing_info.region + ' - ' + crossing_info.subdivision }}</div>
             <div class="info-text"><strong>Railway: </strong>{{ crossing_info.railway }}</div>
             <div class="info-text"><strong>Address: </strong>{{crossing_info.address }}</div>
+            <div class="info-text"><strong>Last Inspect Date: </strong>{{crossing_info.last_inspect_date }}</div>
+            <div class="info-text" v-if="crossing_info.last_inspector !== null"
+            ><strong>Last Inspector: </strong>{{crossing_info.last_inspector }}</div>
           </div>
         </v-card-title>
         <v-btn color="info">Overview</v-btn>
@@ -276,11 +278,11 @@ export default {
     const self = this
     const crossingId = this.$route.query.id
     const crossingType = this.$route.query.type
-    if (crossingType === 'AWS') {
+    if (crossingType.includes('AWS')) {
       this.question_list = require('./aws.json')
-    } else if (crossingType === 'WIS') {
+    } else if (crossingType.includes('WIS')) {
       this.question_list = require('./wis.json')
-    } else if (crossingType === 'WSS') {
+    } else if (crossingType.includes('WSS')) {
       this.question_list = require('./wss.json')
     } else {
       this.question_list = require('./passive.json')
@@ -290,13 +292,16 @@ export default {
       .then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
           const data = doc.data()
+          console.log(data)
           self.crossing_info = {
             id: crossingId,
             type: crossingType,
-            region: 'ONT',
-            subdivision: 'Waterloo',
-            railway: data.region,
-            address: data.address
+            region: data.region,
+            subdivision: data.subdivision,
+            railway: data.railway,
+            address: data.address,
+            last_inspector: data.last_inspector,
+            last_inspect_date: data.last_inspect_date
           }
         })
       })

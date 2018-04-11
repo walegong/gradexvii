@@ -4,14 +4,14 @@
     "text":
       "Sightlines from SSD - Railway ROW",
     "answer": null,
-    "color":"cyan lighten-1",
+    "color":"deep-purple lighten-1",
     "note": ""
   },
   {
     "id": "1b",
     "text": "Sightlines from SSD - Roadway ROW",
     "answer": null,
-    "color":"cyan lighten-1",
+    "color":"deep-purple lighten-1",
     "note": ""
   },
   {
@@ -19,7 +19,7 @@
     "text":
       "Sightlines from SSD - Private Property (railway responsibility)",
     "answer": null,
-    "color":"cyan lighten-1",
+    "color":"deep-purple lighten-1",
     "note": ""
   },
   {
@@ -27,7 +27,7 @@
     "text":
       "Sightlines from SSD - Private Property (road authority responsibility)",
     "answer": null,
-    "color":"cyan lighten-1",
+    "color":"deep-purple lighten-1",
     "note": ""
   },
   {
@@ -35,7 +35,7 @@
     "text":
       "Sightlines from Dstopped - Railway ROW",
     "answer": null,
-    "color":"cyan lighten-1",
+    "color":"deep-purple lighten-1",
     "note": ""
   },
   {
@@ -43,21 +43,21 @@
     "text":
       "Sightlines from Dstopped - Roadway ROW",
     "answer": null,
-    "color":"cyan lighten-1",
+    "color":"deep-purple lighten-1",
     "note": ""
   },
   {
     "id": "1g",
     "text": "Sightlines from Dstopped - Private Property (railway responsibility)",
     "answer": null,
-    "color":"cyan lighten-1",
+    "color":"deep-purple lighten-1",
     "note": ""
   },
   {
     "id": "1h",
     "text": "Sightlines from Dstopped - Private Property (road authority responsibility)",
     "answer": null,
-    "color":"cyan lighten-1",
+    "color":"deep-purple lighten-1",
     "note": ""
   },
   {
@@ -65,7 +65,7 @@
     "text":
       "Sightlines - Other",
     "answer": null,
-    "color":"cyan lighten-1",
+    "color":"deep-purple lighten-1",
     "note": ""
   },
   {
@@ -73,7 +73,7 @@
     "text":
       "Surface - Crossing Surface Condition",
     "answer": null,
-    "color":"orange darken-2",
+    "color":"amber darken-2",
     "note": ""
   },
   {
@@ -81,14 +81,14 @@
     "text":
       "Surface - Crossing Surface Width",
     "answer": null,
-    "color":"orange darken-2",
+    "color":"amber darken-2",
     "note": ""
   },
   {
     "id": "2c",
     "text": "Surface - Crossing Flangeway",
     "answer": null,
-    "color":"orange darken-2",
+    "color":"amber darken-2",
     "note": ""
   },
   {
@@ -96,7 +96,7 @@
     "text":
       "Surface - Approach Surface Condition",
     "answer": null,
-    "color":"orange darken-2",
+    "color":"amber darken-2",
     "note": ""
   },
   {
@@ -104,7 +104,7 @@
     "text":
       "Surface - Road Surface Geometry",
     "answer": null,
-    "color":"orange darken-2",
+    "color":"amber darken-2",
     "note": ""
   },
   {
@@ -112,7 +112,7 @@
     "text":
       "Surface - Other",
     "answer": null,
-    "color":"orange darken-2",
+    "color":"amber darken-2",
     "note": ""
   },
   {

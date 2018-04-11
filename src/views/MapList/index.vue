@@ -8,6 +8,18 @@
       <v-toolbar-title>Grade X Inspection</v-toolbar-title>
     </v-toolbar>
 
+    <v-dialog v-model="confirm_dialog" max-width="350">
+      <v-card>
+        <v-card-title class="headline">Confirm current crossing list?</v-card-title>
+        <v-card-text>*All changes will be saved</v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="green darken-1" flat="flat" @click.native="confirm_dialog = false">Cancel</v-btn>
+          <v-btn color="green darken-1" flat="flat" @click.native="modifyList()">Confirm</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
     <v-content>
       <v-container fluid fill-height class="pa-0">
         <v-layout row wrap>
@@ -37,24 +49,24 @@
                 </v-toolbar>
               </v-flex>
               <v-flex xs12 sm12 id="avail-panel">
-                <cross-card v-for="item in search_list" :key="item.crossing_id" v-bind:cross="item" @click.native="selectCross(item)"></cross-card>
+                <cross-card v-for="item in search_list" :key="'card_' + item.crossing_id" v-bind:cross="item" @click.native="selectCross(item)"></cross-card>
               </v-flex>
             </div>
 
             <!-- Selected List -->
             <div v-else>
               <v-flex sm12 xs12>
-                <v-btn large color="indigo" class="white--text" id="submit-button" @click.stop="modifyList()">
+                <v-btn color="indigo" class="white--text" id="submit-button" @click.stop="confirm_dialog=true">
                   <v-badge left color="green">
                     <span slot="badge">{{ select_list.length }}</span>
                     <v-icon left dark>assignment</v-icon>
                   </v-badge>
-                  Add to Inspection Task
+                  Confirm Current List
                   <v-icon right dark>keyboard_arrow_right</v-icon>
                 </v-btn>
               </v-flex>
               <v-flex xs12 sm12 id="select-panel">
-                <cross-card v-for="item in select_list" :key="item.crossing_id" v-bind:cross="item" @click.native="selectCross(item)"></cross-card>
+                <cross-card v-for="item in select_list" :key="'select_' + item.crossing_id" v-bind:cross="item" @click.native="selectCross(item)"></cross-card>
               </v-flex>
             </div>
           </v-flex>
@@ -69,17 +81,18 @@
                   :opened="info_win_open"
                   @closeclick="info_win_open=false"
                 >
-                  <v-btn depressed small color="primary" @click.stop="addToList()">Add to List</v-btn>
+                  <v-btn v-if="current_cross.select" depressed small color="pink" @click.stop="toggleList()">Remove</v-btn>
+                  <v-btn v-else depressed small color="primary" @click.stop="toggleList()">Add to List</v-btn>
                   <div class="info-window-text">ID: {{ current_cross.crossing_id }}</div>
                   <a class="info-window-text" :href="`https://www.google.com/maps/search/?api=1&query=${current_cross.position.lat},${current_cross.position.lng}`">Navigate to this place</a>
                 </google-info-window>
                 <google-marker 
-                  v-for="item in full_list" 
+                  v-for="item in valid_list" 
                   :position="item.position" 
                   :clickable="true"
                   :icon="require('@/assets/marker.png')"
                   @click="toggleInfoWindow(item)" 
-                  :key="item.crossing_id">
+                  :key="'markerinfo_' + item.crossing_id">
                 </google-marker>
               </google-cluster>
             </google-map>
@@ -118,7 +131,6 @@ export default {
     return {
       drawer: null,
       full_list: [],
-      selected: [],
       list_option: 'avail',
       search_condition: '',
       // Map Data
@@ -134,21 +146,36 @@ export default {
       },
       zoom_level: 6,
       current_cross: {
-        crossing_id: '',
-        position: {
-          lat: 52.368011,
-          lng: -109.924447
-        }
+        'location_id': null,
+        'type': null,
+        'address': '',
+        'crossing_id': '',
+        'rsig_id': null,
+        'region': '',
+        'railway': '',
+        'railway_short': '',
+        'last_inspector': null,
+        'last_inspect_date': '',
+        'service_date': '',
+        'jurisdiction': '',
+        'subdivision': '',
+        'position': {
+          'lng': 0,
+          'lat': 0
+        },
+        'authority': '',
+        'select': false
       },
       info_win_open: false,
       crossing_list: {
         current_list: []
-      }
+      },
+      confirm_dialog: false
     }
   },
   firestore () {
     return {
-      full_list: db.collection('crossing').orderBy('crossing_id'),
+      // full_list: db.collection('crossing').orderBy('crossing_id'),
       crossing_list: db.collection('inspection_list').doc(this.$store.state.uid)
     }
   },
@@ -157,65 +184,86 @@ export default {
       var tempList = this.select_list.map(element => ({
         value: false,
         crossing_id: element.crossing_id,
-        subdivision: 'Waterloo',
+        region: element.region,
+        subdivision: element.subdivision,
         date: new Date(),
-        type: element.crossing_type
+        type: element.type
       }))
       db.collection('inspection_list').doc(this.$store.state.uid).set({
         current_list: tempList
       })
+      this.$router.go(-1)
     },
     goBack () {
       this.$router.go(-1)
     },
     selectCross (cross) {
-      if (cross.select === true) {
-        this.selected.splice(this.selected.indexOf(cross.crossing_id), 1)
+      if (this.selected.has(cross.crossing_id)) {
+        this.selected.delete(cross.crossing_id)
       } else {
-        this.selected.push(cross.crossing_id)
+        this.selected.add(cross.crossing_id)
       }
       cross.select = !cross.select
       this.center = cross.position
       this.zoom_level = 16
-      this.current_cross.crossing_id = cross.crossing_id
-      this.current_cross.position = cross.position
+      this.current_cross = cross
       this.info_win_open = true
-      console.log(this.selected)
     },
-    addToList () {
-      this.full_list.find(cross => {
-        return cross.crossing_id === this.current_cross.crossing_id
-      }).select = true
+    toggleList () {
+      if (this.selected.has(this.current_cross.crossing_id)) {
+        this.selected.delete(this.current_cross.crossing_id)
+      } else {
+        this.selected.add(this.current_cross.crossing_id)
+      }
+      this.current_cross.select = !this.current_cross.select
+      // this.select_list = this.getSelectList()
     },
     toggleInfoWindow (cross) {
       this.center = cross.position
       this.zoom_level = 16
-      this.current_cross.crossing_id = cross.crossing_id
-      this.current_cross.position = cross.position
+      this.current_cross = cross
       this.info_win_open = true
+    },
+    getSelectList () {
+      return this.full_list.filter(cross => {
+        return this.selected.has(cross.crossing_id)
+      })
     }
   },
   computed: {
     select_list: function () {
       return this.full_list.filter(cross => {
-        // return cross.select === true
-        return this.selected.indexOf(cross.crossing_id) !== -1
+        return cross.select
       })
     },
     search_list: function () {
       return this.full_list.filter(cross => {
         return cross.crossing_id.startsWith(this.search_condition)
       })
+    },
+    valid_list: function () {
+      return this.full_list.filter(cross => {
+        return cross.position.lat !== null && cross.position.lng !== null
+      })
     }
+  },
+  created: function () {
+    this.full_list = []
+    this.selected = new Set()
+    db.collection('inspection_list').doc(this.$store.state.uid).get()
+      .then((doc) => {
+        doc.data().current_list.forEach((data) => {
+          this.selected.add(data.crossing_id)
+        })
+      })
+    db.collection('crossing').orderBy('crossing_id').get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        const cross = doc.data()
+        cross.select = this.selected.has(cross.crossing_id)
+        this.full_list.push(cross)
+      })
+    })
   }
-  // created: function () {
-  //   this.full_list = []
-  //   db.collection('crossing').get().then((querySnapshot) => {
-  //     querySnapshot.forEach((doc) => {
-  //       this.full_list.push(doc.data())
-  //     })
-  //   })
-  // }
 }
 </script>
 
