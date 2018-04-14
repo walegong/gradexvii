@@ -180,6 +180,13 @@ export default {
     }
   },
   methods: {
+    setStatus (id) {
+      if (id in this.status_map) {
+        return this.status_map[id]
+      } else {
+        return 'initial'
+      }
+    },
     modifyList () {
       var tempList = this.select_list.map(element => ({
         value: false,
@@ -187,13 +194,49 @@ export default {
         region: element.region,
         subdivision: element.subdivision,
         date: new Date(),
-        type: element.type
+        type: element.type,
+        status: this.setStatus(element.crossing_id)
       }))
       db.collection('inspection_list').doc(this.$store.state.uid).set({
         current_list: tempList
       })
       this.$router.go(-1)
     },
+    // modifyList () {
+    //   // var tempList = this.select_list.map(element => ({
+    //   //   [element.crossing_id]: {
+    //   //     value: false,
+    //   //     crossing_id: element.crossing_id,
+    //   //     region: element.region,
+    //   //     subdivision: element.subdivision,
+    //   //     date: new Date(),
+    //   //     type: element.type,
+    //   //     status: this.setStatus(element.crossing_id)
+    //   //   }
+    //   // }))
+    //   // this.select_list.forEach(element => {
+    //   //   db.doc(`/inspection_list/${this.$store.state.uid}/current_list/${element.crossing_id}`).set({
+    //   //     value: false,
+    //   //     crossing_id: element.crossing_id,
+    //   //     region: element.region,
+    //   //     subdivision: element.subdivision,
+    //   //     date: new Date(),
+    //   //     type: element.type,
+    //   //     status: this.setStatus(element.crossing_id)
+    //   //   })
+    //   // })
+    //   db.collection(`/inspection_list/${this.$store.state.uid}/current_list`)
+    //     .get()
+    //     .then((querySnapshot) => {
+    //       querySnapshot.forEach((doc) => {
+    //         console.log(doc.id, ' => ', doc.data())
+    //       })
+    //     })
+    //   // db.collection('inspection_list').doc(this.$store.state.uid).set({
+    //   //   current_list: tempList
+    //   // })
+    //   this.$router.go(-1)
+    // },
     goBack () {
       this.$router.go(-1)
     },
@@ -238,7 +281,7 @@ export default {
     },
     search_list: function () {
       return this.full_list.filter(cross => {
-        return cross.crossing_id.startsWith(this.search_condition)
+        return cross.crossing_id !== null && cross.crossing_id.startsWith(this.search_condition)
       })
     },
     valid_list: function () {
@@ -250,11 +293,15 @@ export default {
   created: function () {
     this.full_list = []
     this.selected = new Set()
+    this.status_map = {}
     db.collection('inspection_list').doc(this.$store.state.uid).get()
       .then((doc) => {
-        doc.data().current_list.forEach((data) => {
-          this.selected.add(data.crossing_id)
-        })
+        if ('current_list' in doc.data()) {
+          doc.data().current_list.forEach((data) => {
+            this.selected.add(data.crossing_id)
+            this.status_map[data.crossing_id] = data.status
+          })
+        }
       })
     db.collection('crossing').orderBy('crossing_id').get().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {

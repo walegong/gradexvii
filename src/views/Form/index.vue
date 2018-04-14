@@ -27,14 +27,14 @@
         </v-toolbar>
         <v-list three-line class="pa-0">
           <v-list-tile>
-            <v-list-tile-content @click.stop="saveFormData()">
+            <v-list-tile-content @click.stop="markStatus('complete')">
               <v-list-tile-title>{{ dialog_items[0].title }}</v-list-tile-title>
               <v-list-tile-sub-title>{{ dialog_items[0].subtitle }}</v-list-tile-sub-title>
             </v-list-tile-content>
           </v-list-tile>
           <v-divider></v-divider>
           <v-list-tile>
-            <v-list-tile-content @click.stop="saveFormData()">
+            <v-list-tile-content @click.stop="markStatus('incomplete')">
               <v-list-tile-title>{{ dialog_items[1].title }}</v-list-tile-title>
               <v-list-tile-sub-title>{{ dialog_items[1].subtitle }}</v-list-tile-sub-title>
             </v-list-tile-content>
@@ -66,8 +66,8 @@
             ><strong>Last Inspector: </strong>{{crossing_info.last_inspector }}</div>
           </div>
         </v-card-title>
-        <v-btn color="info">Overview</v-btn>
-        <v-btn color="success" @click.native.stop="confirm_dialog = true">Finish Task</v-btn>
+        <!-- <v-btn color="info">Overview</v-btn> -->
+        <v-btn large color="success" @click.native.stop="confirm_dialog = true">Finish Task</v-btn>
         <div>
           <v-progress-linear id="progress-bar" :value="answer_number / question_list.length * 100" height="8" color="teal"></v-progress-linear>
           <div>{{ answer_number +'/' + question_list.length }}</div>
@@ -195,7 +195,6 @@
 </template>
 
 <script>
-import { sendFormData } from '@/api/form'
 import db from '@/utils/firestore'
 
 export default {
@@ -207,8 +206,8 @@ export default {
       crossing_info: {
         id: null,
         type: null,
-        region: null,
-        subdivision: null,
+        region: '',
+        subdivision: '',
         railway: null,
         address: null
       },
@@ -230,18 +229,17 @@ export default {
       transition: 'slide-right',
       current_question: 0,
       question_dialog: false,
-      question_list: []
+      question_list: [],
+      current_list: []
     }
   },
   methods: {
     selectQuestion (n) {
       this.current_question = n
     },
-
     goBack () {
       this.$router.go(-1)
     },
-
     getColor (question, index) {
       if (index === this.current_question) {
         return 'primary'
@@ -251,20 +249,36 @@ export default {
         return 'success'
       }
     },
-
     movePre () {
       this.transition = 'slide-left'
       this.current_question -= 1
     },
-
     moveNext () {
       this.transition = 'slide-right'
       this.current_question += 1
     },
-
-    saveFormData () {
-      sendFormData(this.question_list)
+    markStatus (status) {
+      let data = {}
+      this.question_list.forEach((element, index) => {
+        data[index] = {
+          answer: element.answer,
+          note: element.note
+        }
+      })
+      db.doc(`/inspection_history/${this.$store.state.uid}/current_list/${this.crossing_info.id}`)
+        .set({
+          type: this.crossing_info.type,
+          record: data
+        })
+      var found = this.current_list.findIndex((element) => {
+        return element.crossing_id === this.crossing_info.id
+      })
+      this.current_list[found].status = status
+      db.collection('inspection_list').doc(this.$store.state.uid).update({
+        current_list: this.current_list
+      })
       this.confirm_dialog = false
+      this.$router.go(-1)
     }
   },
   computed: {
@@ -276,8 +290,8 @@ export default {
   },
   created: function () {
     const self = this
-    const crossingId = this.$route.query.id
-    const crossingType = this.$route.query.type
+    const crossingId = this.$route.params.id
+    const crossingType = this.$route.params.type
     if (crossingType.includes('AWS')) {
       this.question_list = require('./aws.json')
     } else if (crossingType.includes('WIS')) {
@@ -287,12 +301,30 @@ export default {
     } else {
       this.question_list = require('./passive.json')
     }
+    let record = {}
+    db.doc(`/inspection_history/${this.$store.state.uid}/current_list/${crossingId}`)
+      .get()
+      .then((doc) => {
+        if (doc.data() !== undefined) {
+          record = doc.data().record
+          this.question_list.forEach((element, index) => {
+            element.answer = record[index].answer
+            element.note = record[index].note
+          })
+        } else {
+          this.question_list.forEach((element, index) => {
+            element.answer = null
+            element.note = ''
+          })
+        }
+      })
+    // this.question_list
     db.collection('crossing').where('crossing_id', '==', crossingId)
       .get()
-      .then(function (querySnapshot) {
+      .then((querySnapshot) => {
         querySnapshot.forEach(function (doc) {
           const data = doc.data()
-          console.log(data)
+          // console.log(data)
           self.crossing_info = {
             id: crossingId,
             type: crossingType,
@@ -307,6 +339,13 @@ export default {
       })
       .catch(function (error) {
         console.log('Error getting documents: ', error)
+      })
+
+    db.collection('inspection_list').doc(this.$store.state.uid).get()
+      .then((doc) => {
+        if ('current_list' in doc.data()) {
+          this.current_list = doc.data().current_list
+        }
       })
   }
 }

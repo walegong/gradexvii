@@ -6,7 +6,7 @@
       app
       v-model="drawer"
       mobile-break-point="600"
-      width="250"
+      width="200"
     >
       <v-toolbar flat class="transparent">
         <v-list class="pa-0">
@@ -15,7 +15,7 @@
               <span class="white--text headline">{{ user_info.first_name.charAt(0) }}</span>
             </v-avatar>
             <v-list-tile-content>
-              <v-list-tile-title>{{ this.$store.state.email }}</v-list-tile-title>
+              <v-list-tile-title>{{ user_info.first_name }}</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
         </v-list>
@@ -155,13 +155,32 @@
                     </v-chip>
                   </td>
                   <td class="text-xs-right">
-                    <v-icon color="amber">info</v-icon>
+                    <v-chip disabled :color="getStatusColor(props.item.status)" text-color="white">
+                      <v-avatar>
+                        <v-icon 
+                          v-if="props.item.status === 'initial'"
+                        >content_paste</v-icon>
+                        <v-icon
+                          v-else-if="props.item.status === 'incomplete'"
+                        >info</v-icon>
+                        <v-icon
+                          v-else
+                        >check_circle</v-icon>
+                      </v-avatar>
+                      {{ props.item.status }}
+                    </v-chip>
                   </td>
                   <td class="justify-center layout px-0">
                     <v-btn 
                       color="primary"
                       dark
+                      v-if="props.item.status === 'initial'"
                       @click.stop="gotoForm(props.item.crossing_id, props.item.type)">Inspect</v-btn>
+                    <v-btn 
+                      color="light-green"
+                      dark
+                      v-else
+                      @click.stop="gotoForm(props.item.crossing_id, props.item.type)">Modify</v-btn>
                   </td>
                 </template>
                 <template v-if="!table_loading" slot="no-data">
@@ -216,7 +235,7 @@
 </template>
 
 <script>
-import crossingData from '@/views/MapList/annual.json'
+// import crossingData from '@/views/MapList/temp_list.json'
 import db from '@/utils/firestore'
 
 export default {
@@ -242,7 +261,7 @@ export default {
         // { text: 'Region', align: 'right', value: 'region' },
         { text: 'Subdivision', align: 'right', value: 'subdivision' },
         { text: 'Crossing Type', align: 'right', value: 'type' },
-        { text: 'Status', align: 'right', value: 'status' },
+        { text: 'Status', align: 'center', value: 'status' },
         { text: 'Actions', value: 'action', align: 'center', sortable: false }
       ],
       crossing_list: {
@@ -283,21 +302,36 @@ export default {
       })
     },
     gotoForm (id, type) {
-      this.$router.push(`/form?id=${id}&type=${type}`)
+      // this.$router.push(`/form?id=${id}&type=${type}`)
+      this.$router.push({ path: `/form/${id}/${type}` })
     },
     getLabelColor (type) {
       if (type.includes('AWS')) {
-        return 'green darken-1'
+        return 'orange darken-1'
+      } else if (type.includes('WIS')) {
+        return 'cyan darken-1'
+      } else if (type.includes('WSS')) {
+        return 'teal darken-1'
       } else {
         return 'purple darken-1'
       }
     },
-    myAction () {
-      // console.log(this.$store.state.uid)
-      crossingData.forEach(element => {
-        db.collection('crossing').add(element)
-      })
+    getStatusColor (status) {
+      if (status === 'initial') {
+        return 'primary'
+      } else if (status === 'incomplete') {
+        return 'amber'
+      } else {
+        return 'success'
+      }
     }
+    // myAction () {
+    //   // console.log(this.$store.state.uid)
+    //   crossingData.forEach(element => {
+    //     // console.log(element)
+    //     db.collection('crossing').add(element)
+    //   })
+    // }
   },
   mounted () {
     this.$bind('crossing_list', db.collection('inspection_list').doc(this.$store.state.uid))

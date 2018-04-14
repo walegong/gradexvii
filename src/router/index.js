@@ -29,7 +29,7 @@ const router = new Router({
       meta: { requiresAuth: true }
     },
     {
-      path: '/form',
+      path: '/form/:id/:type',
       name: 'Form',
       component: () => import('@/views/Form/index'),
       meta: { requiresAuth: true }
