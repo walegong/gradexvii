@@ -43,6 +43,68 @@
       </v-card>
     </v-dialog> 
 
+    <!-- media dialog -->
+    <v-dialog
+      v-model="mediaDialog"
+      fullscreen
+      hide-overlay
+      transition="dialog-bottom-transition"
+      scrollable
+    >
+      <v-card tile>
+        <v-toolbar card dark color="primary">
+          <v-btn icon @click.native="mediaDialog = false" dark>
+            <v-icon>close</v-icon>
+          </v-btn>
+          <v-toolbar-title>Photo Notes and Audio Records</v-toolbar-title>
+        </v-toolbar>
+        <v-card-text>
+          <v-flex xs12 sm12>
+            <v-btn 
+              raised 
+              large 
+              color="primary" 
+              v-if="question_list[current_question].media !== undefined && question_list[current_question].media.length > 0"
+              @click.stop="showImageList">View Images</v-btn>
+            <v-btn raised large color="primary" @click.stop="OnPickFile">Add Image</v-btn>
+            <v-btn raised large color="success" v-if="imageList.length > 0" @click="UploadFiles">Upload to Server</v-btn>
+            <input 
+              type="file"
+              style="display: none"
+              ref="fileInput"
+              accept="image/*"
+              @change="OnFilePicked"
+              multiple
+            >
+            <transition-group name="list">
+              <v-card raised class="image-card" v-for="(image, index) in imageList" :key="image.imageName">
+                <v-layout row wrap>
+                  <v-flex xs4 sm4 md4 class="fill">
+                    <img :src="image.imageUrl"/>
+                  </v-flex>
+                  <v-flex xs8 sm8 md8>
+                    <div class="right-align">
+                      <v-icon large class="mt-2 mr-2" @click.stop="remove(index)">close</v-icon>
+                    </div>
+                    <div class="image-note">
+                      <v-text-field
+                        label="Description"
+                        prepend-icon="description"
+                        v-model="image.imageNote"
+                      ></v-text-field>
+                    </div>
+                    <div class="image-progress">
+                      <v-progress-linear :color="getProgressColor(image.progress)" :value="image.progress" height="10"></v-progress-linear>
+                    </div>
+                  </v-flex>
+                </v-layout>
+              </v-card>
+            </transition-group>
+          </v-flex>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
+
     <!-- Left Panel: navigation drawer -->
     <v-navigation-drawer 
       id="crosslist"
@@ -74,7 +136,7 @@
         </div>
       </v-card>
       
-      <v-btn :color="getColor(question, index)" 
+      <v-btn :color="getQuestionColor(question, index)" 
         :outline="question.answer==null && current_question != index" 
         fab 
         small 
@@ -93,31 +155,6 @@
         <v-layout>
           <transition :name="transition" mode="out-in">
             <v-card id="right-panel" class="pa-3 text-xs-center text-sm-center" :key="current_question">
-              <!-- <v-tabs
-                slider-color="light-green darken-2"
-                fixed-tabs
-              >
-                <v-tab v-for="item in tabs_text" :key="item.name" ripple>{{ item.name }}</v-tab>
-              </v-tabs> -->
-              
-              <!-- dialog button -->
-              <!-- <v-layout row justify-center>
-                <v-btn color="primary" dark @click.native.stop="question_dialog = true">Open Dialog</v-btn>
-                <v-dialog v-model="question_dialog" max-width="650">
-                  <v-card>
-                    <v-card-title class="headline">Select Question</v-card-title>
-                    <v-card-text>Click on the question you want to jump to:</v-card-text>
-                    <v-btn :color="getColor(question, index)" fab small :dark="question.answer!=null" v-for="(question, index) in question_list" :key="index" @click="selectQuestion(index)">
-                      {{ question.id }}
-                    </v-btn>
-                    <v-card-actions>
-                      <v-spacer></v-spacer>
-                      <v-btn color="green darken-1" flat="flat" @click.native="question_dialog = false">Confirm</v-btn>
-                    </v-card-actions>
-                  </v-card>
-                </v-dialog>
-              </v-layout> -->
-
               <!-- question details -->
               <div id="question-detail">
                 <div class="headline">
@@ -177,11 +214,12 @@
 
               <!-- question direct -->
               <v-layout row justify-space-between>
-                <v-btn large color="blue-grey" class="white--text" :disabled="current_question == 0" @click="movePre()">
+                <v-btn large color="blue-grey" class="white--text" :disabled="current_question == 0" @click.stop="movePre()">
                   <v-icon left dark>chevron_left</v-icon>
                   Backward
                 </v-btn>
-                <v-btn large color="blue-grey" class="white--text" :disabled="current_question == question_list.length - 1" @click="moveNext()">
+                <v-btn color="primary" large dark @click.stop="mediaDialog = true">Image & Audio</v-btn>
+                <v-btn large color="blue-grey" class="white--text" :disabled="current_question == question_list.length - 1" @click.stop="moveNext()">
                   Forward
                   <v-icon right dark>chevron_right</v-icon>
                 </v-btn>
@@ -196,6 +234,7 @@
 
 <script>
 import db from '@/utils/firestore'
+import firebase from 'firebase'
 
 export default {
   name: 'Form',
@@ -230,17 +269,21 @@ export default {
       current_question: 0,
       question_dialog: false,
       question_list: [],
-      current_list: []
+      current_list: [],
+      // media dialog
+      mediaDialog: false,
+      imageList: []
     }
   },
   methods: {
     selectQuestion (n) {
       this.current_question = n
+      this.imageList = []
     },
     goBack () {
       this.$router.go(-1)
     },
-    getColor (question, index) {
+    getQuestionColor (question, index) {
       if (index === this.current_question) {
         return 'primary'
       } else if (question.answer === null && question.color !== null) {
@@ -252,17 +295,20 @@ export default {
     movePre () {
       this.transition = 'slide-left'
       this.current_question -= 1
+      this.imageList = []
     },
     moveNext () {
       this.transition = 'slide-right'
       this.current_question += 1
+      this.imageList = []
     },
     markStatus (status) {
       let data = {}
       this.question_list.forEach((element, index) => {
         data[index] = {
           answer: element.answer,
-          note: element.note
+          note: element.note,
+          media: element.media
         }
       })
       db.doc(`/inspection_history/${this.$store.state.uid}/current_list/${this.crossing_info.id}`)
@@ -279,6 +325,67 @@ export default {
       })
       this.confirm_dialog = false
       this.$router.go(-1)
+    },
+    OnPickFile () {
+      this.$refs.fileInput.click()
+    },
+    getProgressColor (value) {
+      if (value === 100) {
+        return 'success'
+      } else {
+        return 'primary'
+      }
+    },
+    OnFilePicked (event) {
+      const files = event.target.files
+      for (let i = 0; i < files.length; i++) {
+        let filename = files[i].name
+        if (filename.lastIndexOf('.') >= 0) {
+          let ext = filename.slice(filename.lastIndexOf('.'))
+          let imageName = this.current_question + '_' + i + ext
+          const fileReader = new FileReader()
+          fileReader.addEventListener('load', () => {
+            this.imageUrl = fileReader.result
+            this.imageList.push({
+              imageUrl: fileReader.result,
+              imageData: files[i],
+              imageName: imageName,
+              imageNote: '',
+              progress: 0
+            })
+          })
+          fileReader.readAsDataURL(files[i])
+        }
+      }
+    },
+    UploadFiles () {
+      const self = this
+      this.imageList.forEach((image) => {
+        let storageRef = firebase.storage().ref(`inspections/${this.$store.state.uid}/${image.imageName}`)
+        let task = storageRef.put(image.imageData)
+        task.on('state_changed',
+          function progress (snapshot) {
+            image.progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          },
+          function error (err) {
+            console.log(err)
+          },
+          function complete () {
+            console.log('finish')
+            storageRef.getDownloadURL().then((url) => {
+              self.question_list[self.current_question].media.push({
+                note: image.imageNote,
+                imageRef: `inspections/${self.$store.state.uid}/${image.imageName}`,
+                imageUrl: url
+              })
+              console.log(self.question_list[self.current_question].media)
+            })
+          }
+        )
+      })
+    },
+    remove (index) {
+      this.imageList.splice(index, 1)
     }
   },
   computed: {
@@ -310,15 +417,16 @@ export default {
           this.question_list.forEach((element, index) => {
             element.answer = record[index].answer
             element.note = record[index].note
+            element.media = record[index].media
           })
         } else {
           this.question_list.forEach((element, index) => {
             element.answer = null
             element.note = ''
+            element.media = []
           })
         }
       })
-    // this.question_list
     db.collection('crossing').where('crossing_id', '==', crossingId)
       .get()
       .then((querySnapshot) => {
@@ -397,5 +505,41 @@ export default {
 .slide-left-leave-to, .slide-right-enter{
   /* transform: translateX(30px); */
   opacity: 0;
+}
+
+.image-card {
+  width: 90%;
+  margin: auto;
+  margin-top: 20px;
+}
+.image-progress {
+  width: 90%;
+  margin: auto;
+  margin-top: 20px;
+}
+.image-note {
+  width: 90%;
+  margin: auto;
+}
+.right-align {
+  text-align: right;
+}
+.fill {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden
+}
+.fill img {
+  flex-shrink: 0;
+  max-width: 100%;
+  max-height: 200px;
+}
+.list-enter-active, .list-leave-active {
+  transition: all 0.5s;
+}
+.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateX(30px);
 }
 </style>

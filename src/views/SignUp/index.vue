@@ -1,8 +1,8 @@
 <template>
   <v-layout>
     <v-toolbar color="blue-grey" dark fixed>
-      <v-btn icon>
-        <v-icon>account_circle</v-icon>
+      <v-btn icon @click.stop="goBack()">
+        <v-icon>arrow_back</v-icon>
       </v-btn>
       <v-toolbar-title>SignUp</v-toolbar-title>
     </v-toolbar>
@@ -99,6 +99,9 @@ export default {
     }
   },
   methods: {
+    goBack () {
+      this.$router.go(-1)
+    },
     signUp () {
       if (this.inputValid) {
         this.$store.dispatch('userSignUp', { email: this.email, password: this.password })
