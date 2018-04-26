@@ -10,7 +10,7 @@ export const store = new Vuex.Store({
     uid: null,
     email: null,
     error: null,
-    loading: false
+    verify: null
   },
   mutations: {
     setUid (state, payload) {
@@ -22,35 +22,40 @@ export const store = new Vuex.Store({
     setError (state, payload) {
       state.error = payload
     },
-    setLoading (state, payload) {
-      state.loading = payload
+    setVerify (state, payload) {
+      state.verify = payload
     }
   },
   actions: {
     userSignUp ({commit}, payload) {
-      commit('setLoading', true)
       firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
         .then(firebaseUser => {
           router.push('/login')
+          firebaseUser.sendEmailVerification().catch(function (error) {
+            commit('setError', error.message)
+          })
         })
         .catch(error => {
           commit('setError', error.message)
-          commit('setLoading', false)
         })
     },
     userSignIn ({commit}, payload) {
-      commit('setLoading', true)
       firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
         .then(firebaseUser => {
+          if (!firebaseUser.emailVerified) {
+            commit('setVerify', false)
+            commit('setError', 'Please verify your email address')
+            return
+          } else {
+            commit('setVerify', true)
+          }
           commit('setUid', firebaseUser.uid)
           commit('setEmail', firebaseUser.email)
-          commit('setLoading', false)
           commit('setError', null)
           router.push('/dashboard')
         })
         .catch(error => {
           commit('setError', error.message)
-          commit('setLoading', false)
         })
     },
     autoSignIn ({commit}, payload) {

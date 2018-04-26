@@ -202,41 +202,6 @@ export default {
       })
       this.$router.go(-1)
     },
-    // modifyList () {
-    //   // var tempList = this.select_list.map(element => ({
-    //   //   [element.crossing_id]: {
-    //   //     value: false,
-    //   //     crossing_id: element.crossing_id,
-    //   //     region: element.region,
-    //   //     subdivision: element.subdivision,
-    //   //     date: new Date(),
-    //   //     type: element.type,
-    //   //     status: this.setStatus(element.crossing_id)
-    //   //   }
-    //   // }))
-    //   // this.select_list.forEach(element => {
-    //   //   db.doc(`/inspection_list/${this.$store.state.uid}/current_list/${element.crossing_id}`).set({
-    //   //     value: false,
-    //   //     crossing_id: element.crossing_id,
-    //   //     region: element.region,
-    //   //     subdivision: element.subdivision,
-    //   //     date: new Date(),
-    //   //     type: element.type,
-    //   //     status: this.setStatus(element.crossing_id)
-    //   //   })
-    //   // })
-    //   db.collection(`/inspection_list/${this.$store.state.uid}/current_list`)
-    //     .get()
-    //     .then((querySnapshot) => {
-    //       querySnapshot.forEach((doc) => {
-    //         console.log(doc.id, ' => ', doc.data())
-    //       })
-    //     })
-    //   // db.collection('inspection_list').doc(this.$store.state.uid).set({
-    //   //   current_list: tempList
-    //   // })
-    //   this.$router.go(-1)
-    // },
     goBack () {
       this.$router.go(-1)
     },
@@ -324,10 +289,6 @@ export default {
 #crosslist {
   background-color: #eee;
   text-align: center;
-}
-
-#mapview {
-  background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
 }
 
 #select-num {

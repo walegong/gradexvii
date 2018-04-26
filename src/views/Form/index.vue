@@ -386,6 +386,9 @@ export default {
     },
     remove (index) {
       this.imageList.splice(index, 1)
+    },
+    showImageList () {
+      console.log(this.question_list[this.current_question].media)
     }
   },
   computed: {

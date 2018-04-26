@@ -57,7 +57,7 @@
               class="form-btn" 
               :dark="inputValid"
               @click.stop="login()">Login</v-btn>
-            <!-- <v-btn color="indigo" large class="form-btn" dark @click.stop="signUp()">Sign Up</v-btn> -->
+            <!-- <v-btn color="indigo" large class="form-btn" dark @click.stop="toggleSnackbar()">TEST</v-btn> -->
           </v-flex>
           <v-flex sm12 xs12 class="text-sm-center text-xs-center mb-4 mt-2">
             <a @click="dialog=true;">Forget Password?</a>
@@ -71,7 +71,7 @@
       </v-alert>
     </v-flex>
 
-    <!-- Modal Dialog -->
+    <!-- Reset Modal Dialog -->
     <v-dialog v-model="dialog" persistent max-width="500px">
       <v-card>
         <v-card-title>
@@ -81,7 +81,13 @@
           <v-container grid-list-md>
             <v-layout wrap>
               <v-flex xs10 sm10 offset-xs1 offset-sm1>
-                <v-text-field label="Email" required></v-text-field>
+                <v-text-field
+                  label="Email Address"
+                  hint="Please enter a valid email address"
+                  v-model="email"
+                  :rules="emailRules"
+                  required
+                ></v-text-field>
               </v-flex>
               <v-flex xs10 sm10 offset-xs1 offset-sm1>
                 <p>*indicates required field</p>
@@ -93,14 +99,54 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" flat @click.native="dialog = false">Close</v-btn>
-          <v-btn color="blue darken-1" flat @click.native="dialog = false">Confirm</v-btn>
+          <v-btn 
+            color="blue darken-1" 
+            flat
+            :disabled="!emailValid(email)"
+            @click.native="sendResetEmail()">Confirm</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
+
+    <!-- Verify Email Modal Dialog -->
+    <v-dialog v-model="verify_dialog" max-width="500px">
+      <v-card>
+        <v-card-title>
+          <span class="headline">Email Verification</span>
+        </v-card-title>
+        <v-card-text>
+          Please check your inbox for the email with verification link
+        </v-card-text>
+        <v-flex xs12 class="center">
+          <v-btn 
+            large 
+            dark
+            color="primary"
+            class="form-btn"
+            @click.stop="sendVerifyEmail()"
+            >Resend Email</v-btn>
+        </v-flex>
+      </v-card>
+    </v-dialog>
+
+    <!-- snackbar for notification -->
+    <v-snackbar
+      :timeout=3000
+      top
+      right
+      color="blue-grey darken-4"
+      v-model="snackbar"
+    >
+      <v-icon class="mr-2" color="success">check_circle</v-icon>
+      {{ snackbar_text }}
+      <v-btn flat color="pink" @click.native="snackbar = false">Close</v-btn>
+    </v-snackbar>
   </v-layout>
 </template>
 
 <script>
+import firebase from 'firebase'
+
 export default {
   name: 'Login',
   data () {
@@ -117,7 +163,9 @@ export default {
         (v) => this.passwordValid(v) || 'Password should be at least 6 characters'
       ],
       dialog: false,
-      alert: false
+      alert: false,
+      snackbar: false,
+      snackbar_text: ''
     }
   },
   methods: {
@@ -135,6 +183,31 @@ export default {
     },
     passwordValid (password) {
       return password.length >= 6
+    },
+    sendResetEmail () {
+      const self = this
+      this.dialog = false
+      let auth = firebase.auth()
+      auth.sendPasswordResetEmail(this.email).then(function () {
+        self.toggleSnackbar()
+      }).catch(function (error) {
+        console.log(error)
+      })
+    },
+    toggleSnackbar () {
+      this.snackbar_text = 'An email has been sent'
+      this.snackbar = true
+    },
+    sendVerifyEmail () {
+      const self = this
+      this.$store.commit('setVerify', null)
+      firebase.auth().currentUser.sendEmailVerification()
+        .then(function () {
+          self.toggleSnackbar()
+        })
+        .catch(function (error) {
+          this.$store.commit('setError', error.message)
+        })
     }
   },
   computed: {
@@ -144,8 +217,15 @@ export default {
     error () {
       return this.$store.state.error
     },
-    loading () {
-      return this.$store.state.loading
+    verify_dialog: {
+      set (value) {
+        console.log(value)
+        this.$store.commit('setVerify', null)
+        // this.$store.state.verify = null
+      },
+      get () {
+        return this.$store.state.verify === false
+      }
     }
   },
   watch: {
@@ -181,5 +261,9 @@ export default {
 
 .form-btn {
   width: 60%;
+}
+
+.center {
+  text-align: center;
 }
 </style>
