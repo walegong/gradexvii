@@ -35,6 +35,18 @@ const router = new Router({
       meta: { requiresAuth: true }
     },
     {
+      path: '/crossing_info/:id',
+      name: 'CrossingInfo',
+      component: () => import('@/views/CrossingInfo/index'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/dev',
+      name: 'Dev',
+      component: () => import('@/views/Dev/index'),
+      meta: { requiresAuth: true }
+    },
+    {
       path: '*',
       redirect: '/login'
     }

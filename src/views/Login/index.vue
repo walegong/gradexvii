@@ -9,11 +9,6 @@
 
     <v-flex xs10 sm10 id="panel">
       <v-card>
-        <!-- <v-card-media
-          class="white--text"
-          height="300px"
-          src="/static/crossing.jpg"
-        > -->
         <v-card-media
           class="white--text"
           height="200px"
