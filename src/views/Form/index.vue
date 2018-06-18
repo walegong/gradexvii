@@ -13,6 +13,14 @@
         <v-icon>arrow_back</v-icon>
       </v-btn>
       <v-toolbar-title>Grade X Inspection</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn
+        outline
+        @click.stop="checkInfo()"
+      >
+        <v-icon left>create</v-icon>
+        Check Crossing Info
+      </v-btn>
     </v-toolbar>
 
     <!-- Store dialog -->
@@ -264,6 +272,10 @@ export default {
             'Your inspection work will be saved. You may continue later to complete the inspection.'
         }
       ],
+
+      // info dialog
+      info_dialog: false,
+
       // question panel
       transition: 'slide-right',
       current_question: 0,
@@ -282,6 +294,9 @@ export default {
     },
     goBack () {
       this.$router.go(-1)
+    },
+    checkInfo (id) {
+      this.$router.push({ path: `/crossing_info/${this.crossing_info.id}` })
     },
     getQuestionColor (question, index) {
       if (index === this.current_question) {
