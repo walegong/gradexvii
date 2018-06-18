@@ -2,15 +2,15 @@
   <v-card  class="pl-2 pr-3">
     <v-layout wrap>
       <v-flex xs2 sm2>
-        <v-subheader>Type/TC ID </v-subheader>
+        <v-subheader>Type</v-subheader>
       </v-flex>
-      <v-flex xs6 sm6>
+      <v-flex xs4 sm4>
         <v-select single-line disabled></v-select>
       </v-flex>
-      <v-flex xs1 sm1>
-        <v-subheader>/</v-subheader>
+      <v-flex xs2 sm2>
+        <v-subheader>TC ID</v-subheader>
       </v-flex>
-      <v-flex xs3 sm3>
+      <v-flex xs4 sm4>
         <v-text-field single-line disabled></v-text-field>
       </v-flex>
 

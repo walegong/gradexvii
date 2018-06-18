@@ -114,16 +114,10 @@
         <v-text-field single-line disabled></v-text-field>
       </v-flex> 
 
-      <v-flex xs2 sm2>
-        <v-subheader>Nearest Muni</v-subheader>
-      </v-flex>
       <v-flex xs4 sm4>
-        <v-text-field single-line disabled></v-text-field>
-      </v-flex>               
-      <v-flex xs2 sm2>
-        <v-subheader>Road/Hwy #Eng</v-subheader>
+        <v-subheader>Road/Hwy #</v-subheader>
       </v-flex>
-      <v-flex xs4 sm4>
+      <v-flex xs8 sm8>
         <v-text-field single-line disabled></v-text-field>
       </v-flex>
 
