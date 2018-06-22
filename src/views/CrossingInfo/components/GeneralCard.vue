@@ -114,10 +114,10 @@
         <v-text-field single-line disabled v-model="info.longitude"></v-text-field>
       </v-flex> 
 
-      <v-flex xs4 sm4>
+      <v-flex xs2 sm2>
         <v-subheader>Road/Hwy #</v-subheader>
       </v-flex>
-      <v-flex xs8 sm8>
+      <v-flex xs10 sm10>
         <v-text-field single-line disabled v-model="info.roadHwy"></v-text-field>
       </v-flex>
 
