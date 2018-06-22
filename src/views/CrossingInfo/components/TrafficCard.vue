@@ -11,7 +11,7 @@
         :items="train_traffic"
       >
         <template slot="items" slot-scope="props">
-          <td>{{ props.item.effective }}</td>
+          <td class="text-xs-right">{{ props.item.effective }}</td>
           <td class="text-xs-right">{{ props.item.nTrains }}</td>
           <td class="text-xs-right">{{ props.item.nPTrains }}</td>
           <td class="text-xs-right">{{ props.item.nFTrains }}</td>
@@ -43,7 +43,7 @@
         :items="vehicle_traffic"
       >
         <template slot="items" slot-scope="props">
-          <td>{{ props.item.effective }}</td>
+          <td class="text-xs-right">{{ props.item.effective }}</td>
           <td class="text-xs-right">{{ props.item.nVehicles }}</td>
           <td class="text-xs-right">{{ props.item.nPedestrains }}</td>
           <td class="text-xs-right">{{ props.item.RPSpeedL }}</td>
@@ -103,70 +103,6 @@ export default {
           RSpeedL: 85.00,
           RSpeedR: 85.00,
           memo: 'good good'
-        },
-        {
-          value: false,
-          effective: '2003/01/02',
-          nTrains: 16800.00,
-          nPTrains: 1200.00,
-          nFTrains: 800.00,
-          maxSpeedL: 120.00,
-          maxSpeedR: 120.00,
-          PmaxSpeedL: 90.00,
-          PmaxSpeedR: 90.00,
-          FmaxSpeedL: 80.00,
-          FmaxSpeedR: 80.00,
-          RSpeedL: 85.00,
-          RSpeedR: 85.00,
-          memo: 'good good'
-        },
-        {
-          value: false,
-          effective: '2003/01/03',
-          nTrains: 16800.00,
-          nPTrains: 1200.00,
-          nFTrains: 800.00,
-          maxSpeedL: 120.00,
-          maxSpeedR: 120.00,
-          PmaxSpeedL: 90.00,
-          PmaxSpeedR: 90.00,
-          FmaxSpeedL: 80.00,
-          FmaxSpeedR: 80.00,
-          RSpeedL: 85.00,
-          RSpeedR: 85.00,
-          memo: 'good good'
-        },
-        {
-          value: false,
-          effective: '2003/01/03',
-          nTrains: 16800.00,
-          nPTrains: 1200.00,
-          nFTrains: 800.00,
-          maxSpeedL: 120.00,
-          maxSpeedR: 120.00,
-          PmaxSpeedL: 90.00,
-          PmaxSpeedR: 90.00,
-          FmaxSpeedL: 80.00,
-          FmaxSpeedR: 80.00,
-          RSpeedL: 85.00,
-          RSpeedR: 85.00,
-          memo: 'good good'
-        },
-        {
-          value: false,
-          effective: '2003/01/03',
-          nTrains: 16800.00,
-          nPTrains: 1200.00,
-          nFTrains: 800.00,
-          maxSpeedL: 120.00,
-          maxSpeedR: 120.00,
-          PmaxSpeedL: 90.00,
-          PmaxSpeedR: 90.00,
-          FmaxSpeedL: 80.00,
-          FmaxSpeedR: 80.00,
-          RSpeedL: 85.00,
-          RSpeedR: 85.00,
-          memo: 'good good'
         }
       ],
       headers_vehicle: [
@@ -184,66 +120,6 @@ export default {
         { text: 'Cross Product Daily Train by Vehicle', value: 'CPVehicle', align: 'center' }
       ],
       vehicle_traffic: [
-        {
-          value: false,
-          effective: '2003/02/01',
-          nVehicles: 16800.00,
-          nPedestrains: 1200.00,
-          RPSpeedL: 800.00,
-          RPSpeedR: 120.00,
-          RCSpeedL: 120.00,
-          RCSpeedR: 90.00,
-          DVehicle: 90.00,
-          ISource: 80.00,
-          memo: 'good good',
-          CPPerdestrain: 85.00,
-          CPVehicle: 85.00
-        },
-        {
-          value: false,
-          effective: '2003/02/01',
-          nVehicles: 16800.00,
-          nPedestrains: 1200.00,
-          RPSpeedL: 800.00,
-          RPSpeedR: 120.00,
-          RCSpeedL: 120.00,
-          RCSpeedR: 90.00,
-          DVehicle: 90.00,
-          ISource: 80.00,
-          memo: 'good good',
-          CPPerdestrain: 85.00,
-          CPVehicle: 85.00
-        },
-        {
-          value: false,
-          effective: '2003/02/01',
-          nVehicles: 16800.00,
-          nPedestrains: 1200.00,
-          RPSpeedL: 800.00,
-          RPSpeedR: 120.00,
-          RCSpeedL: 120.00,
-          RCSpeedR: 90.00,
-          DVehicle: 90.00,
-          ISource: 80.00,
-          memo: 'good good',
-          CPPerdestrain: 85.00,
-          CPVehicle: 85.00
-        },
-        {
-          value: false,
-          effective: '2003/02/01',
-          nVehicles: 16800.00,
-          nPedestrains: 1200.00,
-          RPSpeedL: 800.00,
-          RPSpeedR: 120.00,
-          RCSpeedL: 120.00,
-          RCSpeedR: 90.00,
-          DVehicle: 90.00,
-          ISource: 80.00,
-          memo: 'good good',
-          CPPerdestrain: 85.00,
-          CPVehicle: 85.00
-        },
         {
           value: false,
           effective: '2003/02/01',

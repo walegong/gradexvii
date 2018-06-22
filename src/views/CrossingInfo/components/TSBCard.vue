@@ -7,51 +7,51 @@
     </v-card-title>
     <v-data-table
       :headers="headers_accident"
-      :items="vpAccident"
+      :items="info"
     >
       <template slot="items" slot-scope="props">
-        <td>{{ props.item.occurNum }}</td>
-        <td class="text-xs-right">{{ props.item.occurYear }}</td>
-        <td class="text-xs-right">{{ props.item.occurDate }}</td>
-        <td class="text-xs-right">{{ props.item.occurTime }}</td>
-        <td class="text-xs-right">{{ props.item.occurType }}</td>
-        <td class="text-xs-right">{{ props.item.occurIncType }}</td>
-        <td class="text-xs-right">{{ props.item.operator1 }}</td>
-        <td class="text-xs-right">{{ props.item.operator2 }}</td>
-        <td class="text-xs-right">{{ props.item.train1 }}</td>
-        <td class="text-xs-right">{{ props.item.train2 }}</td>
-        <td class="text-xs-right">{{ props.item.involvedTrain }}</td>
-        <td class="text-xs-right">{{ props.item.involvedCars }}</td>
-        <td class="text-xs-right">{{ props.item.involvedDCars }}</td>
-        <td class="text-xs-right">{{ props.item.nearestTown }}</td>
+        <td class="text-xs-right">{{ props.item.occurrenceNum }}</td>
+        <td class="text-xs-right">{{ props.item.occurrenceYear }}</td>
+        <td class="text-xs-right">{{ props.item.occurrenceDate }}</td>
+        <td class="text-xs-right">{{ props.item.occurrenceTime }}</td>
+        <td class="text-xs-right">{{ props.item.occurrenceType }}</td>
+        <td class="text-xs-right">{{ props.item.occurrenceIncType }}</td>
+        <td class="text-xs-right">{{ props.item.trainOperator1 }}</td>
+        <td class="text-xs-right">{{ props.item.trainOperator2 }}</td>
+        <td class="text-xs-right">{{ props.item.trainType1 }}</td>
+        <td class="text-xs-right">{{ props.item.trainType2 }}</td>
+        <td class="text-xs-right">{{ props.item.involvedNumOfTrains }}</td>
+        <td class="text-xs-right">{{ props.item.involvedNumOfCars }}</td>
+        <td class="text-xs-right">{{ props.item.involvedNumOfDangerousGoodsCars }}</td>
+        <td class="text-xs-right">{{ props.item.nearestTownCity }}</td>
         <td class="text-xs-right">{{ props.item.trackType }}</td>
-        <td class="text-xs-right">{{ props.item.derail }}</td>
-        <td class="text-xs-right">{{ props.item.taInjuries }}</td>
-        <td class="text-xs-right">{{ props.item.taFatal }}</td>
-        <td class="text-xs-right">{{ props.item.taSerious }}</td>
-        <td class="text-xs-right">{{ props.item.taMinor }}</td>
-        <td class="text-xs-right">{{ props.item.tfEmp }}</td>
-        <td class="text-xs-right">{{ props.item.tfPass }}</td>
-        <td class="text-xs-right">{{ props.item.tfMoto }}</td>
-        <td class="text-xs-right">{{ props.item.tfMotoPass }}</td>
-        <td class="text-xs-right">{{ props.item.tfTrespass }}</td>
-        <td class="text-xs-right">{{ props.item.tfOther }}</td>
-        <td class="text-xs-right">{{ props.item.tsEmp }}</td>
-        <td class="text-xs-right">{{ props.item.tsPass }}</td>
-        <td class="text-xs-right">{{ props.item.tsMoto }}</td>
-        <td class="text-xs-right">{{ props.item.tsMotoPass }}</td>
-        <td class="text-xs-right">{{ props.item.tsTraspass }}</td>
-        <td class="text-xs-right">{{ props.item.tsOthers }}</td>
-        <td class="text-xs-right">{{ props.item.tmEmp }}</td>
-        <td class="text-xs-right">{{ props.item.tmPass }}</td>
-        <td class="text-xs-right">{{ props.item.tmMoto }}</td>
-        <td class="text-xs-right">{{ props.item.tmMotoPass }}</td>
-        <td class="text-xs-right">{{ props.item.tmTrespass }}</td>
-        <td class="text-xs-right">{{ props.item.tmOthers }}</td>
-        <td class="text-xs-right">{{ props.item.cause1 }}</td>
-        <td class="text-xs-right">{{ props.item.cause2 }}</td>
-        <td class="text-xs-right">{{ props.item.cause3 }}</td>
-        <td class="text-xs-right">{{ props.item.occuSummary }}</td>
+        <td class="text-xs-right">{{ props.item.derailment }}</td>
+        <td class="text-xs-right">{{ props.item.totalAllInjuries }}</td>
+        <td class="text-xs-right">{{ props.item.totalAllFatal }}</td>
+        <td class="text-xs-right">{{ props.item.totalAllSerious }}</td>
+        <td class="text-xs-right">{{ props.item.totalAllMinor }}</td>
+        <td class="text-xs-right">{{ props.item.totalFatalEmployees }}</td>
+        <td class="text-xs-right">{{ props.item.totalFatalPassengers }}</td>
+        <td class="text-xs-right">{{ props.item.totalFatalMotorists }}</td>
+        <td class="text-xs-right">{{ props.item.totalFatalMotoristPassengers }}</td>
+        <td class="text-xs-right">{{ props.item.totalFatalTrespassers }}</td>
+        <td class="text-xs-right">{{ props.item.totalFatalOthers }}</td>
+        <td class="text-xs-right">{{ props.item.totalSeriousEmployees }}</td>
+        <td class="text-xs-right">{{ props.item.totalSeriousPassengers }}</td>
+        <td class="text-xs-right">{{ props.item.totalSeriousMotorists }}</td>
+        <td class="text-xs-right">{{ props.item.totalSeriousMotoristPassengers }}</td>
+        <td class="text-xs-right">{{ props.item.totalSeriousTrespassers }}</td>
+        <td class="text-xs-right">{{ props.item.totalSeriousOthers }}</td>
+        <td class="text-xs-right">{{ props.item.totalMinorEmployees }}</td>
+        <td class="text-xs-right">{{ props.item.totalMinorPassengers }}</td>
+        <td class="text-xs-right">{{ props.item.totalMinorMotorists }}</td>
+        <td class="text-xs-right">{{ props.item.totalMinorMotoristPassengers }}</td>
+        <td class="text-xs-right">{{ props.item.totalMinorTrespassers }}</td>
+        <td class="text-xs-right">{{ props.item.totalMinorOthers }}</td>
+        <td class="text-xs-right">{{ props.item.primaryCauseLevel1 }}</td>
+        <td class="text-xs-right">{{ props.item.primaryCauseLevel2 }}</td>
+        <td class="text-xs-right">{{ props.item.primaryCauseLevel3 }}</td>
+        <td class="text-xs-right">{{ props.item.occurrenceSummary }}</td>
       </template>
       <template slot="no-data">
         <v-alert :value="true" color="cyan darken-1" icon="warning">
@@ -69,50 +69,48 @@ export default {
   data () {
     return {
       headers_accident: [
-        { text: 'Occurence #', align: 'center', value: 'occurNum' },
-        { text: 'Occurence Year', align: 'center', value: 'occurYear' },
-        { text: 'Occurence Date', align: 'center', value: 'occurDate' },
-        { text: 'Occurence Time', align: 'center', value: 'occurTime' },
-        { text: 'Occurence Type', align: 'center', value: 'occurType' },
-        { text: 'Occurence Acc. Inc. Type', align: 'center', value: 'occurIncType' },
-        { text: 'Train Operator #1', align: 'center', value: 'operator1' },
-        { text: 'Train Operator #2', align: 'center', value: 'operator2' },
-        { text: 'Train Type #1', align: 'center', value: 'train1' },
-        { text: 'Train Type #2', align: 'center', value: 'train2' },
-        { text: 'Involved # of Trains', align: 'center', value: 'involvedTrain' },
-        { text: 'Involved # of Cars', align: 'center', value: 'involvedCars' },
-        { text: 'Involved # of Dangerous Goods Cars', align: 'center', value: 'involvedDCars' },
-        { text: 'Nearest Town / City', align: 'center', value: 'nearestTown' },
-        { text: 'Track Type', align: 'center', value: 'trackType' },
-        { text: 'Derailment', align: 'center', value: 'derail' },
-        { text: 'Total All Injuries', align: 'center', value: 'taInjuries' },
-        { text: 'Total All Fatal', align: 'center', value: 'taFatal' },
-        { text: 'Total All Serious', align: 'center', value: 'taSerious' },
-        { text: 'Total All Minor', align: 'center', value: 'taMinor' },
-        { text: 'Total Fatal Employees', align: 'center', value: 'tfEmp' },
-        { text: 'Total Fatal Passengers', align: 'center', value: 'tfPass' },
-        { text: 'Total Fatal Motorists', align: 'center', value: 'tfMoto' },
-        { text: 'Total Fatal Motorist Passengers', align: 'center', value: 'tfMotoPass' },
-        { text: 'Total Fatal Trespassers', align: 'center', value: 'tfTrespass' },
-        { text: 'Total Fatal Others', align: 'center', value: 'tfOther' },
-        { text: 'Total Serious Employees', align: 'center', value: 'tsEmp' },
-        { text: 'Total Serious Passengers', align: 'center', value: 'tsPass' },
-        { text: 'Total Serious Motorists', align: 'center', value: 'tsMoto' },
-        { text: 'Total Serious Motorist Passengers', align: 'center', value: 'tsMotoPass' },
-        { text: 'Total Serious Trespassers', align: 'center', value: 'tsTraspass' },
-        { text: 'Total Serious Others', align: 'center', value: 'tsOthers' },
-        { text: 'Total Minor Employees', align: 'center', value: 'tmEmp' },
-        { text: 'Total Minor Passengers', align: 'center', value: 'tmPass' },
-        { text: 'Total Minor Motorists', align: 'center', value: 'tmMoto' },
-        { text: 'Total Minor Motorist Passengers', align: 'center', value: 'tmMotoPass' },
-        { text: 'Total Minor Trespassers', align: 'center', value: 'tmTrespass' },
-        { text: 'Total Minor Others', align: 'center', value: 'tmOthers' },
-        { text: 'Primary Cause Level 1', align: 'center', value: 'cause1' },
-        { text: 'Primary Cause Level 2', align: 'center', value: 'cause2' },
-        { text: 'Primary Cause Level 3', align: 'center', value: 'cause3' },
-        { text: 'Occurence Summary', align: 'center', value: 'occuSummary' }
-      ],
-      vpAccident: [
+        { text: 'Occurence #', align: 'right', value: 'occurrenceNum' },
+        { text: 'Occurence Year', align: 'right', value: 'occurrenceYear' },
+        { text: 'Occurence Date', align: 'right', value: 'occurrenceDate' },
+        { text: 'Occurence Time', align: 'right', value: 'occurrenceTime' },
+        { text: 'Occurence Type', align: 'right', value: 'occurrenceType' },
+        { text: 'Occurence Acc. Inc. Type', align: 'right', value: 'occurrenceIncType' },
+        { text: 'Train Operator #1', align: 'right', value: 'trainOperator1' },
+        { text: 'Train Operator #2', align: 'right', value: 'trainOperator2' },
+        { text: 'Train Type #1', align: 'right', value: 'trainType1' },
+        { text: 'Train Type #2', align: 'right', value: 'trainType2' },
+        { text: 'Involved # of Trains', align: 'right', value: 'involvedNumOfTrains' },
+        { text: 'Involved # of Cars', align: 'right', value: 'involvedNumOfCars' },
+        { text: 'Involved # of Dangerous Goods Cars', align: 'right', value: 'involvedNumOfDangerousGoodsCars' },
+        { text: 'Nearest Town / City', align: 'right', value: 'nearestTownCity' },
+        { text: 'Track Type', align: 'right', value: 'trackType' },
+        { text: 'Derailment', align: 'right', value: 'derailment' },
+        { text: 'Total All Injuries', align: 'right', value: 'totalAllInjuries' },
+        { text: 'Total All Fatal', align: 'right', value: 'totalAllFatal' },
+        { text: 'Total All Serious', align: 'right', value: 'totalAllSerious' },
+        { text: 'Total All Minor', align: 'right', value: 'totalAllMinor' },
+        { text: 'Total Fatal Employees', align: 'right', value: 'totalFatalEmployees' },
+        { text: 'Total Fatal Passengers', align: 'right', value: 'totalFatalPassengers' },
+        { text: 'Total Fatal Motorists', align: 'right', value: 'totalFatalMotorists' },
+        { text: 'Total Fatal Motorist Passengers', align: 'right', value: 'totalFatalMotoristPassengers' },
+        { text: 'Total Fatal Trespassers', align: 'right', value: 'totalFatalTrespassers' },
+        { text: 'Total Fatal Others', align: 'right', value: 'totalFatalOthers' },
+        { text: 'Total Serious Employees', align: 'right', value: 'totalSeriousEmployees' },
+        { text: 'Total Serious Passengers', align: 'right', value: 'totalSeriousPassengers' },
+        { text: 'Total Serious Motorists', align: 'right', value: 'totalSeriousMotorists' },
+        { text: 'Total Serious Motorist Passengers', align: 'right', value: 'totalSeriousMotoristPassengers' },
+        { text: 'Total Serious Trespassers', align: 'right', value: 'totalSeriousTrespassers' },
+        { text: 'Total Serious Others', align: 'right', value: 'totalSeriousOthers' },
+        { text: 'Total Minor Employees', align: 'right', value: 'totalMinorEmployees' },
+        { text: 'Total Minor Passengers', align: 'right', value: 'totalMinorPassengers' },
+        { text: 'Total Minor Motorists', align: 'right', value: 'totalMinorMotorists' },
+        { text: 'Total Minor Motorist Passengers', align: 'right', value: 'totalMinorMotoristPassengers' },
+        { text: 'Total Minor Trespassers', align: 'right', value: 'totalMinorTrespassers' },
+        { text: 'Total Minor Others', align: 'right', value: 'totalMinorOthers' },
+        { text: 'Primary Cause Level 1', align: 'right', value: 'primaryCauseLevel1' },
+        { text: 'Primary Cause Level 2', align: 'right', value: 'primaryCauseLevel2' },
+        { text: 'Primary Cause Level 3', align: 'right', value: 'primaryCauseLevel3' },
+        { text: 'Occurence Summary', align: 'right', value: 'occurrenceSummary' }
       ]
     }
   }

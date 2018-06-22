@@ -26,15 +26,15 @@
       <v-container fluid>
         <v-tabs-items v-model="tab_index">
           <v-tab-item :key="tab_name[0]">
-            <general-card :info="tab_name[0]"></general-card>
+            <general-card :info="crossing[0]"></general-card>
           </v-tab-item>
 
           <v-tab-item :key="tab_name[1]">
-            <crossing-general-card :info="tab_name[1]"></crossing-general-card>
+            <crossing-general-card :info="crossing[0]"></crossing-general-card>
           </v-tab-item>
 
           <v-tab-item :key="tab_name[2]">
-            <geometry-card :info="tab_name[2]"></geometry-card>
+            <geometry-card :info="crossing[0]"></geometry-card>
           </v-tab-item>
 
           <v-tab-item :key="tab_name[3]">
@@ -42,11 +42,11 @@
           </v-tab-item>
 
           <v-tab-item :key="tab_name[4]">
-            <t-s-b-card></t-s-b-card>
+            <t-s-b-card :info="tsb_data"></t-s-b-card>
           </v-tab-item>
 
           <v-tab-item :key="tab_name[5]">
-            <info-sharing-card></info-sharing-card>
+            <info-sharing-card :info="info_sharing"></info-sharing-card>
           </v-tab-item>
         </v-tabs-items>
       </v-container>
@@ -55,7 +55,7 @@
 </template>
 
 <script>
-// import db from '@/utils/firestore'
+import db from '@/utils/firestore'
 // import firebase from 'firebase'
 import GeneralCard from '@/views/CrossingInfo/components/GeneralCard'
 import CrossingGeneralCard from '@/views/CrossingInfo/components/CrossingGeneralCard'
@@ -77,11 +77,13 @@ export default {
   data () {
     return {
       crossingId: null,
-      crossing: null,
+      crossing: [{}],
       tab_index: null,
       tab_name: [
         'General', 'Crossing General', 'Crossing Geometry', 'Crossing Traffic', 'Crossing TSB', 'Crossing Info Sharing'
-      ]
+      ],
+      info_sharing: [],
+      tsb_data: []
     }
   },
   methods: {
@@ -89,13 +91,54 @@ export default {
       this.$router.go(-1)
     },
     saveChange () {
-      this.$router.go(-1)
+      // this.$router.go(-1)
+      this.test_data = this.crossing[0]
+      console.log(this.test_data)
     }
   },
   created: function () {
+    const self = this
     this.crossingId = this.$route.params.id
-    const data = require('./mock.json')
-    this.crossing = data.crossing
+    // get the `crossing` data
+    db.collection('crossing_info').where('crossingID', '==', self.crossingId)
+      .get()
+      .then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+          // doc.data() is never undefined for query doc snapshots
+          self.crossing.unshift(doc.data())
+        })
+      })
+      .catch(function (error) {
+        console.log('Error getting documents: ', error)
+      })
+    // const mockData = require('@/views/CrossingInfo/mock.json')
+    // this.crossing = mockData
+    console.log(this.crossing)
+    // get the `tsb_data` data
+    db.collection('tsb_data').where('locationID', '==', self.crossingId)
+      .get()
+      .then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+          // doc.data() is never undefined for query doc snapshots
+          self.tsb_data.push(doc.data())
+        })
+      })
+      .catch(function (error) {
+        console.log('Error getting documents: ', error)
+      })
+    // get the `info_sharing` data
+    db.collection('info_sharing').where('locationID', '==', self.crossingId)
+      .get()
+      .then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+          // doc.data() is never undefined for query doc snapshots
+          self.info_sharing.push(doc.data())
+        })
+      })
+      .catch(function (error) {
+        console.log('Error getting documents: ', error)
+      })
+
     // db.collection('crossing').where('crossing_id', '==', crossingId)
     //   .get()
     //   .then((querySnapshot) => {

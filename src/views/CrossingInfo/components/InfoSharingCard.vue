@@ -7,13 +7,13 @@
     </v-card-title>
     <v-data-table
       :headers="headers_info"
-      :items="infoSharing"
+      :items="info"
     >
       <template slot="items" slot-scope="props">
-        <td>{{ props.item.shareby }}</td>
-        <td class="text-xs-right">{{ props.item.lastUpdated }}</td>
-        <td class="text-xs-right">{{ props.item.subDate }}</td>
-        <td class="text-xs-right">{{ props.item.reason }}</td>
+        <td class="text-xs-right">{{ props.item.sharedBy }}</td>
+        <td class="text-xs-right">{{ props.item.lastUpdatedDate }}</td>
+        <td class="text-xs-right">{{ props.item.submissionDate }}</td>
+        <td class="text-xs-right">{{ props.item.sharedReason }}</td>
         <td class="text-xs-right">{{ props.item.memo }}</td>
       </template>
       <template slot="no-data">
@@ -32,13 +32,12 @@ export default {
   data () {
     return {
       headers_info: [
-        { text: 'Shared By', align: 'left', value: 'shareby' },
-        { text: 'Last Updated Date', align: 'left', value: 'lastUpdated' },
-        { text: 'Submission Date', align: 'left', value: 'subDate' },
-        { text: 'Shared Reason', align: 'left', value: 'reason' },
-        { text: 'Shared Memo', align: 'left', value: 'memo' }
-      ],
-      infoSharing: []
+        { text: 'Shared By', align: 'right', value: 'sharedBy' },
+        { text: 'Last Updated Date', align: 'right', value: 'lastUpdatedDate' },
+        { text: 'Submission Date', align: 'right', value: 'submissionDate' },
+        { text: 'Shared Reason', align: 'right', value: 'sharedReason' },
+        { text: 'Shared Memo', align: 'right', value: 'memo' }
+      ]
     }
   }
 }
