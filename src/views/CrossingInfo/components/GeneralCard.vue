@@ -20,14 +20,14 @@
         <v-subheader>Status</v-subheader>
       </v-flex>
       <v-flex xs10 sm10>
-        <v-select single-line disabled v-model="info.status"></v-select>
+        <v-text-field single-line disabled v-model="info.status"></v-text-field>
       </v-flex>
 
       <v-flex xs2 sm2>
         <v-subheader>Type</v-subheader>
       </v-flex>
       <v-flex xs10 sm10>
-        <v-select single-line disabled v-model="info.type"></v-select>
+        <v-text-field single-line disabled v-model="info.type"></v-text-field>
       </v-flex>
 
       <v-flex xs2 sm2>
@@ -59,7 +59,7 @@
         <v-subheader>Jurisdiction</v-subheader>
       </v-flex>
       <v-flex xs4 sm4>
-        <v-select single-line disabled v-model="info.jurisdiction"></v-select>
+        <v-text-field single-line disabled v-model="info.jurisdiction"></v-text-field>
       </v-flex>
 
       <v-flex xs2 sm2>
@@ -92,13 +92,13 @@
         <v-subheader>Province</v-subheader>
       </v-flex>
       <v-flex xs4 sm4>
-        <v-select single-line disabled v-model="info.province"></v-select>
+        <v-text-field single-line disabled v-model="info.province"></v-text-field>
       </v-flex>
       <v-flex xs2 sm2>
         <v-subheader>Region</v-subheader>
       </v-flex>
       <v-flex xs4 sm4>
-        <v-select single-line disabled v-model="info.region"></v-select>
+        <v-text-field single-line disabled v-model="info.region"></v-text-field>
       </v-flex>
 
       <v-flex xs2 sm2>

@@ -11,7 +11,7 @@
         <v-subheader>Rail Approach </v-subheader>
       </v-flex>
       <v-flex xs3 sm3>
-        <v-select single-line disabled v-model="info.railApproach"></v-select>
+        <v-text-field single-line disabled v-model="info.railApproach"></v-text-field>
       </v-flex>
 
       <v-flex xs3 sm3>
@@ -24,32 +24,32 @@
         <v-subheader>Raod Approach </v-subheader>
       </v-flex>
       <v-flex xs3 sm3>
-        <v-select single-line disabled v-model="info.roadApproach"></v-select>
+        <v-text-field single-line disabled v-model="info.roadApproach"></v-text-field>
       </v-flex>
 
       <v-flex xs3 sm3>
         <v-subheader>Sidewalks(SW) </v-subheader>
       </v-flex>
       <v-flex xs3 sm3>
-        <v-select single-line disabled v-model="info.sidewalks"></v-select>
+        <v-text-field single-line disabled v-model="info.sidewalks"></v-text-field>
       </v-flex>
       <v-flex xs3 sm3>
         <v-subheader>Approach Surface </v-subheader>
       </v-flex>
       <v-flex xs1 sm1>
-        <v-select single-line disabled v-model="info.approachSurfaceLeft"></v-select>
+        <v-text-field single-line disabled v-model="info.approachSurfaceLeft"></v-text-field>
       </v-flex>     
       <v-flex xs1 sm1>
       </v-flex>                    
       <v-flex xs1 sm1>
-        <v-select single-line disabled v-model="info.approachSurfaceRight"></v-select>
+        <v-text-field single-line disabled v-model="info.approachSurfaceRight"></v-text-field>
       </v-flex>
 
       <v-flex xs3 sm3>
         <v-subheader>SW for Assistive Dev. </v-subheader>
       </v-flex>
       <v-flex xs3 sm3>
-        <v-select single-line disabled v-model="info.sidewalksForAssistiveDevices"></v-select>
+        <v-text-field single-line disabled v-model="info.sidewalksForAssistiveDevices"></v-text-field>
       </v-flex>
       <v-flex xs3 sm3>
         <v-subheader>Gradient SSD (Percentage) </v-subheader>
@@ -67,7 +67,7 @@
         <v-subheader>Area Lighting </v-subheader>
       </v-flex>
       <v-flex xs3 sm3>
-        <v-select single-line disabled v-model="info.areaLighting"></v-select>
+        <v-text-field single-line disabled v-model="info.areaLighting"></v-text-field>
       </v-flex>
       <v-flex xs3 sm3>
         <v-subheader>Gradient Stopped (Percentage) </v-subheader>
@@ -85,7 +85,7 @@
         <v-subheader>Track Type </v-subheader>
       </v-flex>
       <v-flex xs3 sm3>
-        <v-select single-line disabled v-model="info.trackType"></v-select>
+        <v-text-field single-line disabled v-model="info.trackType"></v-text-field>
       </v-flex>
       <v-flex xs3 sm3>
         <v-subheader>DSSD (Meters) </v-subheader>
@@ -103,7 +103,7 @@
         <v-subheader>Incr. Mile Direct. </v-subheader>
       </v-flex>
       <v-flex xs3 sm3>
-        <v-select single-line disabled v-model="info.incrementMileDirection"></v-select>
+        <v-text-field single-line disabled v-model="info.incrementMileDirection"></v-text-field>
       </v-flex>
       <v-flex xs3 sm3>
         <v-subheader>DStoppped (Meters) </v-subheader>
@@ -139,7 +139,7 @@
         <v-subheader>Prepare to Stop Sign </v-subheader>
       </v-flex>
       <v-flex xs3 sm3>
-        <v-select single-line disabled v-model="info.prepareToStopSign"></v-select>
+        <v-text-field single-line disabled v-model="info.prepareToStopSign"></v-text-field>
       </v-flex>
       <v-flex xs3 sm3>
         <v-subheader>Advance Activation (Seconds) </v-subheader>
@@ -157,7 +157,7 @@
         <v-subheader>Intercon. Traffic Signal </v-subheader>
       </v-flex>
       <v-flex xs3 sm3>
-        <v-select single-line disabled v-model="info.interconnectionTrafficSignal"></v-select>
+        <v-text-field single-line disabled v-model="info.interconnectionTrafficSignal"></v-text-field>
       </v-flex>
       <v-flex xs3 sm3>
         <v-subheader>Preemption Time (Seconds) </v-subheader>
