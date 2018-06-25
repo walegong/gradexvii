@@ -16,9 +16,16 @@
       <v-spacer></v-spacer>
       <v-btn
         outline
-        @click.stop="checkInfo()"
+        @click.stop="calc_dialog = true"
       >
         <v-icon left>create</v-icon>
+        Calculation
+      </v-btn>
+      <v-btn
+        outline
+        @click.stop="checkInfo()"
+      >
+        <v-icon left>list_alt</v-icon>
         Check Crossing Info
       </v-btn>
     </v-toolbar>
@@ -109,6 +116,113 @@
               </v-card>
             </transition-group>
           </v-flex>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
+
+    <!-- calculation dialog -->
+    <v-dialog
+      v-model="calc_dialog"
+      fullscreen
+      hide-overlay
+      transition="dialog-bottom-transition"
+      scrollable
+    >
+      <v-card tile>
+        <v-toolbar card dark color="primary">
+          <v-btn icon dark @click.native="calc_dialog = false">
+            <v-icon>close</v-icon>
+          </v-btn>
+          <v-toolbar-title>Calculation</v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-toolbar-items>
+            <v-btn dark flat @click.native="calc_dialog = false">Save</v-btn>
+          </v-toolbar-items>
+        </v-toolbar>
+        <v-card-text>
+          <v-layout row>
+            <v-flex xs4>
+              <v-subheader>Road Crossing Design Speed V (km/hr)</v-subheader>
+            </v-flex>
+            <v-flex xs8>
+              <v-select
+                :items="speeds"
+                v-model="design_speed"
+                label="Road Crossing Design Speed"
+                single-line
+              ></v-select>
+            </v-flex>
+          </v-layout>
+          <v-layout row>
+            <v-flex xs4>
+              <v-subheader>Road Approach Gradient</v-subheader>
+            </v-flex>
+            <v-flex xs8>
+              <v-select
+                :items="gradients"
+                v-model="road_gradient"
+                label="Road Approach Gradient"
+                single-line
+              ></v-select>
+            </v-flex>
+          </v-layout>
+          <div class="info-block">
+            Stopping Sight Distance (SSD):   <span class="stat">{{ ssd }}</span>
+          </div>
+          <v-layout row>
+            <v-flex xs2>
+              <v-subheader>J</v-subheader>
+            </v-flex>
+            <v-flex xs4>
+              <v-text-field
+                v-model="D_stopped.J"
+                label="Perception-reaction time"
+              ></v-text-field>
+            </v-flex>
+            <v-flex xs2>
+              <v-subheader>T</v-subheader>
+            </v-flex>
+            <v-flex xs4>
+              <v-text-field
+                v-model="D_stopped.T"
+                label="T"
+              ></v-text-field>
+            </v-flex>
+          </v-layout>
+          <v-layout row>
+            <v-flex xs2>
+              <v-subheader>CD</v-subheader>
+            </v-flex>
+            <v-flex xs4>
+              <v-text-field
+                v-model="D_stopped.cd"
+                label="the clearance distance, in meters"
+              ></v-text-field>
+            </v-flex>
+            <v-flex xs2>
+              <v-subheader>Vp</v-subheader>
+            </v-flex>
+            <v-flex xs4>
+              <v-text-field
+                v-model="D_stopped.Vp"
+                label="the average travel speed(m/s)"
+              ></v-text-field>
+            </v-flex>
+          </v-layout>
+          <v-layout row>
+            <v-flex xs2>
+              <v-subheader>Vt</v-subheader>
+            </v-flex>
+            <v-flex xs4>
+              <v-text-field
+                v-model="D_stopped.Vt"
+                label="railway design speed in km/h"
+              ></v-text-field>
+            </v-flex>
+          </v-layout>
+          <div class="info-block">
+            Sightlines from Stopped Position (Dstopped):   <span class="stat">{{ dstopped }}</span>
+          </div>
         </v-card-text>
       </v-card>
     </v-dialog>
@@ -257,6 +371,23 @@ export default {
         subdivision: '',
         railway: null,
         address: null
+      },
+      // calculation dialog
+      calc_dialog: false,
+      design_speed: 10,
+      road_gradient: 0,
+      speeds: [
+        10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110
+      ],
+      gradients: [
+        -10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+      ],
+      D_stopped: {
+        J: 0,
+        T: 0,
+        cd: 0,
+        Vp: 1,
+        Vt: 0
       },
       // pop-up dialog
       confirm_dialog: null,
@@ -411,6 +542,29 @@ export default {
       return this.question_list.filter(question => {
         return question.answer != null
       }).length
+    },
+    ssd () {
+      const ssdMap = {
+        10: [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
+        20: [21, 21, 21, 21, 21, 21, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 19, 19, 19, 19, 19],
+        30: [33, 33, 32, 32, 32, 31, 31, 31, 30, 30, 30, 30, 30, 29, 29, 29, 29, 29, 29, 28, 28],
+        40: [51, 50, 49, 49, 48, 48, 47, 46, 46, 45, 45, 45, 44, 44, 43, 43, 43, 42, 42, 42, 42],
+        50: [76, 75, 73, 72, 71, 70, 69, 68, 67, 66, 65, 64, 63, 63, 62, 61, 61, 60, 60, 59, 59],
+        60: [104, 101, 99, 97, 95, 93, 91, 89, 88, 86, 85, 84, 83, 81, 80, 79, 78, 77, 77, 76, 75],
+        70: [140, 135, 132, 128, 125, 122, 119, 117, 114, 112, 110, 108, 106, 105, 103, 101, 100, 99, 97, 96, 95],
+        80: [182, 176, 171, 166, 161, 157, 153, 149, 146, 143, 140, 137, 135, 132, 130, 128, 126, 124, 122, 121, 119],
+        90: [223, 216, 209, 202, 197, 191, 186, 182, 178, 174, 170, 167, 163, 160, 157, 155, 152, 150, 148, 145, 143],
+        100: [281, 271, 262, 253, 245, 238, 232, 226, 220, 215, 210, 205, 201, 197, 194, 190, 187, 184, 181, 178, 175],
+        110: [345, 331, 318, 307, 296, 287, 278, 270, 263, 256, 250, 244, 239, 234, 229, 224, 220, 216, 307, 209, 205]
+      }
+      let index = this.gradients.indexOf(this.road_gradient)
+      return ssdMap[this.design_speed][index]
+    },
+    dstopped () {
+      let Td = this.D_stopped.J + this.D_stopped.T
+      let Tp = this.D_stopped.cd / this.D_stopped.Vp
+      let Ts = Math.max(Td, Tp)
+      return (0.278 * this.D_stopped.Vt * Ts).toFixed(2)
     }
   },
   created: function () {
@@ -559,5 +713,20 @@ export default {
 .list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
   opacity: 0;
   transform: translateX(30px);
+}
+
+/* calc dialog */
+.info-block {
+  text-align: center;
+  font-size: 24px;
+  background-color: #0D47A1;
+  border-radius: 10px;
+  color: #eee;
+}
+
+.stat {
+  font-size: 36px;
+  color: #F06292;
+  margin-left: 10px;
 }
 </style>
