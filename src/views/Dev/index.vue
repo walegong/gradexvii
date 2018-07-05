@@ -34,6 +34,9 @@
           <v-flex sm12 xs12 class="text-sm-center text-xs-center">
             <v-btn color="primary" dark @click.stop="dialog = true">Calculation</v-btn>
           </v-flex>
+          <v-flex sm12 xs12 class="text-sm-center text-xs-center">
+            <v-btn color="primary" dark @click.stop="myAction">Upload</v-btn>
+          </v-flex>
         </v-layout>
       </v-card>
     </v-flex>
@@ -151,6 +154,8 @@
 import Recorder from '@/utils/recorder'
 import firebase from 'firebase'
 import 'firebase/firestore'
+// import db from '@/utils/firestore'
+// import data from '@/views/Dev/aws.json'
 
 var recorder
 var audioStream
@@ -181,6 +186,27 @@ export default {
     }
   },
   methods: {
+    // myAction () {
+    //   // const data = require('@/views/Dev/aws.json')
+    //   let count = 0
+    //   data.forEach(element => {
+    //     // console.log(element)
+    //     db.collection('crossing_info').add(element)
+    //     count += 1
+    //     console.log(count)
+    //   })
+    // db.collection('info_sharing').where('locationID', '==', '34032')
+    //   .get()
+    //   .then(function (querySnapshot) {
+    //     querySnapshot.forEach(function (doc) {
+    //       // doc.data() is never undefined for query doc snapshots
+    //       console.log(doc.id, ' => ', doc.data())
+    //     })
+    //   })
+    //   .catch(function (error) {
+    //     console.log('Error getting documents: ', error)
+    //   })
+    // },
     goBack () {
       this.$router.go(-1)
     },

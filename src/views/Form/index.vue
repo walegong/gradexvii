@@ -155,13 +155,13 @@
           </v-layout>
           <v-layout row>
             <v-flex xs4>
-              <v-subheader>Road Approach Gradient</v-subheader>
+              <v-subheader>Road Approach Gradient (%)</v-subheader>
             </v-flex>
             <v-flex xs8>
               <v-select
                 :items="gradients"
                 v-model="road_gradient"
-                label="Road Approach Gradient"
+                label="Road Approach Gradient (%)"
                 single-line
               ></v-select>
             </v-flex>
@@ -176,7 +176,7 @@
             <v-flex xs4>
               <v-text-field
                 v-model="D_stopped.J"
-                label="Perception-reaction time"
+                label="Perception-reaction time (seconds)"
               ></v-text-field>
             </v-flex>
             <v-flex xs2>
@@ -185,7 +185,7 @@
             <v-flex xs4>
               <v-text-field
                 v-model="D_stopped.T"
-                label="T"
+                label="time for design vehicle to travel thourgh (seconds)"
               ></v-text-field>
             </v-flex>
           </v-layout>
@@ -196,7 +196,7 @@
             <v-flex xs4>
               <v-text-field
                 v-model="D_stopped.cd"
-                label="the clearance distance, in meters"
+                label="the clearance distance (meters)"
               ></v-text-field>
             </v-flex>
             <v-flex xs2>
@@ -205,7 +205,7 @@
             <v-flex xs4>
               <v-text-field
                 v-model="D_stopped.Vp"
-                label="the average travel speed(m/s)"
+                label="the average travel speed for pedestrians and cyclists (m/s)"
               ></v-text-field>
             </v-flex>
           </v-layout>
@@ -216,7 +216,7 @@
             <v-flex xs4>
               <v-text-field
                 v-model="D_stopped.Vt"
-                label="railway design speed in km/h"
+                label="railway design speed (km/h)"
               ></v-text-field>
             </v-flex>
           </v-layout>
