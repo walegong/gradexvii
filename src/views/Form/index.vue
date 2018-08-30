@@ -12,21 +12,21 @@
       <v-btn icon class="hidden-xs-only" @click.stop="goBack()">
         <v-icon>arrow_back</v-icon>
       </v-btn>
-      <v-toolbar-title>Grade X Inspection</v-toolbar-title>
+      <!-- <v-toolbar-title>Grade X Inspection</v-toolbar-title> -->
       <v-spacer></v-spacer>
       <v-btn
         outline
         @click.stop="calc_dialog = true"
       >
-        <v-icon left>create</v-icon>
-        Calculation
+        <v-icon left>gradient</v-icon>
+        Check Sightlines
       </v-btn>
       <v-btn
         outline
-        @click.stop="checkInfo()"
+        @click.stop="confirm_dialog = true"
       >
-        <v-icon left>list_alt</v-icon>
-        Check Crossing Info
+        <v-icon left>save_alt</v-icon>
+        Save
       </v-btn>
     </v-toolbar>
 
@@ -120,6 +120,32 @@
       </v-card>
     </v-dialog>
 
+    <!-- image viewer dialog -->  
+    <v-dialog
+      v-model="image_viewer"
+      max-width="800"
+    >
+      <v-card>
+        <p></p>
+        <v-carousel lazy>
+          <v-carousel-item
+            v-for="(item, i) in question_list[current_question].media"
+            :key="i"
+            :src="item.imageUrl"
+          ><span class="image-note">{{ item.note }}</span></v-carousel-item>
+        </v-carousel>
+        <v-card-actions>
+          <v-btn
+            color="green darken-1"
+            flat="flat"
+            @click="image_viewer = false"
+          >
+            Close
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
     <!-- calculation dialog -->
     <v-dialog
       v-model="calc_dialog"
@@ -170,7 +196,7 @@
             Stopping Sight Distance (SSD):   <span class="stat">{{ ssd }}</span>
           </div>
           <v-layout row>
-            <v-flex xs2>
+            <v-flex xs1>
               <v-subheader>J</v-subheader>
             </v-flex>
             <v-flex xs4>
@@ -179,10 +205,10 @@
                 label="Perception-reaction time (seconds)"
               ></v-text-field>
             </v-flex>
-            <v-flex xs2>
+            <v-flex xs1>
               <v-subheader>T</v-subheader>
             </v-flex>
-            <v-flex xs4>
+            <v-flex xs6>
               <v-text-field
                 v-model="D_stopped.T"
                 label="time for design vehicle to travel thourgh (seconds)"
@@ -190,7 +216,7 @@
             </v-flex>
           </v-layout>
           <v-layout row>
-            <v-flex xs2>
+            <v-flex xs1>
               <v-subheader>CD</v-subheader>
             </v-flex>
             <v-flex xs4>
@@ -199,10 +225,10 @@
                 label="the clearance distance (meters)"
               ></v-text-field>
             </v-flex>
-            <v-flex xs2>
+            <v-flex xs1>
               <v-subheader>Vp</v-subheader>
             </v-flex>
-            <v-flex xs4>
+            <v-flex xs6>
               <v-text-field
                 v-model="D_stopped.Vp"
                 label="the average travel speed for pedestrians and cyclists (m/s)"
@@ -210,7 +236,7 @@
             </v-flex>
           </v-layout>
           <v-layout row>
-            <v-flex xs2>
+            <v-flex xs1>
               <v-subheader>Vt</v-subheader>
             </v-flex>
             <v-flex xs4>
@@ -251,13 +277,41 @@
           </div>
         </v-card-title>
         <!-- <v-btn color="info">Overview</v-btn> -->
-        <v-btn large color="success" @click.native.stop="confirm_dialog = true">Finish Task</v-btn>
+        <v-btn large color="success" @click.native.stop="checkInfo()">More Details</v-btn>
         <div>
           <v-progress-linear id="progress-bar" :value="answer_number / question_list.length * 100" height="8" color="teal"></v-progress-linear>
           <div>{{ answer_number +'/' + question_list.length }}</div>
         </div>
       </v-card>
       
+      <v-card class="mt-1 pb-1 section-card" flat
+        v-for="(section, index) in section_list" :key="'section_' + index"
+        :color="getSectionColor(index)"
+      >
+        <v-card-title primary-title>
+          <h3 class="headline mb-0">Subsection: {{ section.title }}</h3>
+          <v-btn icon @click="section.show = !section.show">
+            <v-icon>{{ section.show ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</v-icon>
+          </v-btn>
+        </v-card-title>
+        <v-slide-y-transition>
+          <v-card-text v-show="section.show">
+            <v-btn
+              v-for="(question, index) in section.question_list" 
+              :key="'btn_' + index" 
+              :outline="question.answer==null && current_question != question.index" 
+              fab 
+              small 
+              :dark="question.answer!=null"
+              @click.stop="selectQuestion(question.index)"
+              :color="getQuestionColor(question, question.index)"
+            >
+              {{ question.id }}
+            </v-btn>
+          </v-card-text>
+        </v-slide-y-transition>
+      </v-card>
+
       <v-btn :color="getQuestionColor(question, index)" 
         :outline="question.answer==null && current_question != index" 
         fab 
@@ -340,7 +394,7 @@
                   <v-icon left dark>chevron_left</v-icon>
                   Backward
                 </v-btn>
-                <v-btn color="primary" large dark @click.stop="mediaDialog = true">Image & Audio</v-btn>
+                <v-btn color="primary" large dark @click.stop="mediaDialog = true">Images</v-btn>
                 <v-btn large color="blue-grey" class="white--text" :disabled="current_question == question_list.length - 1" @click.stop="moveNext()">
                   Forward
                   <v-icon right dark>chevron_right</v-icon>
@@ -415,7 +469,9 @@ export default {
       current_list: [],
       // media dialog
       mediaDialog: false,
-      imageList: []
+      image_viewer: false,
+      imageList: [],
+      section_list: []
     }
   },
   methods: {
@@ -428,6 +484,19 @@ export default {
     },
     checkInfo (id) {
       this.$router.push({ path: `/crossing_info/${this.crossing_info.id}` })
+    },
+    getSectionColor (index) {
+      if (index === 0) {
+        return 'blue-grey lighten-5'
+      } else if (index === 1) {
+        return 'red lighten-5'
+      } else if (index === 2) {
+        return 'lime lighten-5'
+      } else if (index === 3) {
+        return 'purple lighten-5'
+      } else {
+        return 'cyan lighten-5'
+      }
     },
     getQuestionColor (question, index) {
       if (index === this.current_question) {
@@ -488,7 +557,7 @@ export default {
         let filename = files[i].name
         if (filename.lastIndexOf('.') >= 0) {
           let ext = filename.slice(filename.lastIndexOf('.'))
-          let imageName = this.current_question + '_' + i + ext
+          let imageName = this.current_question + '_' + Date.now().toString() + ext
           const fileReader = new FileReader()
           fileReader.addEventListener('load', () => {
             this.imageUrl = fileReader.result
@@ -524,7 +593,7 @@ export default {
                 imageRef: `inspections/${self.$store.state.uid}/${image.imageName}`,
                 imageUrl: url
               })
-              console.log(self.question_list[self.current_question].media)
+              // console.log(self.question_list[self.current_question].media)
             })
           }
         )
@@ -534,7 +603,8 @@ export default {
       this.imageList.splice(index, 1)
     },
     showImageList () {
-      console.log(this.question_list[this.current_question].media)
+      this.image_viewer = true
+      // console.log(this.question_list[this.current_question].media)
     }
   },
   computed: {
@@ -573,6 +643,8 @@ export default {
     const crossingType = this.$route.params.type
     if (crossingType.includes('AWS')) {
       this.question_list = require('./aws.json')
+      this.section_list = require('./aws-card.json')
+      console.log(this.section_list)
     } else if (crossingType.includes('WIS')) {
       this.question_list = require('./wis.json')
     } else if (crossingType.includes('WSS')) {
@@ -728,5 +800,17 @@ export default {
   font-size: 36px;
   color: #F06292;
   margin-left: 10px;
+}
+
+.image-note {
+  background-color: #eee;
+  color: #222;
+  text-align: center;
+}
+
+.section-card {
+  width: 90%;
+  margin: auto;
+  border-radius: 5px;
 }
 </style>

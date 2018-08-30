@@ -111,7 +111,8 @@ import db from '@/utils/firestore'
 
 Vue.use(VueGoogleMaps, {
   load: {
-    key: 'AIzaSyBzlLYISGjL_ovJwAehh6ydhB56fCCpPQw'
+    // key: 'AIzaSyBzlLYISGjL_ovJwAehh6ydhB56fCCpPQw'
+    key: 'AIzaSyA1Xo6tJdP_FVdA4asqDtYsUKD5Xq_oSes'
   },
   // Demonstrating how we can customize the name of the components
   installComponents: false

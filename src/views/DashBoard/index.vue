@@ -76,9 +76,9 @@
               </v-flex>
               <v-flex xs12 sm6>
                 <v-text-field
-                  label="Age"
+                  label="Organization"
                   required
-                  v-model="user_info.age"
+                  v-model="user_info.organization"
                 ></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
@@ -119,7 +119,7 @@
             <v-card raised>
               <v-card id="table-title" raised>
                 <div>
-                  <h3 class="title-text">Inspection Task: {{ Date().substring(0, 21) }}</h3>
+                  <h3 class="title-text">Crossings to Be Inspected</h3>
                 </div>
               </v-card>
               <v-data-table
@@ -175,12 +175,12 @@
                       color="primary"
                       dark
                       v-if="props.item.status === 'initial'"
-                      @click.stop="gotoForm(props.item.crossing_id, props.item.type)">Inspect</v-btn>
+                      @click.stop="gotoForm(props.item.crossing_id, props.item.type)">Start</v-btn>
                     <v-btn 
                       color="light-green"
                       dark
                       v-else
-                      @click.stop="gotoForm(props.item.crossing_id, props.item.type)">Modify</v-btn>
+                      @click.stop="gotoForm(props.item.crossing_id, props.item.type)">Continue</v-btn>
                   </td>
                 </template>
                 <template v-if="!table_loading" slot="no-data">
@@ -197,7 +197,7 @@
                   large 
                   class="form-btn"
                   v-if="selected.length > 0"
-                  @click.stop="deleteCrossing()">Delete Selected</v-btn>
+                  @click.stop="deleteCrossing()">Remove from List</v-btn>
                   <v-btn 
                   color="primary"
                   dark
@@ -205,7 +205,7 @@
                   class="form-btn mt-4 mb-4"
                   @click.stop="jumpMap()">
                   <v-icon left dark>place</v-icon>
-                  Select From Map</v-btn>
+                  Add Crossings</v-btn>
                 </v-flex>
               </v-layout>
             </v-card>
@@ -249,7 +249,7 @@ export default {
         first_name: '',
         middle_name: '',
         last_name: '',
-        age: '',
+        organization: '',
         position: ''
       },
       // table data
@@ -287,7 +287,7 @@ export default {
         first_name: this.user_info.first_name,
         middle_name: this.user_info.middle_name,
         last_name: this.user_info.last_name,
-        age: this.user_info.age,
+        organization: this.user_info.organization,
         position: this.user_info.position,
         modify_date: new Date()
       })

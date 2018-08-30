@@ -47,6 +47,11 @@ const router = new Router({
       meta: { requiresAuth: true }
     },
     {
+      path: '/camera',
+      name: 'Camera',
+      component: () => import('@/views/Camera/index')
+    },
+    {
       path: '*',
       redirect: '/login'
     }

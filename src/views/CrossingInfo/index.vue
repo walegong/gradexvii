@@ -91,9 +91,9 @@ export default {
       this.$router.go(-1)
     },
     saveChange () {
-      // this.$router.go(-1)
-      this.test_data = this.crossing[0]
-      console.log(this.test_data)
+      this.$router.go(-1)
+      // this.test_data = this.crossing[0]
+      // console.log(this.test_data)
     }
   },
   created: function () {
@@ -113,7 +113,7 @@ export default {
       })
     // const mockData = require('@/views/CrossingInfo/mock.json')
     // this.crossing = mockData
-    console.log(this.crossing)
+    // console.log(this.crossing)
     // get the `tsb_data` data
     db.collection('tsb_data').where('locationID', '==', self.crossingId)
       .get()
