@@ -152,7 +152,8 @@
           <!-- Right Panel -->
           <v-flex xs9 sm9 md9 id="mapview">
             <google-map :center="{lat: current_camera.Latitude, lng: current_camera.Longitude}" :zoom="zoom_level" style="width: 100%; height: 100%;">
-              <google-cluster :grid-size="gridSize" :styles="clusterStyles">
+              <!-- <google-cluster :grid-size="gridSize" :styles="clusterStyles"> -->
+              <google-cluster>
                 <google-info-window 
                   :options="info_options"
                   :position="{lat: current_camera.Latitude, lng: current_camera.Longitude}"
@@ -236,45 +237,28 @@ export default {
       // clusterStyles: [
       //   {
       //     url: require('@/assets/safety.png'),
-      //     anchorText: [-32, 0],
-      //     textSize: 32
+      //     height: 26,
+      //     width: 30,
+      //     anchor: [4, 0],
+      //     textColor: '#ff00ff',
+      //     textSize: 10
       //   },
       //   {
       //     url: require('@/assets/snow.png'),
-      //     anchorText: [-32, 0],
-      //     textSize: 32
+      //     height: 35,
+      //     width: 40,
+      //     anchor: [8, 0],
+      //     textColor: '#ff0000',
+      //     textSize: 11
       //   },
       //   {
       //     url: require('@/assets/warning.png'),
-      //     anchorText: [-32, 0],
-      //     textSize: 32
+      //     width: 50,
+      //     height: 44,
+      //     anchor: [12, 0],
+      //     textSize: 12
       //   }
       // ],
-      clusterStyles: [
-        {
-          url: require('@/assets/safety.png'),
-          height: 26,
-          width: 30,
-          anchor: [4, 0],
-          textColor: '#ff00ff',
-          textSize: 10
-        },
-        {
-          url: require('@/assets/snow.png'),
-          height: 35,
-          width: 40,
-          anchor: [8, 0],
-          textColor: '#ff0000',
-          textSize: 11
-        },
-        {
-          url: require('@/assets/warning.png'),
-          width: 50,
-          height: 44,
-          anchor: [12, 0],
-          textSize: 12
-        }
-      ],
       zoom_level: 6,
       current_camera: {
         Id: 'Ontario511--31dbwlph0yi',
@@ -376,15 +360,15 @@ export default {
       bodyFormData.set('camera_id', cameraID)
       bodyFormData.set('image_url', imageUrl)
       const self = this
-      axios({
-        method: 'post',
-        url: 'http://localhost:5000/predict',
-        data: bodyFormData
-      })
-      // axios.post('http://localhost:5000/predict', {
-      //   camera_id: cameraID,
-      //   image_url: imageUrl
+      // axios({
+      //   method: 'post',
+      //   url: 'http://35.229.20.200:5000/predict',
+      //   data: bodyFormData
       // })
+      axios.post('http://localhost:5000/predict', {
+        camera_id: cameraID,
+        image_url: imageUrl
+      })
         .then((response) => {
           console.log(response)
           self.probability = response.data.predictions[0]
