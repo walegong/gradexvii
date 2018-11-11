@@ -2,17 +2,14 @@
   <v-app>
     <!-- Toolbar -->
     <v-toolbar color="indigo" dark fixed app>
-      <v-btn icon class="hidden-xs-only" @click.stop="goBack()">
-        <v-icon>arrow_back</v-icon>
-      </v-btn>
-      <v-toolbar-title>511 Traffic Camera</v-toolbar-title>
+      <v-toolbar-title>Automated Winter Road Condition Monitoring Using RWIS/Traffic Cameras</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn
         outline
-        @click.stop="mediaDialog = true"
+        @click.stop="mediaDialog = true; probability = [0, 0, 0, 0]"
       >
         <!-- <v-icon left>gradient</v-icon> -->
-        Upload Image
+        Try Your Own Image
       </v-btn>
     </v-toolbar>
 
@@ -26,23 +23,80 @@
     >
       <v-card tile>
         <v-toolbar card dark color="primary">
-          <v-btn icon @click.native="mediaDialog = false" dark>
+          <v-btn icon @click.native="mediaDialog = false; probability = [0, 0, 0, 0]" dark>
             <v-icon>close</v-icon>
           </v-btn>
           <v-toolbar-title>Upload Image for Prediction</v-toolbar-title>
         </v-toolbar>
         <v-card-text>
+          <v-layout row wrap>
+            <v-flex md12>
+              <label>
+                <input 
+                  type="file" 
+                  id="files" 
+                  ref="files" 
+                  accept="image/*"
+                  style="display: none"
+                  v-on:change="handleFilesUpload()"/>
+              </label>
+              <v-btn large color="primary" @click.stop="addFiles()">
+                Upload Image
+              </v-btn>
+              <v-btn large color="primary" @click.stop="submitFiles()">
+                Classify
+              </v-btn>
+            </v-flex>
+            <v-flex md12 v-for="(file, key) in files" :key="'file'+key">
+              <v-layout row wrap>
+                <v-flex md6><img style="width: 100%; height: auto;" class="preview" v-bind:ref="'image'+parseInt( key )"/></v-flex>
+                <v-flex md4 offset-md1>
+                  <v-card class="info-card mt-1" raised dark>
+                    <v-list>
+                      <v-list-tile class="dense-content">
+                        <v-list-tile-content>
+                          <v-list-tile-title>Prediction</v-list-tile-title>
+                        </v-list-tile-content>
+                      </v-list-tile>
+                      <v-divider></v-divider>
+                      <v-list-tile class="dense-content">
+                        <v-list-tile-content>
+                          <v-list-tile-title>Bare Pavement: {{ (probability[0] * 100).toFixed(2) }}%</v-list-tile-title>
+                        </v-list-tile-content>
+                      </v-list-tile>
+                      <v-divider></v-divider>
+                      <v-list-tile class="dense-content">
+                        <v-list-tile-content>
+                          <v-list-tile-title>Partly Coverage: {{ (probability[1] * 100).toFixed(2) }}%</v-list-tile-title>
+                        </v-list-tile-content>
+                      </v-list-tile>
+                      <v-divider></v-divider>
+                      <v-list-tile class="dense-content">
+                        <v-list-tile-content>
+                          <v-list-tile-title>Fully Coverage: {{ (probability[2] * 100).toFixed(2) }}%</v-list-tile-title>
+                        </v-list-tile-content>
+                      </v-list-tile>
+                      <v-divider></v-divider>
+                      <v-list-tile class="dense-content">
+                        <v-list-tile-content>
+                          <v-list-tile-title>Not Recognizable: {{ (probability[3] * 100).toFixed(2) }}%</v-list-tile-title>
+                        </v-list-tile-content>
+                      </v-list-tile>
+                    </v-list>
+                  </v-card>
+                </v-flex>
+              </v-layout>
+            </v-flex>
+          </v-layout>
+          
           <div class="container">
             <div class="large-12 medium-12 small-12 cell">
-              <label>Files
-                <input type="file" id="files" ref="files" accept="image/*" multiple v-on:change="handleFilesUpload()"/>
-              </label>
+              
             </div>
             <div class="large-12 medium-12 small-12 cell">
               <div class="grid-x">
                 <div v-for="(file, key) in files" class="large-4 medium-4 small-6 cell file-listing" :key="'file'+key">
-                  {{ file.name }}
-                  <img class="preview" v-bind:ref="'image'+parseInt( key )"/>
+                  
                 </div>
               </div>
             </div>
@@ -50,16 +104,6 @@
             <!-- <div class="large-12 medium-12 small-12 cell clear">
               <button v-on:click="addFiles()">Add Files</button>
             </div> -->
-            <v-btn large color="primary" @click.stop="addFiles()">
-              Add Files
-            </v-btn>
-            <v-btn large color="primary" @click.stop="submitFiles()">
-              Submit
-            </v-btn>
-            <p>Bare Pavement: {{ (probability[0] * 100).toFixed(2) }}%</p>
-            <p>Partly Coverage: {{ (probability[1] * 100).toFixed(2) }}%</p>
-            <p>Fully Coverage: {{ (probability[2] * 100).toFixed(2) }}%</p>
-            <p>Not Recognizable: {{ (probability[3] * 100).toFixed(2) }}%</p>
             <!-- <br>
 
             <div class="large-12 medium-12 small-12 cell">
@@ -113,40 +157,6 @@
               <v-checkbox v-model="show_list" label="Fully Coverage" value="2"></v-checkbox>
               <v-checkbox v-model="show_list" label="Not Recognizable" value="3"></v-checkbox>
             </v-container>
-
-            <v-card class="info-card mt-1">
-              <v-list>
-                <v-list-tile class="dense-content">
-                  <v-list-tile-content>
-                    <v-list-tile-title>Prediction</v-list-tile-title>
-                  </v-list-tile-content>
-                </v-list-tile>
-                <v-divider></v-divider>
-                <v-list-tile class="dense-content">
-                  <v-list-tile-content>
-                    <v-list-tile-title>Bare Pavement: {{ (probability[0] * 100).toFixed(2) }}%</v-list-tile-title>
-                  </v-list-tile-content>
-                </v-list-tile>
-                <v-divider></v-divider>
-                <v-list-tile class="dense-content">
-                  <v-list-tile-content>
-                    <v-list-tile-title>Partly Coverage: {{ (probability[1] * 100).toFixed(2) }}%</v-list-tile-title>
-                  </v-list-tile-content>
-                </v-list-tile>
-                <v-divider></v-divider>
-                <v-list-tile class="dense-content">
-                  <v-list-tile-content>
-                    <v-list-tile-title>Fully Coverage: {{ (probability[2] * 100).toFixed(2) }}%</v-list-tile-title>
-                  </v-list-tile-content>
-                </v-list-tile>
-                <v-divider></v-divider>
-                <v-list-tile class="dense-content">
-                  <v-list-tile-content>
-                    <v-list-tile-title>Not Recognizable: {{ (probability[3] * 100).toFixed(2) }}%</v-list-tile-title>
-                  </v-list-tile-content>
-                </v-list-tile>
-              </v-list>
-            </v-card>
           </v-flex>
 
           <!-- Right Panel -->
@@ -161,11 +171,46 @@
                   @closeclick="info_win_open=false"
                 >
                   <v-layout wrap row>
-                    <v-flex xs12 sm12>
+                    <v-flex xs12 sm12 md12>
                       <div class="info-window-text">ID: {{ current_camera.Id }}</div>
                     </v-flex>
-                    <v-flex xs12 sm12>
+                    <v-flex xs12 sm12 md8>
                       <img :src="current_camera.Url" width="400px" height="280px" />
+                    </v-flex>
+                    <v-flex md4>
+                      <v-card class="info-card mt-1" raised dark>
+                        <v-list>
+                          <v-list-tile class="dense-content">
+                            <v-list-tile-content>
+                              <v-list-tile-title>Prediction</v-list-tile-title>
+                            </v-list-tile-content>
+                          </v-list-tile>
+                          <v-divider></v-divider>
+                          <v-list-tile class="dense-content">
+                            <v-list-tile-content>
+                              <v-list-tile-title>Bare Pavement: {{ (probability[0] * 100).toFixed(2) }}%</v-list-tile-title>
+                            </v-list-tile-content>
+                          </v-list-tile>
+                          <v-divider></v-divider>
+                          <v-list-tile class="dense-content">
+                            <v-list-tile-content>
+                              <v-list-tile-title>Partly Coverage: {{ (probability[1] * 100).toFixed(2) }}%</v-list-tile-title>
+                            </v-list-tile-content>
+                          </v-list-tile>
+                          <v-divider></v-divider>
+                          <v-list-tile class="dense-content">
+                            <v-list-tile-content>
+                              <v-list-tile-title>Fully Coverage: {{ (probability[2] * 100).toFixed(2) }}%</v-list-tile-title>
+                            </v-list-tile-content>
+                          </v-list-tile>
+                          <v-divider></v-divider>
+                          <v-list-tile class="dense-content">
+                            <v-list-tile-content>
+                              <v-list-tile-title>Not Recognizable: {{ (probability[3] * 100).toFixed(2) }}%</v-list-tile-title>
+                            </v-list-tile-content>
+                          </v-list-tile>
+                        </v-list>
+                      </v-card>
                     </v-flex>
                     <v-flex xs12 sm12>
                       <v-btn
@@ -173,7 +218,7 @@
                        color="primary"
                        @click.stop="getPrediction(current_camera.Id, current_camera.Url)"
                       >
-                       Predict
+                       Classify
                       </v-btn>
                     </v-flex>
                   </v-layout>
@@ -282,6 +327,7 @@ export default {
       this.$router.go(-1)
     },
     toggleInfoWindow (camera) {
+      this.probability = [0, 0, 0, 0]
       this.current_camera = camera
       this.info_win_open = true
     },
@@ -320,7 +366,7 @@ export default {
         formData.append('image', file)
       }
       // console.log(formData)
-      axios.post('http://localhost:5000/predict',
+      axios.post('http://35.185.8.182:5000/predict',
         formData,
         {
           headers: {
@@ -337,6 +383,8 @@ export default {
         })
     },
     handleFilesUpload () {
+      this.files = []
+      this.probability = [0, 0, 0, 0]
       let uploadedFiles = this.$refs.files.files
       for (var i = 0; i < uploadedFiles.length; i++) {
         this.files.push(uploadedFiles[i])
@@ -360,14 +408,10 @@ export default {
       bodyFormData.set('camera_id', cameraID)
       bodyFormData.set('image_url', imageUrl)
       const self = this
-      // axios({
-      //   method: 'post',
-      //   url: 'http://35.229.20.200:5000/predict',
-      //   data: bodyFormData
-      // })
-      axios.post('http://localhost:5000/predict', {
-        camera_id: cameraID,
-        image_url: imageUrl
+      axios({
+        method: 'post',
+        url: 'http://35.185.8.182:5000/predict',
+        data: bodyFormData
       })
         .then((response) => {
           console.log(response)

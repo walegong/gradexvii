@@ -1,6 +1,6 @@
 [
   {
-    "title": "A",
+    "title": "Functionality and Operation",
     "show": true,
     "question_list": [
       {
@@ -177,7 +177,7 @@
     ]
   },
   {
-    "title": "B",
+    "title": "Periodic Inspection and Testing / Records",
     "show": false,
     "question_list": [
       {
@@ -242,7 +242,13 @@
         "media": [],
         "color": "blue-grey darken-3",
         "note": ""
-      },
+      }
+    ]
+  },
+  {
+    "title": "Vital Circuit Stability",
+    "show": false,
+    "question_list": [
       {
         "id": "10a",
         "index": 26,
@@ -300,7 +306,7 @@
     ]
   },
   {
-    "title": "C",
+    "title": "Design and Engineering",
     "show": false,
     "question_list": [
       {
@@ -405,7 +411,7 @@
     ]
   },
   {
-    "title": "D",
+    "title": "Railway Operations Observations",
     "show": false,
     "question_list": [
       {
@@ -491,7 +497,7 @@
     ]
   },
   {
-    "title": "E",
+    "title": "Others",
     "show": false,
     "question_list": [
       {

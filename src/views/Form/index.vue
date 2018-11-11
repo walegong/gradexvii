@@ -288,14 +288,14 @@
         v-for="(section, index) in section_list" :key="'section_' + index"
         :color="getSectionColor(index)"
       >
-        <v-card-title primary-title>
-          <h3 class="headline mb-0">Subsection: {{ section.title }}</h3>
+        <v-card-title primary-title class="pt-1 pb-0">
+          <h3 class="mb-0">{{ section.title }}</h3>
           <v-btn icon @click="section.show = !section.show">
             <v-icon>{{ section.show ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</v-icon>
           </v-btn>
         </v-card-title>
         <v-slide-y-transition>
-          <v-card-text v-show="section.show">
+          <v-card-text class="pt-1" v-show="section.show">
             <v-btn
               v-for="(question, index) in section.question_list" 
               :key="'btn_' + index" 
@@ -486,17 +486,15 @@ export default {
       this.$router.push({ path: `/crossing_info/${this.crossing_info.id}` })
     },
     getSectionColor (index) {
-      if (index === 0) {
-        return 'blue-grey lighten-5'
-      } else if (index === 1) {
-        return 'red lighten-5'
-      } else if (index === 2) {
-        return 'lime lighten-5'
-      } else if (index === 3) {
-        return 'purple lighten-5'
-      } else {
-        return 'cyan lighten-5'
-      }
+      const colorList = [
+        'blue-grey lighten-5',
+        'red lighten-5',
+        'lime lighten-5',
+        'purple lighten-5',
+        'orange lighten-5',
+        'cyan lighten-5'
+      ]
+      return colorList[index]
     },
     getQuestionColor (question, index) {
       if (index === this.current_question) {
