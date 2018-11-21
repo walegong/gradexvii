@@ -270,7 +270,6 @@ export default {
     }
   },
   firestore () {
-    console.log(this)
     return {
       user_info: db.collection('users').doc(this.$store.state.uid)
     }
