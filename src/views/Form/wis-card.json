@@ -1,0 +1,332 @@
+[
+  {
+    "title": "Functionality and Operation",
+    "show": true,
+    "question_list": [
+      {
+        "id": "1a",
+        "index": 0,
+        "text":
+          "Standby Power (battery condition, backup time, where applicable)",
+        "answer": null,
+        "color":"deep-purple lighten-1",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "2a",
+        "index": 1,
+        "text": "Function Simulator Test (confirm reference heat test, heat, alarm levels)",
+        "answer": null,
+        "color":"deep-purple lighten-1",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "3a",
+        "index": 2,
+        "text":
+          "Talker Radio Confirmation (radio message, talker repeat protocols)",
+        "answer": null,
+        "color":"deep-purple lighten-1",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "4a",
+        "index": 3,
+        "text":
+          "AC Power and Components (phases consistent and equal under load)",
+        "answer": null,
+        "color":"deep-purple lighten-1",
+        "note": "",
+        "media": []
+      }
+    ]
+  },
+  {
+    "title": "Track Side",
+    "show": true,
+    "question_list": [
+      {
+        "id": "5a",
+        "index": 4,
+        "text":
+          "Transducers (clean, tight, detection starts when transducer is activated)",
+        "answer": null,
+        "color":"amber darken-2",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "6a",
+        "index": 5,
+        "text":
+          "Bearing Scanner (clean, tight, mirror, alignment, mounting, lens, filters, shields, heater, target if applicable)",
+        "answer": null,
+        "color":"amber darken-2",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "6b",
+        "index": 6,
+        "text": "Hot Wheel Scanner (clean, tight, mirror, alignment, mounting, lens, filters, shields, heater, target if applicable)",
+        "answer": null,
+        "color":"amber darken-2",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "7a",
+        "index": 7,
+        "text": "Scanner Interference (spikes, rail clips, etc. clear of scanners, deflection plates tight & not touching scanner)",
+        "answer": null,
+        "color":"amber darken-2",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "8a",
+        "index": 8,
+        "text":
+          "DED Condition (panels intact, securely fastened on the ties, returns to a positive upright position when pushed on both sides)",
+        "answer": null,
+        "color":"amber darken-2",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "8b",
+        "index": 9,
+        "text":
+          "DED Alarm Detection Test (test during function simulation)",
+        "answer": null,
+        "color":"amber darken-2",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "9a",
+        "index": 10,
+        "text": "External Condition of Housing (foundations, door, locks, free of debris)",
+        "answer": null,
+        "color":"amber darken-2",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "9b",
+        "index": 11,
+        "text":
+          "Internal Condition of Housing (clean, sealed, ventilation, moisture, no evidence of infestation)",
+        "answer": null,
+        "color":"amber darken-2",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "10a",
+        "index": 12,
+        "text":
+          "Track Conditions (gauge, plates, drainage, rail pumping)",
+        "answer": null,
+        "color":"amber darken-2",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "11a",
+        "index": 13,
+        "text":
+          "Junction Boxes (condition, no sign of infestation, no frost heave, no moisture, no contamination)",
+        "answer": null,
+        "color":"amber darken-2",
+        "note": "",
+        "media": []
+      }
+    ]
+  },
+  {
+    "title": "Periodic Inspection and Testing / Records",
+    "show": true,
+    "question_list": [
+      {
+        "id": "12a",
+        "index": 14,
+        "text":
+          "Timetable, Logbook, Maintenance Manuals (all applicable information available, complete, correct)",
+        "answer": null,
+        "color":"teal lighten-3",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "12b",
+        "index": 15,
+        "text":
+          "Record of Tests (monthly, 3-month, 6-month, annual, 4-year, 10-year operational tests complete) as per Sound Engineering Practices (ex: manufacturers manual, AREMA, railway standards or practices)",
+        "answer": null,
+        "color":"teal lighten-3",
+        "note": "",
+        "media": []
+      }
+    ]
+  },
+  {
+    "title": "Railway Operations Observations",
+    "show": true,
+    "question_list": [
+      {
+        "id": "13a",
+        "index": 16,
+        "text":
+          "Evidence of Trespassing (cut fence, worn footpath, witnessed event)",
+        "answer": null,
+        "note": "",
+        "media": [],
+        "color":"brown lighten-3",
+        "boolean": true
+      },
+      {
+        "id": "14a",
+        "index": 17,
+        "text":
+          "Persons performing duties did not appear familiar with equipment/components within their responsibility.",
+        "answer": null,
+        "note": "",
+        "media": [],
+        "color":"brown lighten-3",
+        "boolean": true
+      },
+      {
+        "id": "14b",
+        "index": 18,
+        "text":
+          "Persons performing duties did not appear familiar with the railways inspection and testing requirements, and other procedures.",
+        "answer": null,
+        "note": "",
+        "media": [],
+        "color":"brown lighten-3",
+        "boolean": true
+      },
+      {
+        "id": "14c",
+        "index": 19,
+        "text": "Persons performing duties did not appear to have an understanding of safety requirements during testing, and/or how to protect safe railway operations during the undertaking of their duties.",
+        "answer": null,
+        "note": "",
+        "media": [],
+        "color":"brown lighten-3",
+        "boolean": true
+      },
+      {
+        "id": "14d",
+        "index": 20,
+        "text":
+          "Persons performing duties were not able to correctly answer all questions and perform all tasks requested by the RSI at the time of inspection, and/or did not appear confident and knowledgeable when implementing them.",
+        "answer": null,
+        "note": "",
+        "media": [],
+        "color":"brown lighten-3",
+        "boolean": true
+      }
+    ]
+  },
+  {
+    "title": "Others",
+    "show": true,
+    "question_list": [
+      {
+        "id": "15a",
+        "index": 21,
+        "text": "Software and Calibration",
+        "answer": null,
+        "color":"blue-grey lighten-3",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "16a",
+        "index": 22,
+        "text": "Design Plan Conditions (complete, accurate, legible, up to date)",
+        "answer": null,
+        "color":"blue-grey lighten-3",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "17a",
+        "index": 23,
+        "text": "Location Conditions (equipment, lightning protection)",
+        "answer": null,
+        "color":"blue-grey lighten-3",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "18a",
+        "index": 24,
+        "text": "Wiring Identification and Terminations",
+        "answer": null,
+        "color":"blue-grey lighten-3",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "19a",
+        "index": 25,
+        "text": "Wire and Cable Defects",
+        "answer": null,
+        "color":"blue-grey lighten-3",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "20a",
+        "index": 26,
+        "text": "Track Circuit (where applicable)",
+        "answer": null,
+        "color":"blue-grey lighten-3",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "21a",
+        "index": 27,
+        "text": "Circuit Grounds (no leakage to ground, perform test while system is active and at rest)",
+        "answer": null,
+        "color":"blue-grey lighten-3",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "22a",
+        "index": 28,
+        "text": "Battery Isolation Condition (no voltage potential between power supplies)",
+        "answer": null,
+        "color":"blue-grey lighten-3",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "23a",
+        "index": 29,
+        "text": "Insulation of Scanners",
+        "answer": null,
+        "color":"blue-grey lighten-3",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "24a",
+        "index": 30,
+        "text": "Miscellaneous Issues",
+        "answer": null,
+        "color":"blue-grey lighten-3",
+        "note": "",
+        "media": []
+      }
+    ]
+  }
+]

@@ -28,6 +28,13 @@
         <v-icon left>save_alt</v-icon>
         Save
       </v-btn>
+      <v-btn
+        outline
+        @click="report()"
+        v-if="$store.state.role == 'admin' || $store.state.role == 'transportation'"
+      >
+        Generate Report
+      </v-btn>
     </v-toolbar>
 
     <!-- Store dialog -->
@@ -312,7 +319,7 @@
         </v-slide-y-transition>
       </v-card>
 
-      <v-btn :color="getQuestionColor(question, index)" 
+      <!-- <v-btn :color="getQuestionColor(question, index)" 
         :outline="question.answer==null && current_question != index" 
         fab 
         small 
@@ -322,7 +329,7 @@
         @click.stop="selectQuestion(index)"
       >
         {{ question.id }}
-      </v-btn>
+      </v-btn> -->
     </v-navigation-drawer>
 
     <!-- Content: Form List -->
@@ -603,6 +610,25 @@ export default {
     showImageList () {
       this.image_viewer = true
       // console.log(this.question_list[this.current_question].media)
+    },
+    report () {
+      const object = this
+      var found = this.current_list.findIndex((element) => {
+        return element.crossing_id === this.crossing_info.id
+      })
+      db.doc(`/report_list/${this.$store.state.uid}/current_list/${this.crossing_info.id}`).set({
+        crossing_info: this.current_list[found],
+        record: this.question_list,
+        send: 'false'
+      })
+      var newArray = this.current_list.filter(function (obj) {
+        return obj.crossing_id !== object.crossing_info.id
+      })
+      db.doc(`/inspection_list/${this.$store.state.uid}`).set({
+        current_list: newArray
+      })
+      db.doc(`/inspection_history/${this.$store.state.uid}/current_list/${this.crossing_info.id}`).delete()
+      this.$router.push({ path: '/report-dashboard' })
     }
   },
   computed: {
@@ -636,19 +662,38 @@ export default {
     }
   },
   created: function () {
+    console.log(this.$store.state)
     const self = this
     const crossingId = this.$route.params.id
     const crossingType = this.$route.params.type
     if (crossingType.includes('AWS')) {
       this.question_list = require('./aws.json')
-      this.section_list = require('./aws-card.json')
-      console.log(this.section_list)
+      if (this.$store.state.role === 'railway') {
+        this.section_list = require('./railway-aws-card.json')
+      } else if (this.$store.state.role === 'road') {
+        this.section_list = require('./road-aws-card.json')
+      } else {
+        this.section_list = require('./aws-card.json')
+      }
     } else if (crossingType.includes('WIS')) {
       this.question_list = require('./wis.json')
+      this.section_list = require('./wis-card.json')
     } else if (crossingType.includes('WSS')) {
       this.question_list = require('./wss.json')
+      this.section_list = require('./wss-card.json')
     } else {
       this.question_list = require('./passive.json')
+      if (this.$store.state.role === 'railway') {
+        this.section_list = require('./railway-passive-card.json')
+      } else if (this.$store.state.role === 'road') {
+        this.section_list = require('./road-passive-card.json')
+      } else {
+        this.section_list = require('./passive-card.json')
+      }
+    }
+    console.log(this.$store.state.role)
+    if ((this.$store.state.role === 'road' || this.$store.state.role === 'railway') && (crossingType.includes('AWS') || crossingType.includes('Passive'))) {
+      this.question_list = this.question_list.filter(obj => obj.type.includes(this.$store.state.role))
     }
     let record = {}
     db.doc(`/inspection_history/${this.$store.state.uid}/current_list/${crossingId}`)
@@ -674,7 +719,6 @@ export default {
       .then((querySnapshot) => {
         querySnapshot.forEach(function (doc) {
           const data = doc.data()
-          // console.log(data)
           self.crossing_info = {
             id: crossingId,
             type: crossingType,
@@ -690,7 +734,6 @@ export default {
       .catch(function (error) {
         console.log('Error getting documents: ', error)
       })
-
     db.collection('inspection_list').doc(this.$store.state.uid).get()
       .then((doc) => {
         if ('current_list' in doc.data()) {

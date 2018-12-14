@@ -10,7 +10,8 @@ export const store = new Vuex.Store({
     uid: null,
     email: null,
     error: null,
-    verify: null
+    verify: null,
+    role: null
   },
   mutations: {
     setUid (state, payload) {
@@ -24,6 +25,9 @@ export const store = new Vuex.Store({
     },
     setVerify (state, payload) {
       state.verify = payload
+    },
+    setRole (state, payload) {
+      state.role = payload
     }
   },
   actions: {
@@ -58,14 +62,19 @@ export const store = new Vuex.Store({
           commit('setError', error.message)
         })
     },
+    userGroup ({commit}, payload) {
+      commit('setRole', payload)
+    },
     autoSignIn ({commit}, payload) {
       commit('setUid', payload.uid)
       commit('setEmail', payload.email)
+      router.push('/dashboard')
     },
     userSignOut ({commit}) {
       firebase.auth().signOut()
       commit('setUid', null)
       commit('setEmail', null)
+      commit('setRole', null)
       router.push('/login')
     }
   },

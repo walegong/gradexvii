@@ -1,0 +1,519 @@
+[
+  {
+    "title": "Functionality and Operation",
+    "show": true,
+    "question_list": [
+      {
+        "id": "1a",
+        "index": 0,
+        "text":
+          "Light Unit Condition/Visibility (note type (color/search, incandescent/LED) & spread)",
+        "answer": null,
+        "color":"deep-purple lighten-1",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "2a",
+        "index": 1,
+        "text": "Timing Devices (include approach stick and/or stick release)",
+        "answer": null,
+        "color":"deep-purple lighten-1",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "3a",
+        "index": 2,
+        "text":
+          "Insulated Joint Conditions (end post intact, tie plates clear, bolts tight, spikes reversed)",
+        "answer": null,
+        "color":"deep-purple lighten-1",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "3b",
+        "index": 3,
+        "text":
+          "Track Bond Conditions (complete, undamaged, secure, ensures conductivity)",
+        "answer": null,
+        "color":"deep-purple lighten-1",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "3c",
+        "index": 4,
+        "text":
+          "Track Lead Conditions (complete, undamaged, secured)",
+        "answer": null,
+        "color":"deep-purple lighten-1",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "3d",
+        "index": 5,
+        "text":
+          "Track Circuit Polarity (staggered and in conformity to the design plan)",
+        "answer": null,
+        "color":"deep-purple lighten-1",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "3e",
+        "index": 6,
+        "text": "Track Circuit Detection (detects a 0.06 ohm shunt, adjustment, no contamination of track circuit, signal in vicinity)",
+        "answer": null,
+        "color":"deep-purple lighten-1",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "3f",
+        "index": 7,
+        "text": "Track Circuit Adjustment",
+        "answer": null,
+        "color":"deep-purple lighten-1",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "3g",
+        "index": 8,
+        "text":
+          "Track Circuit Contamination",
+        "answer": null,
+        "color":"deep-purple lighten-1",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "3h",
+        "index": 9,
+        "text":
+          "Fouling circuit (proper bonding and detects train throughout)",
+        "answer": null,
+        "color":"deep-purple lighten-1",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "4a",
+        "index": 10,
+        "text": "Relay Conditions (securely mounted, contact condition, no rust or debris in housing, properly identified, corresponds to the circuit plan)",
+        "answer": null,
+        "color":"deep-purple lighten-1",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "5a",
+        "index": 11,
+        "text":
+          "Switch Obstruction Test (machine did not lock, overload/resilient gear functions, indication)",
+        "answer": null,
+        "color":"deep-purple lighten-1",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "5b",
+        "index": 12,
+        "text":
+          "Operation of Switches & Derails (power switches, self-restoring and power derails, electric lock, spring switch)",
+        "answer": null,
+        "color":"deep-purple lighten-1",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "5c",
+        "index": 13,
+        "text":
+          "Operation of Switch in Hand Throw Mode (point pressure, mechanical locking, timing)",
+        "answer": null,
+        "color":"deep-purple lighten-1",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "6a",
+        "index": 14,
+        "text":
+          "Switch Circuit Controller (condition of contacts and wiring, mounting secure, clevis tight)",
+        "answer": null,
+        "color":"deep-purple lighten-1",
+        "note": "",
+        "media": []
+      }
+    ]
+  },
+  {
+    "title": "Periodic Inspection and Testing / Records",
+    "show": true,
+    "question_list": [
+      {
+        "id": "7a",
+        "index": 15,
+        "text":
+          "Record of Monthly Tests (no missing or overdue tests)",
+        "answer": null,
+        "color":"amber darken-2",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "7b",
+        "index": 16,
+        "text":
+          "Record of Quarterly and Semiannual Tests (no missing or overdue tests)",
+        "answer": null,
+        "color":"amber darken-2",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "7c",
+        "index": 17,
+        "text":
+          "Record of Annual Tests (no missing or overdue tests)",
+        "answer": null,
+        "color":"amber darken-2",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "7d",
+        "index": 18,
+        "text":
+          "Record of Two Year Tests (no missing or overdue tests)",
+        "answer": null,
+        "color":"amber darken-2",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "7e",
+        "index": 19,
+        "text": 
+          "Record of Four Year Tests (no missing or overdue tests)",
+        "answer": null,
+        "color":"amber darken-2",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "7f",
+        "index": 20,
+        "text":
+          "Record of Ten Year Tests (no missing or overdue tests)",
+        "answer": null,
+        "color":"amber darken-2",
+        "note": "",
+        "media": []
+      }
+    ]
+  },
+  {
+    "title": "Vital Circuit Stability",
+    "show": true,
+    "question_list": [
+      {
+        "id": "8a",
+        "index": 21,
+        "text": "Standby Battery Conditions (clean & free of corrosion, voltage reading taken pre/post 15 min power off)",
+        "answer": null,
+        "color":"teal lighten-3",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "9a",
+        "index": 22,
+        "text": "Battery Isolation Condition (no voltage potential between power supplies)",
+        "answer": null,
+        "color":"teal lighten-3",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "10a",
+        "index": 23,
+        "text": "Circuit Grounds (no leakage to ground, perform test while system is active and at rest)",
+        "answer": null,
+        "color":"teal lighten-3",
+        "note": "",
+        "media": []
+      },
+      {
+        "id": "11a",
+        "index": 24,
+        "text": "AC Power and Components (phases consistent and equal under load)",
+        "answer": null,
+        "color":"teal lighten-3",
+        "note": "",
+        "media": []
+      }
+    ]
+  },
+  {
+    "title": "Design and Engineering",
+    "show": true,
+    "question_list": [
+      {
+        "id": "12a",
+        "index": 25,
+        "text": "Design Plan Conditions (complete, accurate, legible, up to date)",
+        "answer": null,
+        "color":"teal lighten-3",
+        "note": "",
+        "media": []
+      }
+    ]
+  },
+  {
+    "title": "Railway Operations Observations",
+    "show": true,
+    "question_list": [
+      {
+        "id": "13a",
+        "index": 26,
+        "text": "Evidence of Trespassing (cut fence, worn footpath, witnessed event)",
+        "answer": null,
+        "note": "",
+        "media": [],
+        "color":"brown lighten-3",
+        "boolean": true
+      },  
+      {
+        "id": "14a",
+        "index": 27,
+        "text": "Persons performing duties did not appear familiar with equipment/components within their responsibility.",
+        "answer": null,
+        "note": "",
+        "media": [],
+        "color":"brown lighten-3",
+        "boolean": true
+      },  
+      {
+        "id": "14b",
+        "index": 28,
+        "text": "Persons performing duties did not appear familiar with the railways inspection and testing requirements, and other procedures.",
+        "answer": null,
+        "note": "",
+        "media": [],
+        "color":"brown lighten-3",
+        "boolean": true
+      },  
+      {
+        "id": "14c",
+        "index": 29,
+        "text": "Persons performing duties did not appear to have an understanding of safety requirements during testing, and/or how to protect safe railway operations during the undertaking of their duties.",
+        "answer": null,
+        "note": "",
+        "media": [],
+        "color":"brown lighten-3",
+        "boolean": true
+      },  
+      {
+        "id": "14d",
+        "index": 30,
+        "text": "Persons performing duties were not able to correctly answer all questions and perform all tasks requested by the RSI at the time of inspection, and/or did not appear confident and knowledgeable when implementing them.",
+        "answer": null,
+        "note": "",
+        "media": [],
+        "color":"brown lighten-3",
+        "boolean": true
+      }
+    ]
+  },
+  {
+    "title": "Others",
+    "show": true,
+    "question_list": [
+      {
+        "id": "15a",
+        "index": 31,
+        "text": "Condition of Structures (masts, ladders, platforms, bases, foundation, junction boxes)",
+        "answer": null,
+        "color":"blue-grey lighten-3",
+        "note": "",
+        "media": []
+      },  
+      {
+        "id": "16a",
+        "index": 32,
+        "text": "Head Blocks (undamaged, fastening bolts secure, switch machine securely mounted)",
+        "answer": null,
+        "color":"blue-grey lighten-3",
+        "note": "",
+        "media": []
+      },  
+      {
+        "id": "17a",
+        "index": 33,
+        "text": "Switch Points (aligned, flush against stock rail, riding on all plates, plates lubricated/smooth, movement)",
+        "answer": null,
+        "color":"blue-grey lighten-3",
+        "note": "",
+        "media": []
+      },  
+      {
+        "id": "18a",
+        "index": 34,
+        "text": "Track Component Condition (MJS clips, gauge plates, rail braces, cotter pins)",
+        "answer": null,
+        "color":"blue-grey lighten-3",
+        "note": "",
+        "media": []
+      },  
+      {
+        "id": "19a",
+        "index": 35,
+        "text": "Gauge and Connecting Rods (throw, lock, indication rods/bars, not binding on rail or ties)",
+        "answer": null,
+        "color":"blue-grey lighten-3",
+        "note": "",
+        "media": []
+      },  
+      {
+        "id": "20a",
+        "index": 36,
+        "text": "Power Switch Machine Condition (housing, drainage)",
+        "answer": null,
+        "color":"blue-grey lighten-3",
+        "note": "",
+        "media": []
+      },  
+      {
+        "id": "21a",
+        "index": 37,
+        "text": "Contact Compartment (terminals, tagging, contact condition, lubrication)",
+        "answer": null,
+        "color":"blue-grey lighten-3",
+        "note": "",
+        "media": []
+      },  
+      {
+        "id": "22a",
+        "index": 38,
+        "text": "Motor/Gear Compartment (motor, brushes, gear, lubrication)",
+        "answer": null,
+        "color":"blue-grey lighten-3",
+        "note": "",
+        "media": []
+      },  
+      {
+        "id": "23a",
+        "index": 39,
+        "text": "Helper Assembly (intact, effective)",
+        "answer": null,
+        "color":"blue-grey lighten-3",
+        "note": "",
+        "media": []
+      },  
+      {
+        "id": "24a",
+        "index": 40,
+        "text": "External Condition of Housing (foundations, door, locks, free of debris)",
+        "answer": null,
+        "color":"blue-grey lighten-3",
+        "note": "",
+        "media": []
+      },  
+      {
+        "id": "25a",
+        "index": 41,
+        "text": "Internal Condition of Housing (clean, sealed, ventilation, moisture, no evidence of infestation)",
+        "answer": null,
+        "color":"blue-grey lighten-3",
+        "note": "",
+        "media": []
+      },  
+      {
+        "id": "26a",
+        "index": 42,
+        "text": "Location Conditions (equipment, tagging, wiring, lighting arresters)",
+        "answer": null,
+        "color":"blue-grey lighten-3",
+        "note": "",
+        "media": []
+      },  
+      {
+        "id": "27a",
+        "index": 43,
+        "text": "Cables and Line Wires (pole line, aerial, underground wire, cable clearance)",
+        "answer": null,
+        "color":"blue-grey lighten-3",
+        "note": "",
+        "media": []
+      },  
+      {
+        "id": "28a",
+        "index": 44,
+        "text": "Misc. Issues (other safety issues, recurring failure, system malfunction, unnecessary component or wiring)",
+        "answer": null,
+        "color":"blue-grey lighten-3",
+        "note": "",
+        "media": []
+      },  
+      {
+        "id": "29a",
+        "index": 45,
+        "text": "Light Unit Flash Rate & Operation (flash alternately and uniformly and at the prescribed flash rate)",
+        "answer": null,
+        "color":"blue-grey lighten-3",
+        "note": "",
+        "media": []
+      },  
+      {
+        "id": "30a",
+        "index": 46,
+        "text": "Signs (wayside operating)",
+        "answer": null,
+        "color":"blue-grey lighten-3",
+        "note": "",
+        "media": []
+      },  
+      {
+        "id": "31a",
+        "index": 47,
+        "text": "Bridge controller, Signal Control Device (specified device operating as intended)",
+        "answer": null,
+        "color":"blue-grey lighten-3",
+        "note": "",
+        "media": []
+      },  
+      {
+        "id": "32a",
+        "index": 48,
+        "text": "Timetable, Logbook, Maintenance Manuals (all applicable information available, complete, correct)",
+        "answer": null,
+        "color":"blue-grey lighten-3",
+        "note": "",
+        "media": []
+      },  
+      {
+        "id": "33a",
+        "index": 49,
+        "text": "Operational Tests (post repair/replacement)",
+        "answer": null,
+        "color":"blue-grey lighten-3",
+        "note": "",
+        "media": []
+      },  
+      {
+        "id": "34a",
+        "index": 50,
+        "text": "Software and Calibration",
+        "answer": null,
+        "color":"blue-grey lighten-3",
+        "note": "",
+        "media": []
+      }
+    ]
+  }
+]

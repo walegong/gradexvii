@@ -1,0 +1,128 @@
+[
+  {
+    "title": "Sightlines",
+    "show": true,
+    "question_list": [
+      {
+        "id": "1b",
+        "index": 0,
+        "text": "Sightlines from SSD - Roadway ROW",
+        "answer": null,
+        "media": [],
+        "color":"deep-purple lighten-1",
+        "note": "",
+        "type": "road"
+      },
+      {
+        "id": "1d",
+        "index": 1,
+        "text":
+          "Sightlines from SSD - Private Property (road authority responsibility)",
+        "answer": null,
+        "media": [],
+        "color":"deep-purple lighten-1",
+        "note": "",
+        "type": "road"
+      },
+      {
+        "id": "1f",
+        "index": 2,
+        "text":
+          "Sightlines from Dstopped - Roadway ROW",
+        "answer": null,
+        "media": [],
+        "color":"deep-purple lighten-1",
+        "note": "",
+        "type": "road"
+      },
+      {
+        "id": "1h",
+        "index": 3,
+        "text": "Sightlines from Dstopped - Private Property (road authority responsibility)",
+        "answer": null,
+        "media": [],
+        "color":"deep-purple lighten-1",
+        "note": "",
+        "type": "road"
+      },
+      {
+        "id": "1i",
+        "index": 4,
+        "text":
+          "Sightlines - Other",
+        "answer": null,
+        "media": [],
+        "color":"deep-purple lighten-1",
+        "note": "",
+        "type": "railway road"
+      }
+    ]
+  },
+  {
+    "title": "Surface",
+    "show": true,
+    "question_list": [
+      {
+        "id": "2d",
+        "index": 5,
+        "text":
+          "Surface - Approach Surface Condition",
+        "answer": null,
+        "media": [],
+        "color":"amber darken-2",
+        "note": "",
+        "type": "road"
+      },
+      {
+        "id": "2e",
+        "index": 6,
+        "text":
+          "Surface - Road Surface Geometry",
+        "answer": null,
+        "media": [],
+        "color":"amber darken-2",
+        "note": "",
+        "type": "road"
+      },
+      {
+        "id": "2f",
+        "index": 7,
+        "text":
+          "Surface - Other",
+        "answer": null,
+        "media": [],
+        "color":"amber darken-2",
+        "note": "",
+        "type": "railway road"
+      }
+    ]
+  },
+  {
+    "title": "Signage",
+    "show": true,
+    "question_list": [
+      {
+        "id": "3b",
+        "index": 8,
+        "text":
+          "Signage - Road Authority Responsibility Signage (railway crossing ahead, advisory speed tab, prepare to stop at railway crossing, etc.)",
+        "answer": null,
+        "media": [],
+        "color":"teal lighten-3",
+        "note": "",
+        "type": "road"
+      },
+      {
+        "id": "3c",
+        "index": 9,
+        "text":
+          "Signage - Other",
+        "answer": null,
+        "media": [],
+        "color":"teal lighten-3",
+        "note": "",
+        "type": "railway road"
+      }
+    ]
+  }
+]

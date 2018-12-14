@@ -1,0 +1,90 @@
+[
+  {
+    "title": "Functionality and Operation",
+    "show": true,
+    "question_list": [
+      {
+        "id": "5b",
+        "index": 0,
+        "text": "Interconnection - Road Authority (record of last joint inspection, synchronization or preemption time, perform test)",
+        "answer": null,
+        "media": [],
+        "color": "deep-purple lighten-1",
+        "note": "",
+        "type":"road"
+      }
+    ]
+  },
+  {
+    "title": "Design and Engineering",
+    "show": true,
+    "question_list": [
+      {
+        "id": "15b",
+        "index": 1,
+        "text": "Signage - Road Authority Responsibility (railway crossing ahead, advisory speed tab, prepare to stop at railway crossing, etc.)",
+        "answer": null,
+        "media": [],
+        "color": "teal lighten-3",
+        "note": "",
+        "type":"road"
+      },
+      {
+        "id": "17d",
+        "index": 2,
+        "text": "Crossing Road Approach Conditions",
+        "answer": null,
+        "media": [],
+        "color": "teal lighten-3",
+        "note": "",
+        "type":"road"
+      },
+      {
+        "id": "17e",
+        "index": 3,
+        "text": "Crossing Road Approach Geometry",
+        "answer": null,
+        "media": [],
+        "color": "teal lighten-3",
+        "note": "",
+        "type":"road"
+      },
+      {
+        "id": "17f",
+        "index": 4,
+        "text": "Location of Grade Crossing (restrictions on the proximity of intersections and entranceways to grade crossings) Note: to be recorded in 17e above.",
+        "answer": null,
+        "media": [],
+        "color": "teal lighten-3",
+        "note": "",
+        "type":"road"
+      },
+      {
+        "id": "17g",
+        "index": 5,
+        "text": "Stopping on Crossing Surface (queuing or stopping on crossing surface issues) Note: to be recorded in 17e above.",
+        "answer": null,
+        "media": [],
+        "color": "teal lighten-3",
+        "note": "",
+        "type":"road"
+      }
+    ]
+  },
+  {
+    "title": "Others",
+    "show": true,
+    "question_list": [
+      {
+        "id": "36",
+        "index": 6,
+        "text": "Misc. Issues - Road Authority (other safety issues of road authority responsibility)",
+        "answer": null,
+        "media": [],
+        "color": "blue-grey lighten-3",
+        "note": "",
+        "type":"road"
+      }
+    ]
+  }
+]

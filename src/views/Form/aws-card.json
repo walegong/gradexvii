@@ -10,7 +10,8 @@
         "answer": null,
         "media": [],
         "color": "deep-purple lighten-1",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "1b",
@@ -19,7 +20,8 @@
         "answer": null,
         "media": [],
         "color": "deep-purple lighten-1",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "1c",
@@ -28,7 +30,8 @@
         "answer": null,
         "media": [],
         "color": "deep-purple lighten-1",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "1d",
@@ -37,7 +40,8 @@
         "answer": null,
         "media": [],
         "color": "deep-purple lighten-1",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "1e",
@@ -46,7 +50,8 @@
         "answer": null,
         "media": [],
         "color": "deep-purple lighten-1",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "1f",
@@ -55,7 +60,8 @@
         "answer": null,
         "media": [],
         "color": "deep-purple lighten-1",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "2a",
@@ -64,7 +70,8 @@
         "answer": null,
         "media": [],
         "color": "deep-purple lighten-1",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "3a",
@@ -73,7 +80,8 @@
         "answer": null,
         "media": [],
         "color": "deep-purple lighten-1",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "4a",
@@ -82,7 +90,8 @@
         "answer": null,
         "media": [],
         "color": "deep-purple lighten-1",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "4b",
@@ -91,7 +100,8 @@
         "answer": null,
         "media": [],
         "color": "deep-purple lighten-1",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "5a",
@@ -100,7 +110,8 @@
         "answer": null,
         "media": [],
         "color": "deep-purple lighten-1",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "5b",
@@ -109,7 +120,8 @@
         "answer": null,
         "media": [],
         "color": "deep-purple lighten-1",
-        "note": ""
+        "note": "",
+        "type":"road"
       },
       {
         "id": "6a",
@@ -118,7 +130,8 @@
         "answer": null,
         "media": [],
         "color": "deep-purple lighten-1",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "6b",
@@ -127,7 +140,8 @@
         "answer": null,
         "media": [],
         "color": "deep-purple lighten-1",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "7a",
@@ -136,7 +150,8 @@
         "answer": null,
         "media": [],
         "color": "deep-purple lighten-1",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "7b",
@@ -145,7 +160,8 @@
         "answer": null,
         "media": [],
         "color": "deep-purple lighten-1",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "7c",
@@ -154,7 +170,8 @@
         "answer": null,
         "media": [],
         "color": "deep-purple lighten-1",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "7d",
@@ -163,7 +180,8 @@
         "answer": null,
         "media": [],
         "color": "deep-purple lighten-1",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "7e",
@@ -172,13 +190,14 @@
         "answer": null,
         "media": [],
         "color": "deep-purple lighten-1",
-        "note": ""
+        "note": "",
+        "type":"railway"
       }
     ]
   },
   {
     "title": "Periodic Inspection and Testing / Records",
-    "show": false,
+    "show": true,
     "question_list": [
       {
         "id": "8a",
@@ -187,7 +206,8 @@
         "answer": null,
         "media": [],
         "color": "blue-grey darken-3",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "8b",
@@ -196,7 +216,8 @@
         "answer": null,
         "media": [],
         "color": "blue-grey darken-3",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "8c",
@@ -205,7 +226,8 @@
         "answer": null,
         "media": [],
         "color": "blue-grey darken-3",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "8d",
@@ -214,7 +236,8 @@
         "answer": null,
         "media": [],
         "color": "blue-grey darken-3",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "8e",
@@ -223,7 +246,8 @@
         "answer": null,
         "media": [],
         "color": "blue-grey darken-3",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "8f",
@@ -232,7 +256,8 @@
         "answer": null,
         "media": [],
         "color": "blue-grey darken-3",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "9a",
@@ -241,13 +266,14 @@
         "answer": null,
         "media": [],
         "color": "blue-grey darken-3",
-        "note": ""
+        "note": "",
+        "type":"railway"
       }
     ]
   },
   {
     "title": "Vital Circuit Stability",
-    "show": false,
+    "show": true,
     "question_list": [
       {
         "id": "10a",
@@ -256,7 +282,8 @@
         "answer": null,
         "media": [],
         "color": "blue-grey darken-3",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "10b",
@@ -265,7 +292,8 @@
         "answer": null,
         "media": [],
         "color": "blue-grey darken-3",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "10c",
@@ -274,7 +302,8 @@
         "answer": null,
         "media": [],
         "color": "blue-grey darken-3",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "11a",
@@ -283,7 +312,8 @@
         "answer": null,
         "media": [],
         "color": "blue-grey darken-3",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "12a",
@@ -292,7 +322,8 @@
         "answer": null,
         "media": [],
         "color": "blue-grey darken-3",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "13a",
@@ -301,13 +332,14 @@
         "answer": null,
         "media": [],
         "color": "blue-grey darken-3",
-        "note": ""
+        "note": "",
+        "type":"railway"
       }
     ]
   },
   {
     "title": "Design and Engineering",
-    "show": false,
+    "show": true,
     "question_list": [
       {
         "id": "14a",
@@ -316,7 +348,8 @@
         "answer": null,
         "media": [],
         "color": "teal lighten-3",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "15a",
@@ -325,7 +358,8 @@
         "answer": null,
         "media": [],
         "color": "teal lighten-3",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "15b",
@@ -334,7 +368,8 @@
         "answer": null,
         "media": [],
         "color": "teal lighten-3",
-        "note": ""
+        "note": "",
+        "type":"road"
       },
       {
         "id": "16a",
@@ -343,7 +378,8 @@
         "answer": null,
         "media": [],
         "color": "teal lighten-3",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "17a",
@@ -352,7 +388,8 @@
         "answer": null,
         "media": [],
         "color": "teal lighten-3",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "17b",
@@ -361,7 +398,8 @@
         "answer": null,
         "media": [],
         "color": "teal lighten-3",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "17c",
@@ -370,7 +408,8 @@
         "answer": null,
         "media": [],
         "color": "teal lighten-3",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "17d",
@@ -379,7 +418,8 @@
         "answer": null,
         "media": [],
         "color": "teal lighten-3",
-        "note": ""
+        "note": "",
+        "type":"road"
       },
       {
         "id": "17e",
@@ -388,7 +428,8 @@
         "answer": null,
         "media": [],
         "color": "teal lighten-3",
-        "note": ""
+        "note": "",
+        "type":"road"
       },
       {
         "id": "17f",
@@ -397,7 +438,8 @@
         "answer": null,
         "media": [],
         "color": "teal lighten-3",
-        "note": ""
+        "note": "",
+        "type":"road"
       },
       {
         "id": "17g",
@@ -406,13 +448,14 @@
         "answer": null,
         "media": [],
         "color": "teal lighten-3",
-        "note": ""
+        "note": "",
+        "type":"road"
       }
     ]
   },
   {
     "title": "Railway Operations Observations",
-    "show": false,
+    "show": true,
     "question_list": [
       {
         "id": "18a",
@@ -422,7 +465,8 @@
         "media": [],
         "color": "brown lighten-3",
         "note": "",
-        "boolean": true
+        "boolean": true,
+        "type":"railway"
       },
       {
         "id": "19a",
@@ -432,7 +476,8 @@
         "media": [],
         "color": "brown lighten-3",
         "note": "",
-        "boolean": true
+        "boolean": true,
+        "type":"railway"
       },
       {
         "id": "20a",
@@ -442,7 +487,8 @@
         "media": [],
         "color": "brown lighten-3",
         "note": "",
-        "boolean": true
+        "boolean": true,
+        "type":"railway"
       },
       {
         "id": "21a",
@@ -452,7 +498,8 @@
         "media": [],
         "color": "brown lighten-3",
         "note": "",
-        "boolean": true
+        "boolean": true,
+        "type":"railway"
       },
       {
         "id": "22a",
@@ -462,7 +509,8 @@
         "media": [],
         "color": "brown lighten-3",
         "note": "",
-        "boolean": true
+        "boolean": true,
+        "type":"railway"
       },
       {
         "id": "22b",
@@ -472,7 +520,8 @@
         "media": [],
         "color": "brown lighten-3",
         "note": "",
-        "boolean": true
+        "boolean": true,
+        "type":"railway"
       },
       {
         "id": "22c",
@@ -482,7 +531,8 @@
         "media": [],
         "color": "brown lighten-3",
         "note": "",
-        "boolean": true
+        "boolean": true,
+        "type":"railway"
       },
       {
         "id": "22d",
@@ -492,13 +542,14 @@
         "media": [],
         "color": "brown lighten-3",
         "note": "",
-        "boolean": true
+        "boolean": true,
+        "type":"railway"
       }
     ]
   },
   {
     "title": "Others",
-    "show": false,
+    "show": true,
     "question_list": [
       {
         "id": "23",
@@ -507,7 +558,8 @@
         "answer": null,
         "media": [],
         "color": "blue-grey lighten-3",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "24",
@@ -516,7 +568,8 @@
         "answer": null,
         "media": [],
         "color": "blue-grey lighten-3",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "25",
@@ -525,7 +578,8 @@
         "answer": null,
         "media": [],
         "color": "blue-grey lighten-3",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "26",
@@ -534,7 +588,8 @@
         "answer": null,
         "media": [],
         "color": "blue-grey lighten-3",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "27",
@@ -543,7 +598,8 @@
         "answer": null,
         "media": [],
         "color": "blue-grey lighten-3",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "28",
@@ -552,7 +608,8 @@
         "answer": null,
         "media": [],
         "color": "blue-grey lighten-3",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "29",
@@ -561,7 +618,8 @@
         "answer": null,
         "media": [],
         "color": "blue-grey lighten-3",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "30",
@@ -570,7 +628,8 @@
         "answer": null,
         "media": [],
         "color": "blue-grey lighten-3",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "31",
@@ -579,7 +638,8 @@
         "answer": null,
         "media": [],
         "color": "blue-grey lighten-3",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "32",
@@ -588,7 +648,8 @@
         "answer": null,
         "media": [],
         "color": "blue-grey lighten-3",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "33",
@@ -597,7 +658,8 @@
         "answer": null,
         "media": [],
         "color": "blue-grey lighten-3",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "34",
@@ -606,7 +668,8 @@
         "answer": null,
         "media": [],
         "color": "blue-grey lighten-3",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "35",
@@ -615,7 +678,8 @@
         "answer": null,
         "media": [],
         "color": "blue-grey lighten-3",
-        "note": ""
+        "note": "",
+        "type":"railway"
       },
       {
         "id": "36",
@@ -624,7 +688,8 @@
         "answer": null,
         "media": [],
         "color": "blue-grey lighten-3",
-        "note": ""
+        "note": "",
+        "type":"road"
       }
     ]
   }

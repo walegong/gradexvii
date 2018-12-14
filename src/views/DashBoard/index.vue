@@ -22,6 +22,20 @@
       </v-toolbar>
       <v-list class="pt-0" dense>
         <v-divider></v-divider>
+        <v-list-tile v-if="$store.state.role != null">
+          <v-list-tile-action>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title><router-link class="side-link" to='/dashboard'>Dashboard</router-link></v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+        <v-list-tile v-if="$store.state.role != null">
+          <v-list-tile-action>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title><router-link class="side-link" to='/report-dashboard'>Report Center</router-link></v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
         <v-list-tile @click="info_dialog = true">
           <v-list-tile-action>
             <v-icon>fingerprint</v-icon>
@@ -112,7 +126,7 @@
       <v-toolbar-title>DashBoard</v-toolbar-title>
     </v-toolbar>
 
-    <v-content id="panel">
+    <v-content id="panel" v-if="$store.state.role != null">
       <v-container fluid fill-height>
         <v-layout justify-center align-center>
           <v-flex xs12 sm12>
@@ -177,7 +191,12 @@
                       v-if="props.item.status === 'initial'"
                       @click.stop="gotoForm(props.item.crossing_id, props.item.type)">Start</v-btn>
                     <v-btn 
-                      color="light-green"
+                      color="success"
+                      dark
+                      v-else-if="props.item.status === 'complete'"
+                      @click.stop="gotoForm(props.item.crossing_id, props.item.type)">View</v-btn>
+                    <v-btn 
+                      color="amber"
                       dark
                       v-else
                       @click.stop="gotoForm(props.item.crossing_id, props.item.type)">Continue</v-btn>
@@ -250,7 +269,8 @@ export default {
         middle_name: '',
         last_name: '',
         organization: '',
-        position: ''
+        position: '',
+        type: ''
       },
       // table data
       table_loading: true,
@@ -337,11 +357,33 @@ export default {
     this.$bind('crossing_list', db.collection('inspection_list').doc(this.$store.state.uid))
       .then((doc) => {
         this.table_loading = false
+        console.log(typeof this.crossing_list.current_list)
       })
       .catch((error) => {
         this.table_msg = 'There is a problem when feteching the data'
         console.log('error in loading: ', error)
       })
+  },
+  created: function () {
+    db.collection('user_group').doc('current_list').get()
+      .then(doc => {
+        if (doc.data().admin.includes(this.$store.state.email)) {
+          console.log('admin')
+          this.$store.dispatch('userGroup', 'admin')
+        } else {
+          if (doc.data().railway.includes(this.$store.state.email)) {
+            console.log('railway')
+            this.$store.dispatch('userGroup', 'railway')
+          } else if (doc.data().road.includes(this.$store.state.email)) {
+            console.log('road')
+            this.$store.dispatch('userGroup', 'road')
+          } else if (doc.data().transportation.includes(this.$store.state.email)) {
+            console.log('transportation')
+            this.$store.dispatch('userGroup', 'transportation')
+          }
+        }
+      })
+    console.log(this.$store)
   }
 }
 </script>
@@ -375,5 +417,10 @@ export default {
   height: 60px !important;
   top: -30px;
   background-color: #03A9F4;
+}
+
+.side-link {
+  color: inherit;
+  text-decoration: none;
 }
 </style>

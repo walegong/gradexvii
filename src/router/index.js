@@ -52,6 +52,18 @@ const router = new Router({
       component: () => import('@/views/Camera/index')
     },
     {
+      path: '/report-dashboard',
+      name: 'ReportDashBoard',
+      component: () => import('@/views/ReportDashBoard/index'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/report/:id',
+      name: 'Report',
+      component: () => import('@/views/Report/index'),
+      meta: { requiresAuth: true }
+    },
+    {
       path: '*',
       redirect: '/login'
     }

@@ -1,0 +1,626 @@
+[
+  {
+    "title": "Functionality and Operation",
+    "show": true,
+    "question_list": [
+      {
+        "id": "1a",
+        "index": 0,
+        "text": "Track Bond Conditions (complete, undamaged, ensures conductivity)",
+        "answer": null,
+        "media": [],
+        "color": "deep-purple lighten-1",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "1b",
+        "index": 1,
+        "text": "Track Lead Conditions (complete, undamaged, secured)",
+        "answer": null,
+        "media": [],
+        "color": "deep-purple lighten-1",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "1c",
+        "index": 2,
+        "text": "Insulated Joint Conditions (end post intact, tie plates clear, bolts tight, spikes reversed)",
+        "answer": null,
+        "media": [],
+        "color": "deep-purple lighten-1",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "1d",
+        "index": 3,
+        "text": "Track Circuit Detection (detects a 0.06 ohm shunt, adjustment, no contamination of track circuit, signal in vicinity)",
+        "answer": null,
+        "media": [],
+        "color": "deep-purple lighten-1",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "1e",
+        "index": 4,
+        "text": "Fouling Wires Condition (at least two discrete conductors, single duplex wire with single plug is not permitted)",
+        "answer": null,
+        "media": [],
+        "color": "deep-purple lighten-1",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "1f",
+        "index": 5,
+        "text": "Track Circuit Polarity (staggered and in conformity to the design plan)",
+        "answer": null,
+        "media": [],
+        "color": "deep-purple lighten-1",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "2a",
+        "index": 6,
+        "text": "Warning Time (sufficient and consistent)",
+        "answer": null,
+        "media": [],
+        "color": "deep-purple lighten-1",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "3a",
+        "index": 7,
+        "text": "Bell (operation, configuration)",
+        "answer": null,
+        "media": [],
+        "color": "deep-purple lighten-1",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "4a",
+        "index": 8,
+        "text": "Gate Conditions (arm covers lane, gate light condition, reflecting tape)",
+        "answer": null,
+        "media": [],
+        "color": "deep-purple lighten-1",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "4b",
+        "index": 9,
+        "text": "Operation of gates (smooth, no bouncing, descent once gate arm clearance time has elapsed (min 3 sec), descent time to horizontal (10 to 15 sec), ascent time (6 to 12 seconds))",
+        "answer": null,
+        "media": [],
+        "color": "deep-purple lighten-1",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "5a",
+        "index": 10,
+        "text": "Interconnection - Railway (record of last joint inspection, preemption time, perform test) ",
+        "answer": null,
+        "media": [],
+        "color": "deep-purple lighten-1",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "6a",
+        "index": 11,
+        "text": "Cut-out Control Feature (equipped with a control feature to minimize the operation of the warning system where required)",
+        "answer": null,
+        "media": [],
+        "color": "deep-purple lighten-1",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "6b",
+        "index": 12,
+        "text": "Switch Circuit Controller Cut Out (cuts out only when the switch point is within one-half inch of full reverse position (when equipped))",
+        "answer": null,
+        "media": [],
+        "color": "deep-purple lighten-1",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "7a",
+        "index": 13,
+        "text": "Light Unit Condition (physical condition of light units, compare lens deflection with plans, note type)",
+        "answer": null,
+        "media": [],
+        "color": "deep-purple lighten-1",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "7b",
+        "index": 14,
+        "text": "Light Unit Configuration (light units cover all road approaches)",
+        "answer": null,
+        "media": [],
+        "color": "deep-purple lighten-1",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "7c",
+        "index": 15,
+        "text": "Light Alignment (all lights visible to the appropriate alignment point)",
+        "answer": null,
+        "media": [],
+        "color": "deep-purple lighten-1",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "7d",
+        "index": 16,
+        "text": "Visibility of Warning System from SSD (at least one set of lights are visible within SSD)",
+        "answer": null,
+        "media": [],
+        "color": "deep-purple lighten-1",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "7e",
+        "index": 17,
+        "text": "Light Unit Flash Rate & Operation (flash alternately and uniformly and at the prescribed flash rate)",
+        "answer": null,
+        "media": [],
+        "color": "deep-purple lighten-1",
+        "note": "",
+        "type":"railway"
+      }
+    ]
+  },
+  {
+    "title": "Periodic Inspection and Testing / Records",
+    "show": true,
+    "question_list": [
+      {
+        "id": "8a",
+        "index": 18,
+        "text": "Record of Weekly Tests (no missing or overdue tests)",
+        "answer": null,
+        "media": [],
+        "color": "blue-grey darken-3",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "8b",
+        "index": 19,
+        "text": "Record of Monthly, Quarterly and Semiannual Tests (no missing or overdue tests)",
+        "answer": null,
+        "media": [],
+        "color": "blue-grey darken-3",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "8c",
+        "index": 20,
+        "text": "Record of Annual Tests (no missing or overdue tests)",
+        "answer": null,
+        "media": [],
+        "color": "blue-grey darken-3",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "8d",
+        "index": 21,
+        "text": "Record of Two Year Tests (no missing or overdue tests)",
+        "answer": null,
+        "media": [],
+        "color": "blue-grey darken-3",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "8e",
+        "index": 22,
+        "text": "Record of Four Year Tests (no missing or overdue tests)",
+        "answer": null,
+        "media": [],
+        "color": "blue-grey darken-3",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "8f",
+        "index": 23,
+        "text": "Record of Ten Year Tests (no missing or overdue tests)",
+        "answer": null,
+        "media": [],
+        "color": "blue-grey darken-3",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "9a",
+        "index": 24,
+        "text": "Directional Stick Circuit (timing device, stick release, stick circuit indication)",
+        "answer": null,
+        "media": [],
+        "color": "blue-grey darken-3",
+        "note": "",
+        "type":"railway"
+      }
+    ]
+  },
+  {
+    "title": "Vital Circuit Stability",
+    "show": true,
+    "question_list": [
+      {
+        "id": "10a",
+        "index": 25,
+        "text": "Standby Battery Conditions (clean & free of corrosion, voltage reading taken pre/post 15 min power off)",
+        "answer": null,
+        "media": [],
+        "color": "blue-grey darken-3",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "10b",
+        "index": 26,
+        "text": "AC Power and Components (phases consistent and equal under load)",
+        "answer": null,
+        "media": [],
+        "color": "blue-grey darken-3",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "10c",
+        "index": 27,
+        "text": "Power Off Light (visible, functional)",
+        "answer": null,
+        "media": [],
+        "color": "blue-grey darken-3",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "11a",
+        "index": 28,
+        "text": "Battery Isolation Condition (no voltage potential between power supplies)",
+        "answer": null,
+        "media": [],
+        "color": "blue-grey darken-3",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "12a",
+        "index": 29,
+        "text": "Circuit Grounds (no leakage to ground, perform test while system is active and at rest)",
+        "answer": null,
+        "media": [],
+        "color": "blue-grey darken-3",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "13a",
+        "index": 30,
+        "text": "Relay Conditions (securely mounted, contact condition, no rust or debris in housing, properly identified, corresponds to the circuit plan)",
+        "answer": null,
+        "media": [],
+        "color": "blue-grey darken-3",
+        "note": "",
+        "type":"railway"
+      }
+    ]
+  },
+  {
+    "title": "Design and Engineering",
+    "show": true,
+    "question_list": [
+      {
+        "id": "14a",
+        "index": 31,
+        "text": "Design Plan Conditions (complete, accurate, legible, up to date)",
+        "answer": null,
+        "media": [],
+        "color": "teal lighten-3",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "15a",
+        "index": 32,
+        "text": "Signage - Railway Responsibility (SRCS, # tracks, emergency notification, etc.)",
+        "answer": null,
+        "media": [],
+        "color": "teal lighten-3",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "16a",
+        "index": 33,
+        "text": "Railway Sightlines (at 5m, note quadrants)",
+        "answer": null,
+        "media": [],
+        "color": "teal lighten-3",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "17a",
+        "index": 34,
+        "text": "Crossing Surface Condition",
+        "answer": null,
+        "media": [],
+        "color": "teal lighten-3",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "17b",
+        "index": 35,
+        "text": "Crossing Surface Width",
+        "answer": null,
+        "media": [],
+        "color": "teal lighten-3",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "17c",
+        "index": 36,
+        "text": "Crossing Surface Flangeway (width, depth, condition of the flangeway)",
+        "answer": null,
+        "media": [],
+        "color": "teal lighten-3",
+        "note": "",
+        "type":"railway"
+      }
+    ]
+  },
+  {
+    "title": "Railway Operations Observations",
+    "show": true,
+    "question_list": [
+      {
+        "id": "18a",
+        "index": 37,
+        "text": "Unnecessary Activation of Warning System (Equipment left standing in a manner that causes the activation of the warning system at a public grade crossing other than for the purpose of crossing that grade crossing)",
+        "answer": null,
+        "media": [],
+        "color": "brown lighten-3",
+        "note": "",
+        "boolean": true,
+        "type":"railway"
+      },
+      {
+        "id": "19a",
+        "index": 38,
+        "text": "Obstruction of Grade Crossing (equipment left standing on a crossing surface or switching operations that activates the gate of a warning system for more than five minutes when vehicle or pedestrian traffic waiting to cross)",
+        "answer": null,
+        "media": [],
+        "color": "brown lighten-3",
+        "note": "",
+        "boolean": true,
+        "type":"railway"
+      },
+      {
+        "id": "20a",
+        "index": 39,
+        "text": "Evidence of Trespassing (cut fence, worn footpath, witnessed event)",
+        "answer": null,
+        "media": [],
+        "color": "brown lighten-3",
+        "note": "",
+        "boolean": true,
+        "type":"railway"
+      },
+      {
+        "id": "21a",
+        "index": 40,
+        "text": "Whistle Cessation Concern (introduced since GCR but does not meet requirements, or pre-GCR but is concern for safety)",
+        "answer": null,
+        "media": [],
+        "color": "brown lighten-3",
+        "note": "",
+        "boolean": true,
+        "type":"railway"
+      },
+      {
+        "id": "22a",
+        "index": 41,
+        "text": "Persons performing duties did not appear familiar with equipment/components within their responsibility.",
+        "answer": null,
+        "media": [],
+        "color": "brown lighten-3",
+        "note": "",
+        "boolean": true,
+        "type":"railway"
+      },
+      {
+        "id": "22b",
+        "index": 42,
+        "text": "Persons performing duties did not appear familiar with the railways inspection and testing requirements, and other procedures.",
+        "answer": null,
+        "media": [],
+        "color": "brown lighten-3",
+        "note": "",
+        "boolean": true,
+        "type":"railway"
+      },
+      {
+        "id": "22c",
+        "index": 43,
+        "text": "Persons performing duties did not appear to have an understanding of safety requirements during testing, and/or how to protect safe railway operations during the undertaking of their duties",
+        "answer": null,
+        "media": [],
+        "color": "brown lighten-3",
+        "note": "",
+        "boolean": true,
+        "type":"railway"
+      },
+      {
+        "id": "22d",
+        "index": 44,
+        "text": "Persons performing duties were not able to correctly answer all questions and perform all tasks requested by the RSI at the time of inspection, and/or did not appear confident and knowledgeable when implementing them.",
+        "answer": null,
+        "media": [],
+        "color": "brown lighten-3",
+        "note": "",
+        "boolean": true,
+        "type":"railway"
+      }
+    ]
+  },
+  {
+    "title": "Others",
+    "show": true,
+    "question_list": [
+      {
+        "id": "23",
+        "index": 45,
+        "text": "Timetable, Logbook, Maintenance Manuals (all applicable information available, complete, correct)",
+        "answer": null,
+        "media": [],
+        "color": "blue-grey lighten-3",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "24",
+        "index": 46,
+        "text": "Light Units Voltage (within threshold)",
+        "answer": null,
+        "media": [],
+        "color": "blue-grey lighten-3",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "25",
+        "index": 47,
+        "text": "Software and Calibration",
+        "answer": null,
+        "media": [],
+        "color": "blue-grey lighten-3",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "26",
+        "index": 48,
+        "text": "Operational Tests (post repair/replacement)",
+        "answer": null,
+        "media": [],
+        "color": "blue-grey lighten-3",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "27",
+        "index": 49,
+        "text": "Switch Circuit Controller (centering device condition)",
+        "answer": null,
+        "media": [],
+        "color": "blue-grey lighten-3",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "28",
+        "index": 50,
+        "text": "Condition of Structures (masts, ladders, platforms, bases, foundation, junction boxes)",
+        "answer": null,
+        "media": [],
+        "color": "blue-grey lighten-3",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "29",
+        "index": 51,
+        "text": "External Condition of Housing (foundations, door, locks, free of debris)",
+        "answer": null,
+        "media": [],
+        "color": "blue-grey lighten-3",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "30",
+        "index": 52,
+        "text": "Internal Condition of Housing (clean, sealed, ventilation, moisture, no evidence of infestation)",
+        "answer": null,
+        "media": [],
+        "color": "blue-grey lighten-3",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "31",
+        "index": 53,
+        "text": "Location Conditions (equipment, tagging, wiring, lighting arresters)",
+        "answer": null,
+        "media": [],
+        "color": "blue-grey lighten-3",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "32",
+        "index": 54,
+        "text": "Clearance - Vertical/Horizontal (light units, cantilever, gate)",
+        "answer": null,
+        "media": [],
+        "color": "blue-grey lighten-3",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "33",
+        "index": 55,
+        "text": "Operational Issues (queuing, departure time, hidden train operation, two+ tracks, standing railway equipment, crossing not used)",
+        "answer": null,
+        "media": [],
+        "color": "blue-grey lighten-3",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "34",
+        "index": 56,
+        "text": "Cables and Line Wires (pole line, aerial, underground wire, cable clearance)",
+        "answer": null,
+        "media": [],
+        "color": "blue-grey lighten-3",
+        "note": "",
+        "type":"railway"
+      },
+      {
+        "id": "35",
+        "index": 57,
+        "text": "Misc. Issues - Railway (other safety issues of railway responsibility)",
+        "answer": null,
+        "media": [],
+        "color": "blue-grey lighten-3",
+        "note": "",
+        "type":"railway"
+      }
+    ]
+  }
+]

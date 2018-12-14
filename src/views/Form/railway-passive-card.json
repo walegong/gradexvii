@@ -1,0 +1,223 @@
+[
+  {
+    "title": "Sightlines",
+    "show": true,
+    "question_list": [
+      {
+        "id": "1a",
+        "index": 0,
+        "text": "Sightlines from SSD - Railway ROW",
+        "answer": null,
+        "media": [],
+        "color":"deep-purple lighten-1",
+        "note": "",
+        "type": "railway"
+      },
+      {
+        "id": "1c",
+        "index": 1,
+        "text":
+          "Sightlines from SSD - Private Property (railway responsibility)",
+        "answer": null,
+        "media": [],
+        "color":"deep-purple lighten-1",
+        "note": "",
+        "type": "railway"
+      },
+      {
+        "id": "1e",
+        "index": 2,
+        "text":
+          "Sightlines from Dstopped - Railway ROW",
+        "answer": null,
+        "media": [],
+        "color":"deep-purple lighten-1",
+        "note": "",
+        "type": "railway"
+      },
+      {
+        "id": "1g",
+        "index": 3,
+        "text": "Sightlines from Dstopped - Private Property (railway responsibility)",
+        "answer": null,
+        "media": [],
+        "color":"deep-purple lighten-1",
+        "note": "",
+        "type": "railway"
+      },
+      {
+        "id": "1i",
+        "index": 4,
+        "text":
+          "Sightlines - Other",
+        "answer": null,
+        "media": [],
+        "color":"deep-purple lighten-1",
+        "note": "",
+        "type": "railway road"
+      }
+    ]
+  },
+  {
+    "title": "Surface",
+    "show": true,
+    "question_list": [
+      {
+        "id": "2a",
+        "index": 5,
+        "text":
+          "Surface - Crossing Surface Condition",
+        "answer": null,
+        "media": [],
+        "color":"amber darken-2",
+        "note": "",
+        "type": "railway"
+      },
+      {
+        "id": "2b",
+        "index": 6,
+        "text":
+          "Surface - Crossing Surface Width",
+        "answer": null,
+        "media": [],
+        "color":"amber darken-2",
+        "note": "",
+        "type": "railway"
+      },
+      {
+        "id": "2c",
+        "index": 7,
+        "text": "Surface - Crossing Flangeway",
+        "answer": null,
+        "media": [],
+        "color":"amber darken-2",
+        "note": "",
+        "type": "railway"
+      },
+      {
+        "id": "2f",
+        "index": 8,
+        "text":
+          "Surface - Other",
+        "answer": null,
+        "media": [],
+        "color":"amber darken-2",
+        "note": "",
+        "type": "railway road"
+      }
+    ]
+  },
+  {
+    "title": "Signage",
+    "show": true,
+    "question_list": [
+      {
+        "id": "3a",
+        "index": 9,
+        "text":
+          "Signage - Railway Responsibility Signage (SRCS, # tracks, emergency notification, etc.)",
+        "answer": null,
+        "media": [],
+        "color":"teal lighten-3",
+        "note": "",
+        "type": "railway"
+      },
+      {
+        "id": "3c",
+        "index": 10,
+        "text":
+          "Signage - Other",
+        "answer": null,
+        "media": [],
+        "color":"teal lighten-3",
+        "note": "",
+        "type": "railway road"
+      }
+    ]
+  },
+  {
+    "title": "Railway Operations Observations",
+    "show": true,
+    "question_list": [
+      {
+        "id": "4a",
+        "index": 11,
+        "text":
+          "Obstruction of Grade Crossing (equipment left standing on a crossing surface or switching operations for more than five minutes in a manner that obstructs a public grade crossing when vehicle or pedestrian traffic waiting to cross)",
+        "answer": null,
+        "media": [],
+        "note": "",
+        "color":"brown lighten-3",
+        "boolean": true,
+        "type": "railway"
+      },
+      {
+        "id": "4b",
+        "index": 12,
+        "text": "Evidence of Trespassing (cut fence, worn footpath, witnessed event)",
+        "answer": null,
+        "media": [],
+        "note": "",
+        "color":"brown lighten-3",
+        "boolean": true,
+        "type": "railway"
+      },
+      {
+        "id": "4c",
+        "index": 13,
+        "text":
+          "Whistle Cessation Concern (introduced since GCR but does not meet requirements, or pre-GCR but is concern for safety)",
+        "answer": null,
+        "media": [],
+        "note": "",
+        "color":"brown lighten-3",
+        "boolean": true,
+        "type": "railway"
+      },
+      {
+        "id": "4d",
+        "index": 14,
+        "text": "Persons performing duties did not appear familiar with equipment/components within their responsibility.",
+        "answer": null,
+        "media": [],
+        "note": "",
+        "color":"brown lighten-3",
+        "boolean": true,
+        "type": "railway"
+      },
+      {
+        "id": "4e",
+        "index": 15,
+        "text": "Persons performing duties did not appear familiar with the railways inspection and testing requirements, and other procedures.",
+        "answer": null,
+        "media": [],
+        "note": "",
+        "color":"brown lighten-3",
+        "boolean": true,
+        "type": "railway"
+      },
+      {
+        "id": "4f",
+        "index": 16,
+        "text": "Persons performing duties did not appear to have an understanding of safety requirements during testing, and/or how to protect safe railway operations during the undertaking of their duties.",
+        "answer": null,
+        "media": [],
+        "note": "",
+        "color":"brown lighten-3",
+        "boolean": true,
+        "type": "railway"
+      },
+      {
+        "id": "4g",
+        "index": 17,
+        "text": "Persons performing duties were not able to correctly answer all questions and perform all tasks requested by the RSI at the time of inspection, and/or did not appear confident and knowledgeable when implementing them.",
+        "answer": null,
+        "media": [],
+        "note": "",
+        "color":"brown lighten-3",
+        "boolean": true,
+        "type": "railway"
+      }
+    ]
+  }
+]
